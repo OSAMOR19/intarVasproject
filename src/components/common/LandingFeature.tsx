@@ -290,7 +290,7 @@ const FeaturesSection = () => {
           }`}
           onClick={() => setActiveTab("pbx")}
         >
-          IntarVAS PBX
+          IntarvAS PBX
         </button>
         <button 
           className={`px-6 py-2 rounded-full text-sm transition-all duration-300 ${
