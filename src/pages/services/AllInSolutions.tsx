@@ -23,7 +23,7 @@ export default function AllInSolutions() {
       {/* Hero Section */}
       <section className="bg-background pt-32 pb-12">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-inter font-extrabold tracking-tight md:text-[64px] mb-3">
+          <h1 className="text-4xl font-inter font-semibold tracking-tight md:text-[64px] mb-3">
             All in one solution
           </h1>
           <p className="mx-auto font-inter mt-4 max-w-xl text-lg text-muted-foreground">

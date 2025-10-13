@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Check,
   Award,
@@ -9,6 +9,43 @@ import {
 } from "lucide-react";
 
 const PricingPlans = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const [titleText, setTitleText] = useState("");
+  const [subtitleText, setSubtitleText] = useState("");
+  const [isTitleComplete, setIsTitleComplete] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            // Stagger card animations
+            const cardIndices = [0, 1, 2];
+            cardIndices.forEach((index) => {
+              setTimeout(() => {
+                setVisibleCards(prev => [...prev, index]);
+              }, index * 200);
+            });
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const section = document.getElementById('pricing-section');
+    if (section) {
+      observer.observe(section);
+    }
+
+    return () => {
+      if (section) {
+        observer.unobserve(section);
+      }
+    };
+  }, []);
+
   const plans = [
     {
       name: "Basic Level",
@@ -82,10 +119,10 @@ const PricingPlans = () => {
   ];
 
   return (
-    <section className="bg-gray-50 py-20 px-8">
+    <section id="pricing-section" className="bg-gray-50 py-20 px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'}`}>
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             Flexible Plans for{" "}
             <span className="text-gray-400">Every Business</span>
@@ -101,10 +138,14 @@ const PricingPlans = () => {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl ${
+              className={`relative bg-white rounded-2xl overflow-hidden transition-all duration-700 hover:shadow-xl hover:scale-105 ${
                 plan.popular
                   ? "border-2 border-blue-500 shadow-lg scale-105"
-                  : "border border-gray-200"
+                  : "border border-gray-200 hover:border-blue-300"
+              } ${
+                visibleCards.includes(index)
+                  ? 'opacity-100 transform translate-y-0'
+                  : 'opacity-0 transform translate-y-8'
               }`}
             >
               {/* Popular Badge */}
@@ -138,10 +179,10 @@ const PricingPlans = () => {
 
                 {/* CTA Button */}
                 <button
-                  className={`w-full py-3 rounded-lg font-medium transition-colors mb-8 ${
+                  className={`w-full py-3 rounded-lg font-medium transition-all duration-300 mb-8 hover:scale-105 ${
                     plan.popular
-                      ? "bg-[#007DFE] text-white hover:brightness-110"
-                      : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-50"
+                      ? "bg-[#007DFE] text-white hover:brightness-110 hover:shadow-lg"
+                      : "bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 hover:border-blue-300"
                   }`}
                 >
                   Get Started
@@ -150,16 +191,26 @@ const PricingPlans = () => {
                 {/* Features List */}
                 <div className="space-y-4">
                   {plan.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
+                    <div 
+                      key={idx} 
+                      className={`flex items-start gap-3 transition-all duration-300 hover:translate-x-1 ${
+                        visibleCards.includes(index) 
+                          ? 'opacity-100 transform translate-x-0' 
+                          : 'opacity-0 transform translate-x-4'
+                      }`}
+                      style={{
+                        transitionDelay: `${(idx * 50) + (index * 200)}ms`
+                      }}
+                    >
                       <div
-                        className={`mt-0.5 flex-shrink-0 ${
+                        className={`mt-0.5 flex-shrink-0 transition-colors duration-300 ${
                           feature.included ? "text-gray-800" : "text-gray-300"
                         }`}
                       >
                         <Check className="w-5 h-5" strokeWidth={2.5} />
                       </div>
                       <span
-                        className={`text-sm ${
+                        className={`text-sm transition-colors duration-300 ${
                           feature.included ? "text-gray-700" : "text-gray-400"
                         }`}
                       >
@@ -174,13 +225,13 @@ const PricingPlans = () => {
         </div>
 
         {/* Footer Info */}
-        <div className="flex items-center justify-center gap-8 text-sm text-gray-600">
-          <div className="flex items-center gap-2">
+        <div className={`flex items-center pt-10 justify-center gap-8 text-sm text-gray-600 transition-all duration-1000 delay-1000 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'}`}>
+          <div className="flex items-center gap-2 hover:text-gray-800 transition-colors duration-300">
             <Calendar className="w-4 h-4" />
             <span>free trial on any package</span>
           </div>
           <div className="w-px h-4 bg-gray-300"></div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 hover:text-gray-800 transition-colors duration-300">
             <Phone className="w-4 h-4" />
             <span>free 2000 airtime</span>
           </div>
