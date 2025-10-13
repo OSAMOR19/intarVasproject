@@ -15,7 +15,6 @@ import logoblack from "@/assets/intervaslogoblack.svg";
 
 export default function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isOnLightBackground, setIsOnLightBackground] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -23,57 +22,6 @@ export default function SiteHeader() {
       const scrollPosition = window.scrollY;
       // Change to glassmorphism after scrolling past 100px (adjust as needed)
       setIsScrolled(scrollPosition > 100);
-      
-      // Detect background color at header position
-      const elements = document.elementsFromPoint(window.innerWidth / 2, 80);
-      let backgroundIsLight = false;
-      
-      for (const el of elements) {
-        const styles = window.getComputedStyle(el);
-        const bgColor = styles.backgroundColor;
-        
-        // Skip transparent backgrounds
-        if (bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') {
-          continue;
-        }
-        
-        // Extract RGB values
-        const rgbMatch = bgColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-        if (rgbMatch) {
-          const [, r, g, b] = rgbMatch.map(Number);
-          
-          // Calculate brightness (0-255)
-          const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-          
-          // If brightness is above 128, it's a light background
-          if (brightness > 128) {
-            backgroundIsLight = true;
-            break;
-          }
-        }
-        
-        // Check for hex colors
-        const hexMatch = bgColor.match(/#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})/);
-        if (hexMatch) {
-          let hex = hexMatch[1];
-          if (hex.length === 3) {
-            hex = hex.split('').map(char => char + char).join('');
-          }
-          
-          const r = parseInt(hex.substr(0, 2), 16);
-          const g = parseInt(hex.substr(2, 2), 16);
-          const b = parseInt(hex.substr(4, 2), 16);
-          
-          const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-          
-          if (brightness > 128) {
-            backgroundIsLight = true;
-            break;
-          }
-        }
-      }
-      
-      setIsOnLightBackground(backgroundIsLight);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -85,9 +33,7 @@ export default function SiteHeader() {
 
   const linkCls = ({ isActive }: { isActive: boolean }) =>
     `${
-      isActive 
-        ? `${isOnLightBackground ? "text-gray-800" : "text-white"} font-semibold` 
-        : "text-gray-400 hover:text-white"
+      isActive ? "text-gray-300 font-extrabold" : "text-gray-400 hover:text-white"
     } transition-colors`;
 
   return (
