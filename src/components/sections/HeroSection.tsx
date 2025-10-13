@@ -1,3 +1,4 @@
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import herobg from "@/assets/herosectionbg.svg"
 
@@ -22,8 +23,35 @@ const HeroSection = ({
   imageSrc = "images/Illustration.png",
   imageAlt = "Telecom analytics and smartphone dashboard"
 }: HeroSectionProps) => {
+  const [isImageVisible, setIsImageVisible] = useState(false);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  // Scroll animation effect for image only
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsImageVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (imageRef.current) {
+      observer.observe(imageRef.current);
+    }
+
+    return () => {
+      if (imageRef.current) {
+        observer.unobserve(imageRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className="relative pt-32 md:h-[100vh] overflow-hidden" style={{ backgroundImage: 'url(/images/herosectionbg.svg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <section className="relative pt-20 md:pt-16 md:h-[100vh] overflow-hidden" style={{ backgroundImage: 'url(/images/herosectionbg.svg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -31,9 +59,9 @@ const HeroSection = ({
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
       </div>
 
-      <div className="container h-full mx-auto grid gap-10 px-4 md:py-20 md:grid-cols-2 md:items-center relative z-10">
+      <div className="container h-full mx-auto grid gap-10 px-4 md:px-0 md:py-4 md:grid-cols-2 md:items-center relative z-10">
         {/* Content */}
-        <div className="flex flex-col items-start justify-center space-y-6">
+        <div className="flex flex-col items-start justify-center space-y-6 md:pl-4">
           <h1 className="max-w-lg text-[32px] font-inter text-white font-[800] tracking-tight md:text-[48px] animate-fade-in-up">
             {title}
           </h1>
@@ -60,13 +88,15 @@ const HeroSection = ({
         </div>
 
         {/* Image */}
-        <div className="flex items-center justify-center md:justify-end">
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            className="md:absolute bottom-0 right-0 mx-auto md:w-[500px] rounded-xl"
-            loading="lazy"
-          />
+        <div ref={imageRef} className="flex items-center justify-center md:justify-end">
+            <img
+              src={imageSrc}
+              alt={imageAlt}
+              className={`md:absolute md:top-10 md:right-0 mx-auto md:w-[600px] md:translate-x-0 rounded-xl transition-all duration-1000 ease-out hover:scale-105 hover:brightness-110 ${
+                isImageVisible ? 'opacity-100 transform translate-x-0 scale-100' : 'opacity-0 transform translate-x-12 scale-95'
+              }`}
+              loading="lazy"
+            />
         </div>
       </div>
     </section>
