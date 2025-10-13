@@ -28,8 +28,8 @@ export default function SiteHeader() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Determine if we should use black logo (on services pages or when scrolled)
-  const shouldUseBlackLogo = location.pathname.includes('/services') || isScrolled;
+  // Determine if we should use black logo (on services pages, contact page, or when scrolled)
+  const shouldUseBlackLogo = location.pathname.includes('/services') || location.pathname === '/contact' || isScrolled;
 
   const linkCls = ({ isActive }: { isActive: boolean }) =>
     `${

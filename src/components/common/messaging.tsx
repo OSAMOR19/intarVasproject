@@ -83,7 +83,7 @@ const MessagingPlatformSection = () => {
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=1000&fit=crop"
+                src="/assets/woman.svg"
                 alt="Person using messaging platform"
                 className="w-full h-auto object-cover"
               />

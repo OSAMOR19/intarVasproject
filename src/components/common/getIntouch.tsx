@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Headphones, Mail, Clock, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import intervaslogoblack from "@/assets/intervaslogoblack.svg";
 
 const ContactUsSection = () => {
   const [formData, setFormData] = useState({
@@ -183,40 +184,44 @@ const ContactUsSection = () => {
               </div>
             </div>
 
-            {/* Map Card */}
-            <div className="bg-white rounded-3xl overflow-hidden shadow-lg">
-              {/* Map Image Placeholder */}
-              <div className="h-64 bg-gradient-to-br from-blue-200 to-teal-300 relative">
-                <img
-                  src="https://api.mapbox.com/styles/v1/mapbox/light-v10/static/3.3792,6.5244,11,0/600x400@2x?access_token=pk.eyJ1IjoiZXhhbXBsZSIsImEiOiJjbGV4YW1wbGUifQ.example"
-                  alt="Lagos Map"
-                  className="w-full h-full object-cover opacity-60"
-                  //   onError={(e) => {
-                  //     e.target.style.display = "none";
-                  //   }}
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-4xl font-bold text-gray-600 opacity-50">
-                    Lagos
+            {/* Map Card with Overlay */}
+            <div className="bg-white rounded-3xl overflow-hidden shadow-lg relative">
+              {/* Google Maps Embed */}
+              <div className="h-80 relative">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.5!2d3.3792!3d6.5244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9bb!2sVictoria%20Island%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1234567890123!5m2!1sen!2sng"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="IntarVAS Office Location - Victoria Island, Lagos"
+                ></iframe>
+                
+                {/* Overlay Card */}
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl p-5 shadow-xl w-[420px]">
+                  <h3 className="text-lg font-bold mb-3 text-gray-900">Visit Our Office</h3>
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-4 h-4 text-white" />
+                    </div>
+                    <div className="text-gray-700 text-sm leading-relaxed">
+                      <p>Churchgate Tower 2,</p>
+                      <p>30 Churchgate Street (formerly Afribank</p>
+                      <p>Street) Victoria Island Lagos, Nigeria.</p>
+                    </div>
                   </div>
+                  <a 
+                    href="https://www.google.com/maps/dir/?api=1&destination=Churchgate+Tower+2,+30+Churchgate+Street,+Victoria+Island,+Lagos,+Nigeria"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors"
+                  >
+                    Get direction
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
                 </div>
-              </div>
-
-              {/* Office Address */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-4">Visit Our Office</h3>
-                <div className="flex items-start gap-3 mb-4">
-                  <MapPin className="w-5 h-5 text-blue-500 flex-shrink-0 mt-1" />
-                  <div className="text-gray-600">
-                    <p>Churchgate Tower 2,</p>
-                    <p>30 Churchgate Street (formerly Afribank</p>
-                    <p>Street) Victoria Island Lagos, Nigeria.</p>
-                  </div>
-                </div>
-                <button className="flex items-center gap-2 text-blue-500 font-medium hover:text-blue-600 transition-colors">
-                  Get direction
-                  <ArrowRight className="w-4 h-4" />
-                </button>
               </div>
             </div>
           </div>

@@ -9,7 +9,44 @@ import DeskphonesPricing from "@/components/common/GetOurDesktop";
 
 export default function Numbers() {
   return (
-    <main>
+    <main className="relative">
+      {/* Coming Soon Overlay */}
+      <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-40 flex items-center justify-center">
+        <div className="bg-white rounded-3xl p-12 max-w-md mx-4 text-center shadow-2xl">
+          <div className="mb-6">
+            <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">Coming Soon</h2>
+            <p className="text-gray-600">
+              We're working hard to bring you an amazing vanity numbers experience. Stay tuned!
+            </p>
+          </div>
+          <div className="space-y-4">
+            <div className="bg-gray-50 rounded-lg p-3">
+              <p className="text-sm text-gray-700 font-medium">Expected Launch</p>
+              <p className="text-lg font-bold text-blue-600">Q4 2025</p>
+            </div>
+            <p className="text-xs text-gray-500">
+              Contact us for early access and updates
+            </p>
+            <div className="flex gap-3 pt-2">
+              <Link to="/" className="flex-1">
+                <Button variant="outline" className="w-full">
+                  Go Back Home
+                </Button>
+              </Link>
+              <Link to="/contact" className="flex-1">
+                <Button variant="hero" className="w-full">
+                  Contact Us
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
       <Helmet>
         <title>0700 & 0800 Numbers — Vanity and Toll‑free</title>
         <meta
