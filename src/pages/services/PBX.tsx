@@ -289,15 +289,15 @@ export default function PBX() {
                   <AllInSolutionCard
                     icon={
                       <img
-                        src={"/icon/smart.svg"}
-                        alt="Smart CRM"
+                        src={"/icon/voicemail.svg"}
+                        alt="call recording"
                         width={24}
                         height={24}
                         style={{ objectFit: "contain" }}
                       />
                     }
-                    title="Smart CRM"
-                    description="Personalize every customer interaction with a smart, unified CRM that keeps your history organized."
+                    title="Call Recording"
+                    description="Securely record and store customer conversations, ensuring accountability, training opportunities, and compliance with industry standards."
                     img={"/images/pbx1.svg"}
                   />
                 </div>
@@ -309,7 +309,7 @@ export default function PBX() {
                     icon={
                       <img
                         src={"/icon/sec.svg"}
-                        alt="Security & Compliance"
+                        alt="Analytics"
                         width={24}
                         height={24}
                         style={{ objectFit: "contain" }}

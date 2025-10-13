@@ -17,7 +17,7 @@ const ProvenResultsSection = () => {
       value: "1M+",
       title: "Messages delivered daily",
       description:
-        "Large-scale communications with fast, secure, and reliable messaging solutions",
+        "Our system allows us to be able to handle up to 1M + messages daily, Handling large-scale communications with fast, secure, and reliable messaging solutions",
     },
     {
       value: "3+",
