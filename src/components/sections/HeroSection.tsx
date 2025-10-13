@@ -51,7 +51,7 @@ const HeroSection = ({
   }, []);
 
   return (
-    <section className="relative pt-20 md:pt-16 md:h-[100vh] overflow-hidden" style={{ backgroundImage: 'url(/images/herosectionbg.svg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <section className="auto pt-18 md:pt-16 md:h-[95vh] overflow-hidden" style={{ backgroundImage: 'url(/images/herosectionbg.svg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -92,7 +92,7 @@ const HeroSection = ({
             <img
               src={imageSrc}
               alt={imageAlt}
-              className={`md:absolute md:top-10 md:right-0 mx-auto md:w-[600px] md:translate-x-0 rounded-xl transition-all duration-1000 ease-out hover:scale-105 hover:brightness-110 ${
+              className={`md:absolute md:top-10 md:right-0 mx-auto md:w-[650px] md:translate-x-0 rounded-xl transition-all duration-1000 ease-out hover:scale-105 hover:brightness-110 ${
                 isImageVisible ? 'opacity-100 transform translate-x-0 scale-100' : 'opacity-0 transform translate-x-12 scale-95'
               }`}
               loading="lazy"
