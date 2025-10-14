@@ -215,11 +215,11 @@ export default function PBX() {
             <div className="absolute inset-0 bg-gray-200/30 rounded-[32px] blur-xl group-hover:blur-2xl transition-all duration-500"></div>
 
             {/* Animated image */}
-            <img
-              src={"/images/pbxHeroImg.png"}
-              alt="IntarVAS PBX analytics dashboard showing call history and statistics"
+          <img
+            src={"/images/pbxHeroImg.png"}
+            alt="IntarVAS PBX analytics dashboard showing call history and statistics"
               className="w-full rounded-[32px] relative z-10 transform transition-all duration-700 hover:scale-105 hover:rotate-1 shadow-2xl hover:shadow-lg"
-            />
+          />
           </div>
         </div>
       </section>
@@ -277,7 +277,7 @@ export default function PBX() {
               </span>
             </div>
             <h3 className="font-inter text-[38px] font-[600] leading-[1.2]">
-            A phone number with all the business features you need.
+              A phone number with all the business features you need.
             </h3>
             <p className="text-[#858D9D] mb-3">
             These critical features are essential for any business, regardless of size.
@@ -285,7 +285,7 @@ export default function PBX() {
             <Link to="/contact">
               <Button variant="hero" size="lg">
                 Contact Us
-              </Button>
+            </Button>
             </Link>
           </div>
 
@@ -317,7 +317,7 @@ export default function PBX() {
             <div className="space-y-8">
               <div className="snap-start h-[80vh] flex items-center justify-center group">
                 <div className="transform transition-all duration-700 ease-out group-hover:scale-105 group-hover:rotate-1">
-                  <AllInSolutionCard
+            <AllInSolutionCard
                     icon={
                       <img
                         src={"/icon/voicemail.svg"}
@@ -327,16 +327,16 @@ export default function PBX() {
                         style={{ objectFit: "contain" }}
                       />
                     }
-                    title="Call Recording"
-                    description="Securely record and store customer conversations, ensuring accountability, training opportunities, and compliance with industry standards."
+              title="Call Recording"
+              description="Securely record and store customer conversations, ensuring accountability, training opportunities, and compliance with industry standards."
                     img={"/images/callrecording.png"}
-                  />
+            />
                 </div>
               </div>
 
               <div className="snap-start h-[80vh] flex items-center justify-center group">
                 <div className="transform transition-all duration-700 ease-out group-hover:scale-105 group-hover:-rotate-1">
-                  <AllInSolutionCard
+            <AllInSolutionCard
                     icon={
                       <img
                         src={"/icon/chart.svg"}
@@ -346,7 +346,7 @@ export default function PBX() {
                         style={{ objectFit: "contain" }}
                       />
                     }
-                    title="Analytics"
+              title="Analytics"
                     description="Track call volumes, duration, and performance in real time with clear dashboards that help you make smarter business decisions."
                     img={"/images/analytics.png"}
                   />

@@ -100,16 +100,14 @@ const ProvenResultsSection = () => {
 
   return (
     <div ref={sectionRef} className="min-h-screen bg-gray-100 flex items-center justify-center p-8 relative overflow-hidden">
-      {/* Animated Background Elements */}
+      {/* Static Background Elements - No Animation */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-10 right-10 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl animate-float delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/3 rounded-full blur-3xl animate-float delay-2000"></div>
+        <div className="absolute top-10 left-10 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/3 rounded-full blur-3xl"></div>
       </div>
 
-      <div className={`w-full max-w-7xl bg-[#1E1E1E] rounded-3xl shadow-2xl p-12 lg:p-16 relative z-10 transition-all duration-1000 ${
-        isVisible ? 'animate-zoom-in opacity-100 transform scale-100' : 'opacity-0 transform scale-95'
-      }`}>
+      <div className="w-full max-w-7xl bg-[#1E1E1E] rounded-3xl shadow-2xl p-12 lg:p-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left Side - Main Content */}
           <div className={`space-y-8 transition-all duration-1000 ${

@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
-import herobg from "@/assets/herosectionbg.svg"
 
 interface HeroSectionProps {
   title?: string;
@@ -23,79 +22,49 @@ const HeroSection = ({
   imageSrc = "images/Illustration.png",
   imageAlt = "Telecom analytics and smartphone dashboard"
 }: HeroSectionProps) => {
-  const [isImageVisible, setIsImageVisible] = useState(false);
-  const imageRef = useRef<HTMLDivElement>(null);
-
-  // Scroll animation effect for image only
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsImageVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (imageRef.current) {
-      observer.observe(imageRef.current);
-    }
-
-    return () => {
-      if (imageRef.current) {
-        observer.unobserve(imageRef.current);
-      }
-    };
-  }, []);
 
   return (
     <section className="auto pt-18 md:pt-16 md:h-[95vh] overflow-hidden" style={{ backgroundImage: 'url(/images/herosectionbg.svg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
-      </div>
+      {/* Static Background Elements - No Animation */}
+      
 
-      <div className="container h-full mx-auto grid gap-10 px-4 md:px-0 md:py-4 md:grid-cols-2 md:items-center relative z-10">
+      <div className="container h-full mx-auto grid gap-10 px-4 md:px-0 pt-20 md:pt-0 md:py-4 md:grid-cols-2 md:items-center relative z-10">
         {/* Content */}
-        <div className="flex flex-col items-start justify-center space-y-6 md:pl-4">
-          <h1 className="max-w-lg text-[32px] font-inter text-white font-[800] tracking-tight md:text-[48px] animate-fade-in-up">
+        <div className="flex flex-col items-start pt-20 md:pt-0 justify-center space-y-8 md:pl-4">
+          <h1 className="max-w-lg text-[32px] font-inter text-white font-[800] tracking-tight md:text-[48px]">
             {title}
           </h1>
-          <p className="mt-4 text-[18px] text-[#C2C6CE] max-w-lg text-muted-foreground animate-fade-in-up delay-300">
+          <p className="mt-4 text-[18px] text-[#C2C6CE] max-w-lg text-muted-foreground">
             {subtitle}
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md animate-fade-in-up delay-500">
-            <Button 
-              variant="outline" 
-              size="default" 
-              onClick={onSecondaryClick} 
-              className="bg-white text-[#001933] border-[#001933] hover:bg-gray-50"
-            >
-              {secondaryButtonText}
-            </Button>
-            <Button 
-              variant="hero" 
-              size="default" 
-              onClick={onPrimaryClick}
-            >
-              {primaryButtonText}
-            </Button>
-          </div>
+           <div className="mt-8 flex flex-row gap-3 max-w-md w-full sm:w-auto">
+             <Button 
+               variant="outline" 
+               size="default" 
+               onClick={onSecondaryClick} 
+               className="bg-white text-[#001933] border-[#001933] hover:bg-gray-50 flex-1 sm:flex-none"
+             >
+               {secondaryButtonText}
+             </Button>
+             <Button 
+               variant="hero" 
+               size="default" 
+               onClick={onPrimaryClick}
+               className="flex-1 sm:flex-none"
+             >
+               {primaryButtonText}
+             </Button>
+           </div>
         </div>
 
         {/* Image */}
-        <div ref={imageRef} className="flex items-center justify-center md:justify-end">
+        <div className="flex items-end justify-end md:justify-end">
             <img
               src={imageSrc}
               alt={imageAlt}
-              className={`md:absolute md:top-10 md:right-0 mx-auto md:w-[650px] md:translate-x-0 rounded-xl transition-all duration-1000 ease-out hover:scale-105 hover:brightness-110 ${
-                isImageVisible ? 'opacity-100 transform translate-x-0 scale-100' : 'opacity-0 transform translate-x-12 scale-95'
-              }`}
-              loading="lazy"
+              className="md:absolute md:top-12 md:right-0 md:w-[585px] md:translate-x-0 rounded-xl hover:scale-95 hover:brightness-110 transition-transform duration-300"
+              style={{ right: '-122px' }}
+              loading="eager"
             />
         </div>
       </div>

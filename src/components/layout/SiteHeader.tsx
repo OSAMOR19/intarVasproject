@@ -8,13 +8,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Infinity as InfinityIcon, ChevronDown, Menu } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Infinity as InfinityIcon, ChevronDown, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import intervaslogoblack from "@/assets/intervaslogoblack.svg";
 import logoblack from "@/assets/intervaslogoblack.svg";
 
 export default function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -33,7 +36,9 @@ export default function SiteHeader() {
 
   const linkCls = ({ isActive }: { isActive: boolean }) =>
     `${
-      isActive ? "text-gray-300 font-extrabold" : "text-gray-400 hover:text-white"
+      isActive 
+        ? "text-[#007DFE] font-semibold relative after:content-[''] after:absolute after:w-full after:scale-x-100 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300" 
+        : "text-gray-400 hover:text-[#007DFE] relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
     } transition-colors`;
 
   return (
@@ -97,40 +102,154 @@ export default function SiteHeader() {
         </div>
 
         <div className="md:hidden">
-          <DropdownMenu>
-            <DropdownMenuTrigger className="p-2">
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <button className="p-2">
               <Menu color="#C2C6CE" className="h-6 w-6 text-foreground" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="z-50">
-              <DropdownMenuItem asChild>
-                <Link to="/">Home</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/services/all-in-solutions">All In Solutions</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/services/pbx">IntarVAS PBX</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/services/bulk-messaging">Bulk Messaging</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/services/numbers">0700 & 0800 Numbers</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/about">About Us</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/contact">Contact Us</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <a href="https://wiki.ccaas.intarvas.com" target="_blank" rel="noopener noreferrer">Explore Services</a>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <a href="https://api.ccaas.intarvas.com" target="_blank" rel="noopener noreferrer">Request Demo</a>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+              </button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-full h-full bg-white/95 backdrop-blur-md p-0 [&>button]:h-8 [&>button]:w-8 [&>button]:text-gray-600 [&>button]:hover:text-gray-800">
+              <div className="flex flex-col h-full">
+                {/* Header with logo */}
+                <div className="flex items-center p-4 border-b border-gray-200">
+                  <img
+                    src={intervaslogoblack}
+                    alt="IntarVAS Logo"
+                    className="h-8 w-[200px]"
+                  />
+                </div>
+
+                {/* Navigation Links */}
+                <nav className="flex-1 flex flex-col justify-center px-6 space-y-8">
+                  <Link 
+                    to="/" 
+                    className={`text-2xl font-semibold transition-colors relative inline-block ${
+                      location.pathname === '/' 
+                        ? 'text-[#007DFE]' 
+                        : 'text-gray-900 hover:text-[#007DFE]'
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <span className="relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left after:scale-x-100">
+                      Home
+                    </span>
+                  </Link>
+                  
+                  <div className="space-y-4">
+                    <button 
+                      onClick={() => setIsServicesOpen(!isServicesOpen)}
+                      className={`flex items-center gap-2 text-2xl font-semibold transition-colors relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${
+                        location.pathname.includes('/services') 
+                          ? 'text-[#007DFE] after:scale-x-100' 
+                          : 'text-gray-900 hover:text-[#007DFE]'
+                      }`}
+                    >
+                      Services
+                      <ChevronDown 
+                        className={`h-5 w-5 transition-transform duration-200 ${
+                          isServicesOpen ? 'rotate-180' : 'rotate-0'
+                        }`}
+                      />
+                    </button>
+                    {isServicesOpen && (
+                      <div className="space-y-3 pl-4 animate-fade-in">
+                        <Link 
+                          to="/services/all-in-solutions" 
+                          className={`block text-lg transition-colors relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${
+                            location.pathname === '/services/all-in-solutions' 
+                              ? 'text-[#007DFE] after:scale-x-100' 
+                              : 'text-gray-700 hover:text-[#007DFE]'
+                          }`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          All In Solutions
+                        </Link>
+                        <Link 
+                          to="/services/pbx" 
+                          className={`block text-lg transition-colors relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${
+                            location.pathname === '/services/pbx' 
+                              ? 'text-[#007DFE] after:scale-x-100' 
+                              : 'text-gray-700 hover:text-[#007DFE]'
+                          }`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          IntarVAS PBX
+                        </Link>
+                        <Link 
+                          to="/services/bulk-messaging" 
+                          className={`block text-lg transition-colors relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${
+                            location.pathname === '/services/bulk-messaging' 
+                              ? 'text-[#007DFE] after:scale-x-100' 
+                              : 'text-gray-700 hover:text-[#007DFE]'
+                          }`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          Bulk Messaging
+                        </Link>
+                        <Link 
+                          to="/services/numbers" 
+                          className={`block text-lg transition-colors relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${
+                            location.pathname === '/services/numbers' 
+                              ? 'text-[#007DFE] after:scale-x-100' 
+                              : 'text-gray-700 hover:text-[#007DFE]'
+                          }`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          0700 & 0800 Numbers
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+
+                  <Link 
+                    to="/about" 
+                    className={`text-2xl font-semibold transition-colors relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${
+                      location.pathname === '/about' 
+                        ? 'text-[#007DFE] after:scale-x-100' 
+                        : 'text-gray-900 hover:text-[#007DFE]'
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    About Us
+                  </Link>
+                  
+                  <Link 
+                    to="/contact" 
+                    className={`text-2xl font-semibold transition-colors relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${
+                      location.pathname === '/contact' 
+                        ? 'text-[#007DFE] after:scale-x-100' 
+                        : 'text-gray-900 hover:text-[#007DFE]'
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Contact Us
+                  </Link>
+                </nav>
+
+                {/* Action Buttons */}
+                <div className="p-6 space-y-4 border-t border-gray-200">
+                  <Button 
+                    variant="outline" 
+                    className="w-full text-lg py-6"
+                    asChild
+                  >
+                    <a href="https://wiki.ccaas.intarvas.com" target="_blank" rel="noopener noreferrer">
+                      Explore Services
+                    </a>
+                  </Button>
+                  <Button 
+                    variant="hero" 
+                    className="w-full text-lg py-6"
+                    asChild
+                  >
+                    <a href="https://api.ccaas.intarvas.com" target="_blank" rel="noopener noreferrer">
+                      Request Demo
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
