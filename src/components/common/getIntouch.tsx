@@ -125,25 +125,21 @@ const ContactUsSection = () => {
               </div>
 
               {/* Submit Button */}
-              <Button
-                onClick={handleSubmit}
-                className="w-full py-4 text-white"
-                style={{
-                  borderRadius: '24px',
-                  border: '1px solid #FFF',
-                  background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.00) 100%), #000',
-                  boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(0, 0, 0, 0.72)'
-                }}
-              >
-                Submit
-              </Button>
+              <div className="flex justify-end">
+                <Button
+                  onClick={handleSubmit}
+                  className="px-8 py-4 text-white bg-[#007DFE] hover:bg-[#0056b3] transition-colors duration-300 rounded-lg font-semibold"
+                >
+                  Submit
+                </Button>
+              </div>
             </div>
           </div>
 
           {/* Right Side - Contact Info & Map */}
           <div className="space-y-6">
             {/* Contact Info Card */}
-            <div className="bg-white rounded-3xl p-8 shadow-lg">
+            <div className=" rounded-3xl p-8 ">
               <h2 className="text-2xl font-bold mb-6">
                 Prefer a direct approach?
               </h2>
@@ -187,7 +183,7 @@ const ContactUsSection = () => {
             {/* Map Card with Overlay */}
             <div className="bg-white rounded-3xl overflow-hidden shadow-lg relative">
               {/* Google Maps Embed */}
-              <div className="h-80 relative">
+              <div className="h-96 relative">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.5!2d3.3792!3d6.5244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9bb!2sVictoria%20Island%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1234567890123!5m2!1sen!2sng"
                   width="100%"
@@ -200,7 +196,7 @@ const ContactUsSection = () => {
                 ></iframe>
                 
                 {/* Overlay Card */}
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl p-5 shadow-xl w-[420px]">
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl p-4 shadow-xl w-[580px]">
                   <h3 className="text-lg font-bold mb-3 text-gray-900">Visit Our Office</h3>
                   <div className="flex items-start gap-3 mb-3">
                     <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
