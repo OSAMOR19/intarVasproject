@@ -63,26 +63,40 @@ export default function SiteHeader() {
           <NavLink color="#C2C6CE" to="/" end className={linkCls}>
             Home
           </NavLink>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 text-gray-400 hover:text-white">
+          <div className="relative group">
+            <div className="flex items-center gap-1 text-gray-400 hover:text-[#007DFE] cursor-pointer">
               <span className={linkCls({ isActive: false })}>Services</span>
-              <ChevronDown className="h-4 w-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="z-50">
-              <DropdownMenuItem asChild>
-                <Link to="/services/all-in-solutions">All In Solutions</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/services/pbx">IntarVAS PBX</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/services/bulk-messaging">Bulk Messaging</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/services/numbers">0700 & 0800 Numbers</Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+              <ChevronDown className="h-4 w-4 transition-all duration-300 group-hover:rotate-180 group-hover:text-[#007DFE]" />
+            </div>
+            <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+              <div className="py-2">
+                <Link 
+                  to="/services/all-in-solutions" 
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#007DFE] transition-colors"
+                >
+                  All In Solutions
+                </Link>
+                <Link 
+                  to="/services/pbx" 
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#007DFE] transition-colors"
+                >
+                  IntarVAS PBX
+                </Link>
+                <Link 
+                  to="/services/bulk-messaging" 
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#007DFE] transition-colors"
+                >
+                  Bulk Messaging
+                </Link>
+                <Link 
+                  to="/services/numbers" 
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#007DFE] transition-colors"
+                >
+                  0700 & 0800 Numbers
+                </Link>
+              </div>
+            </div>
+          </div>
           <NavLink to="/about" className={linkCls}>
             About Us
           </NavLink>
