@@ -90,7 +90,7 @@ export default function About() {
           if (entry.isIntersecting && !hasAnimatedDescription) {
             setIsDescriptionVisible(true);
             setHasAnimatedDescription(true);
-            // Typewriter effect for first part
+            // Smooth typewriter effect for first part
             const firstPart = "Based in Lagos, IntarvAS was built on a vision to simplify how Nigerian businesses communicate with their customers.";
             let index = 0;
             const typeInterval = setInterval(() => {
@@ -100,9 +100,9 @@ export default function About() {
               } else {
                 clearInterval(typeInterval);
                 // Show rest after typewriter completes
-                setTimeout(() => setShowDescriptionRest(true), 500);
+                setTimeout(() => setShowDescriptionRest(true), 300);
               }
-            }, 50);
+            }, 80);
           }
         });
       },
@@ -200,10 +200,10 @@ export default function About() {
           <div className={`transition-all duration-1000 ${
             isDescriptionVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
           }`}>
-            <p className="mx-auto font-inter md:text-[38px] text-[#858D9D] max-w-md md:max-w-4xl font-[600] text-center text-lg leading-[1.2] text-muted-foreground hover:text-gray-600 transition-colors duration-300">
+            <p className="mx-auto font-inter md:text-[38px] text-[#858D9D] max-w-md md:max-w-4xl font-[600] text-center text-lg leading-[1.2] text-muted-foreground">
               <span className="inline-block">{descriptionText}</span>
               {showDescriptionRest && (
-                <span className="inline-block animate-fade-in">
+                <span className="inline-block opacity-0 animate-[fadeIn_0.8s_ease-in-out_0.3s_forwards]">
                   {" "}Over the years, we've become trusted by enterprises, government agencies, and SMEs alike helping them build stronger connections with clients through reliable, scalable, and locally-tailored telecom solutions.
                 </span>
               )}
@@ -219,58 +219,58 @@ export default function About() {
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-500/5 rounded-full blur-xl animate-pulse delay-1000"></div>
         </div>
         
-        <div className={`flex flex-col justify-evenly transition-all duration-1000 hover:scale-105 ${
+        <div className={`flex flex-col justify-evenly transition-all duration-1000 ${
           isStatsVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
         }`}>
-          <p className="text-[40px] inline-block bg-gradient-to-br to-[#0B59A9] from-[#53A2F2] bg-clip-text text-transparent font-inter font-[900] hover:scale-110 transition-transform duration-300">
+          <p className="text-[40px] inline-block bg-gradient-to-br to-[#0B59A9] from-[#53A2F2] bg-clip-text text-transparent font-inter font-[900]">
             {statsCounts.uptime}%
           </p>
-          <h5 className="font-inter font-[700] text-[20px] hover:text-blue-600 transition-colors duration-300">
+          <h5 className="font-inter font-[700] text-[20px]">
             Uninterrupted connectivity
           </h5>
-          <p className="hover:text-gray-600 transition-colors duration-300">
+          <p>
             Our cloud-powered infrastructure ensures your communications run
             smoothly without interruptions.
           </p>
         </div>
-        <div className={`transition-all duration-1000 delay-200 hover:scale-105 ${
+        <div className={`transition-all duration-1000 delay-200 ${
           isStatsVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
         }`}>
-          <p className="text-[40px] inline-block bg-gradient-to-br to-[#0B59A9] from-[#53A2F2] bg-clip-text text-transparent font-inter font-[900] hover:scale-110 transition-transform duration-300">
+          <p className="text-[40px] inline-block bg-gradient-to-br to-[#0B59A9] from-[#53A2F2] bg-clip-text text-transparent font-inter font-[900]">
             {statsCounts.messages >= 1000000 ? '1M+' : `${Math.floor(statsCounts.messages / 1000)}K+`}
           </p>
-          <h5 className="font-inter font-[700] text-[20px] hover:text-blue-600 transition-colors duration-300">
+          <h5 className="font-inter font-[700] text-[20px]">
             Messages delivered daily
           </h5>
-          <p className="hover:text-gray-600 transition-colors duration-300">
+          <p>
             Large-scale communications with fast, secure, and reliable messaging
             solutions
           </p>
         </div>
-        <div className={`transition-all duration-1000 delay-400 hover:scale-105 ${
+        <div className={`transition-all duration-1000 delay-400 ${
           isStatsVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
         }`}>
-          <p className="text-[40px] inline-block bg-gradient-to-br to-[#0B59A9] from-[#53A2F2] bg-clip-text text-transparent font-inter font-[900] hover:scale-110 transition-transform duration-300">
+          <p className="text-[40px] inline-block bg-gradient-to-br to-[#0B59A9] from-[#53A2F2] bg-clip-text text-transparent font-inter font-[900]">
             {statsCounts.years}+
           </p>
-          <h5 className="font-inter font-[700] text-[20px] hover:text-blue-600 transition-colors duration-300">
+          <h5 className="font-inter font-[700] text-[20px]">
             Years Experience
           </h5>
-          <p className="hover:text-gray-600 transition-colors duration-300">
+          <p>
             Proven success in delivering scalable and innovative communication
             services across Nigeria.
           </p>
         </div>
-        <div className={`transition-all duration-1000 delay-600 hover:scale-105 ${
+        <div className={`transition-all duration-1000 delay-600 ${
           isStatsVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
         }`}>
-          <p className="text-[40px] inline-block bg-gradient-to-br to-[#0B59A9] from-[#53A2F2] bg-clip-text text-transparent font-inter font-[900] hover:scale-110 transition-transform duration-300">
+          <p className="text-[40px] inline-block bg-gradient-to-br to-[#0B59A9] from-[#53A2F2] bg-clip-text text-transparent font-inter font-[900]">
             {statsCounts.businesses}+
           </p>
-          <h5 className="font-inter font-[700] text-[20px] hover:text-blue-600 transition-colors duration-300">
+          <h5 className="font-inter font-[700] text-[20px]">
             Businesses served
           </h5>
-          <p className="hover:text-gray-600 transition-colors duration-300">
+          <p>
             We empower hundreds of Nigerian businesses and government agencies
             with reliable telecom solutions.
           </p>
