@@ -31,7 +31,7 @@ const HeroSection = ({
       <div className="container h-full mx-auto grid gap-10 px-4 md:px-0 pt-20 md:pt-0 md:py-4 md:grid-cols-2 md:items-center relative z-10">
         {/* Content */}
         <div className="flex flex-col items-start pt-20 md:pt-0 justify-center space-y-8 md:pl-4">
-          <h1 className="max-w-lg text-[32px] font-inter text-white font-[800] tracking-tight md:text-[48px]">
+          <h1 className="max-w-lg text-[46px] font-inter text-white font-[800] tracking-tight md:text-[54px]">
             {title}
           </h1>
           <p className="mt-4 text-[18px] text-[#C2C6CE] max-w-lg text-muted-foreground">
@@ -58,12 +58,12 @@ const HeroSection = ({
         </div>
 
         {/* Image */}
-        <div className="flex items-end justify-end md:justify-end">
+        <div className="flex items-end justify-end md:justify-end h-full">
             <img
               src={imageSrc}
               alt={imageAlt}
-              className="md:absolute md:top-12 md:right-0 md:w-[585px] md:translate-x-0 rounded-xl hover:scale-95 hover:brightness-110 transition-transform duration-300"
-              style={{ right: '-122px' }}
+              className="md:absolute md:top-12 md:right-0 md:w-[585px] md:translate-x-0 rounded-xl object-contain"
+              style={{ right: '-122px', height: '100%' }}
               loading="eager"
             />
         </div>

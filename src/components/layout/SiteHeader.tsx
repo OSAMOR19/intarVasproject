@@ -68,7 +68,7 @@ export default function SiteHeader() {
               <span className={linkCls({ isActive: false })}>Services</span>
               <ChevronDown className="h-4 w-4 transition-all duration-300 group-hover:rotate-180 group-hover:text-[#007DFE]" />
             </div>
-            <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+            <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
               <div className="py-2">
                 <Link 
                   to="/services/all-in-solutions" 

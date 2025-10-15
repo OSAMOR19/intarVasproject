@@ -10,8 +10,6 @@ export default function About() {
   const [showTitleHighlight, setShowTitleHighlight] = useState(false);
   const [hasAnimatedHero, setHasAnimatedHero] = useState(false);
   const [hasAnimatedStats, setHasAnimatedStats] = useState(false);
-  const [descriptionText, setDescriptionText] = useState("");
-  const [showDescriptionRest, setShowDescriptionRest] = useState(false);
   const [hasAnimatedDescription, setHasAnimatedDescription] = useState(false);
   const [statsCounts, setStatsCounts] = useState({
     uptime: 0,
@@ -83,26 +81,13 @@ export default function About() {
       statsObserver.observe(statsRef.current);
     }
 
-    // Description section animation with typewriter effect
+    // Description section animation with simple fade-in
     const descriptionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasAnimatedDescription) {
             setIsDescriptionVisible(true);
             setHasAnimatedDescription(true);
-            // Smooth typewriter effect for first part
-            const firstPart = "Based in Lagos, IntarvAS was built on a vision to simplify how Nigerian businesses communicate with their customers.";
-            let index = 0;
-            const typeInterval = setInterval(() => {
-              if (index <= firstPart.length) {
-                setDescriptionText(firstPart.slice(0, index));
-                index++;
-              } else {
-                clearInterval(typeInterval);
-                // Show rest after typewriter completes
-                setTimeout(() => setShowDescriptionRest(true), 300);
-              }
-            }, 80);
           }
         });
       },
@@ -201,12 +186,7 @@ export default function About() {
             isDescriptionVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
           }`}>
             <p className="mx-auto font-inter md:text-[38px] text-[#858D9D] max-w-md md:max-w-4xl font-[600] text-center text-lg leading-[1.2] text-muted-foreground">
-              <span className="inline-block">{descriptionText}</span>
-              {showDescriptionRest && (
-                <span className="inline-block opacity-0 animate-[fadeIn_0.8s_ease-in-out_0.3s_forwards]">
-                  {" "}Over the years, we've become trusted by enterprises, government agencies, and SMEs alike helping them build stronger connections with clients through reliable, scalable, and locally-tailored telecom solutions.
-                </span>
-              )}
+              Based in Lagos, IntarvAS was built on a vision to simplify how Nigerian businesses communicate with their customers. Over the years, we've become trusted by enterprises, government agencies, and SMEs alike helping them build stronger connections with clients through reliable, scalable, and locally-tailored telecom solutions.
             </p>
           </div>
         </div>
