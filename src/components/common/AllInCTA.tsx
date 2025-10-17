@@ -63,9 +63,9 @@ const AllInOneCTA = () => {
       </div>
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className={`bg-gradient-to-br from-blue-800 to-blue-900 rounded-[3rem] p-12 lg:p-16 shadow-2xl transition-all duration-1000 ${
+        <div className={`rounded-[3rem] p-12 lg:p-16 shadow-2xl transition-all duration-1000 ${
           isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
-        }`}>
+        }`} style={{ backgroundColor: '#004B98' }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Left Side - Content */}
             <div className={`transition-all duration-1000 ${
@@ -153,7 +153,7 @@ const AllInOneCTA = () => {
 
               {/* CTA Buttons */}
               <div className="w-full max-w-sm space-y-4">
-                <Button variant="hero" className="w-full py-4 rounded-xl text-lg hover:scale-105 transition-transform duration-300">
+                <Button variant="hero" className="w-full py-4 rounded-md text-lg hover:scale-105 transition-transform duration-300">
                   Get Started
                 </Button>
                 <a 

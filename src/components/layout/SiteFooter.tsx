@@ -87,34 +87,34 @@ const Footer = () => {
                 SOCIAL MEDIA
               </h3>
               <div className="flex gap-3">
-                <a
-                  href="#"
-                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
+                <button
+                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-not-allowed opacity-60"
                   aria-label="Facebook"
+                  disabled
                 >
                   <Facebook className="w-5 h-5 text-black" />
-                </a>
-                <a
-                  href="#"
-                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
+                </button>
+                <button
+                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-not-allowed opacity-60"
                   aria-label="Twitter"
+                  disabled
                 >
                   <Twitter className="w-5 h-5 text-black" />
-                </a>
-                <a
-                  href="#"
-                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
+                </button>
+                <button
+                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-not-allowed opacity-60"
                   aria-label="LinkedIn"
+                  disabled
                 >
                   <Linkedin className="w-5 h-5 text-black" />
-                </a>
-                <a
-                  href="#"
-                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
+                </button>
+                <button
+                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-not-allowed opacity-60"
                   aria-label="Instagram"
+                  disabled
                 >
                   <Instagram className="w-5 h-5 text-black" />
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -124,36 +124,36 @@ const Footer = () => {
             <h3 className="text-sm font-semibold mb-6 tracking-wider">PAGES</h3>
             <ul className="space-y-4">
               <li>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Home page
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/about"
+                <Link
+                  to="/about"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/services"
+                <Link
+                  to="/services"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Services
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/contact"
+                <Link
+                  to="/contact"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -165,36 +165,36 @@ const Footer = () => {
             </h3>
             <ul className="space-y-4">
               <li>
-                <a
-                  href="/services/all-in-one"
+                <Link
+                  to="/services/all-in-solutions"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   All in one solution
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/services/bulk-messaging"
+                <Link
+                  to="/services/bulk-messaging"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Bulk Messaging
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/services/intarvas-pbx"
+                <Link
+                  to="/services/pbx"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   IntarVAS PBX
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/services/0700-0800"
+                <Link
+                  to="/services/numbers"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   0700 & 0800
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
