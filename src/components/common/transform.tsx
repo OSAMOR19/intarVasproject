@@ -8,8 +8,8 @@ const Transform = () => {
   const targetValues = [18, 100, 29, 52];
   const labels = [
     "Increase in sales",
-    "Increase in sales",
-    "Increase in sales", 
+    "Compliance monitoring",
+    "Increase in CSAT", 
     "Lower AHT"
   ];
 
