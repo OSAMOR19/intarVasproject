@@ -281,7 +281,7 @@ const FeaturesSection = () => {
     <div ref={sectionRef} className="min-h-screen bg-black text-white px-8 py-20 relative overflow-hidden">
 
       {/* Header Navigation */}
-      <div className={`flex flex-wrap md:flex-nowrap items-center justify-center gap-8 mb-20 transition-all duration-1000 ${
+      <div className={`grid grid-cols-2 gap-4 md:flex md:flex-wrap lg:flex-nowrap items-center justify-center md:gap-8 mb-20 transition-all duration-1000 ${
         isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
       }`}>
         <button 
@@ -293,12 +293,13 @@ const FeaturesSection = () => {
           IntarvAS PBX
         </button>
         <button 
-          className={`px-6 py-2 rounded-full text-sm transition-all duration-300 ${
+          className={`px-6 py-2 rounded-full text-sm transition-all duration-300 truncate ${
             activeTab === "allinone" ? "bg-[#007DFE] text-white" : "text-gray-400 hover:text-white"
           }`}
           onClick={() => setActiveTab("allinone")}
         >
-          All in one solution
+          <span className="hidden sm:inline">All in one solution</span>
+          <span className="sm:hidden">All in one...</span>
         </button>
         <button 
           className={`px-6 py-2 rounded-full text-sm transition-all duration-300 ${
