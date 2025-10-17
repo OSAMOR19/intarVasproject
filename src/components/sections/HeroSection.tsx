@@ -31,7 +31,7 @@ const HeroSection = ({
       <div className="container h-full mx-auto grid gap-10 px-4 md:px-0 pt-20 md:pt-0 md:py-4 md:grid-cols-2 md:items-center relative z-10">
         {/* Content */}
         <div className="flex flex-col items-start pt-20 md:pt-0 justify-center space-y-8 md:pl-4">
-          <h1 className="max-w-lg text-[55px] font-inter text-white font-[800] tracking-tight md:text-[54px]">
+          <h1 className="max-w-lg text-[64px] font-inter text-white font-[800] tracking-tight md:text-[54px]">
             {title}
           </h1>
           <p className="mt-4 text-[18px] text-[#C2C6CE] max-w-lg text-muted-foreground">

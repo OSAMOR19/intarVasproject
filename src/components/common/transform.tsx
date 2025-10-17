@@ -5,12 +5,12 @@ const Transform = () => {
   const [counts, setCounts] = useState([0, 0, 0, 0]);
   const sectionRef = useRef<HTMLDivElement>(null);
   
-  const targetValues = [18, 18, 18, 18];
+  const targetValues = [18, 100, 29, 52];
   const labels = [
     "Increase in sales",
     "Increase in sales",
     "Increase in sales", 
-    "Increase in sales"
+    "Lower AHT"
   ];
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const Transform = () => {
           {targetValues.map((target, index) => (
             <span key={index} className="px-3 flex flex-col items-start border-l-4 border-white">
               <span className="font-inter text-[48px] font-[700]">
-                {counts[index]}%
+                {counts[index]}{index === 3 ? 's' : '%'}
               </span>
               <span className="font-inter text-[18px]">
                 {labels[index]}
