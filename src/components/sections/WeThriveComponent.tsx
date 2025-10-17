@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Network, DollarSign, Phone, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import icon1 from "@/assets/networkicon.svg";
+import icon2 from "@/assets/linkicon.svg";
+import icon3 from "@/assets/vanityiconn.svg";
+import icon4 from "@/assets/bulkmessaging.svg";
 
 const ServicesShowcase = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const [visibleImages, setVisibleImages] = useState<number[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -17,6 +21,12 @@ const ServicesShowcase = () => {
             setTimeout(() => setVisibleCards([0, 1]), 400);
             setTimeout(() => setVisibleCards([0, 1, 2]), 600);
             setTimeout(() => setVisibleCards([0, 1, 2, 3]), 800);
+            
+            // Stagger phone image animations (after cards appear)
+            setTimeout(() => setVisibleImages([0]), 600);
+            setTimeout(() => setVisibleImages([0, 1]), 700);
+            setTimeout(() => setVisibleImages([0, 1, 2]), 800);
+            setTimeout(() => setVisibleImages([0, 1, 2, 3]), 900);
           }
         });
       },
@@ -36,7 +46,7 @@ const ServicesShowcase = () => {
   }, []);
   const services = [
     {
-      icon: <Network className="w-8 h-8 text-blue-500" />,
+      icon: <img src={icon1} alt="Network" className="w-8 h-8" />,
       title: "IntarvAS PBX",
       description:
         "We provide cloud PBX (Private Branch Exchange) solutions designed to help telecom operators and large organizations modernize their voice services.",
@@ -44,7 +54,7 @@ const ServicesShowcase = () => {
       img: "/images/one.png",
     },
     {
-      icon: <DollarSign className="w-8 h-8 text-blue-500" />,
+      icon: <img src={icon2} alt="All in one solution" className="w-8 h-8" />,
       title: "All in one solution",
       description:
         "A unified platform combining calling, messaging, and CRM tools for both customer service and outbound sales.",
@@ -52,7 +62,7 @@ const ServicesShowcase = () => {
       img: "/images/two.png",
     },
     {
-      icon: <Phone className="w-8 h-8 text-blue-500" />,
+      icon: <img src={icon3} alt="Vanity numbers" className="w-8 h-8" />,
       title: "Vanity and Toll-free numbers",
       description:
         "Providing businesses with valuable means of communication that not only benefits the customer but also drives business success.",
@@ -60,7 +70,7 @@ const ServicesShowcase = () => {
       img: "/images/three.png",
     },
     {
-      icon: <MessageSquare className="w-8 h-8 text-blue-500" />,
+      icon: <img src={icon4} alt="Bulk Messaging" className="w-8 h-8" />,
       title: "Bulk Messaging",
       description:
         "Our messaging solution encompasses a comprehensive suite of messaging services, catering to both person-to-person (P2P) and Application-to-Person (A2P) communication needs.",
@@ -122,11 +132,17 @@ const ServicesShowcase = () => {
 
               {/* Phone Mockup */}
               <div className="relative px-9">
-                <img
-                  src={service.img}
-                  alt={`${service.title} Mockup`}
-                  className="w-full h-auto rounded-2xl"
-                />
+                <div className={`transition-all duration-1000 delay-300 ${
+                  visibleImages.includes(index)
+                    ? "opacity-100 transform translate-y-0 scale-100"
+                    : "opacity-0 transform translate-y-8 scale-95"
+                }`}>
+                  <img
+                    src={service.img}
+                    alt={`${service.title} Mockup`}
+                    className="w-full h-auto rounded-2xl hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
               </div>
             </div>
           ))}
