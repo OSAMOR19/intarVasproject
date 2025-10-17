@@ -8,6 +8,7 @@ export default function About() {
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
   const [showImages, setShowImages] = useState<number[]>([]);
   const [showTitleHighlight, setShowTitleHighlight] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [hasAnimatedHero, setHasAnimatedHero] = useState(false);
   const [hasAnimatedStats, setHasAnimatedStats] = useState(false);
   const [hasAnimatedDescription, setHasAnimatedDescription] = useState(false);
@@ -98,10 +99,31 @@ export default function About() {
       descriptionObserver.observe(descriptionRef.current);
     }
 
+    // Scroll-based color transition animation for description section
+    const handleScroll = () => {
+      const descriptionSection = document.getElementById("about-description-section");
+      if (!descriptionSection) return;
+      
+      const rect = descriptionSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculate progress based on when the section comes into view
+      // Start animation when section is 50% visible, complete when fully scrolled past
+      const startPoint = windowHeight * 0.5; // Start when section is 50% visible
+      const endPoint = -rect.height; // Complete when section is fully scrolled past
+      
+      const progress = Math.max(0, Math.min(1, (startPoint - rect.top) / (startPoint - endPoint)));
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+
     return () => {
       if (heroRef.current) heroObserver.unobserve(heroRef.current);
       if (statsRef.current) statsObserver.unobserve(statsRef.current);
       if (descriptionRef.current) descriptionObserver.unobserve(descriptionRef.current);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -174,7 +196,7 @@ export default function About() {
         </div>
       </section>
 
-      <section ref={descriptionRef} className="bg-muted/30 py-20 md:py-36 relative overflow-hidden">
+      <section ref={descriptionRef} id="about-description-section" className="bg-muted/30 py-20 md:py-36 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"></div>
@@ -185,8 +207,37 @@ export default function About() {
           <div className={`transition-all duration-1000 ${
             isDescriptionVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
           }`}>
-            <p className="mx-auto font-inter md:text-[38px] text-[#858D9D] max-w-md md:max-w-4xl font-[600] text-center text-lg leading-[1.2] text-muted-foreground">
-              Based in Lagos, IntarvAS was built on a vision to simplify how Nigerian businesses communicate with their customers. Over the years, we've become trusted by enterprises, government agencies, and SMEs alike helping them build stronger connections with clients through reliable, scalable, and locally-tailored telecom solutions.
+            <p className="mx-auto font-inter md:text-[38px] max-w-md md:max-w-4xl font-[600] text-center text-lg leading-[1.2] text-muted-foreground">
+              {(() => {
+                const descriptionText = "Based in Lagos, IntarvAS was built on a vision to simplify how Nigerian businesses communicate with their customers. Over the years, we've become trusted by enterprises, government agencies, and SMEs alike helping them build stronger connections with clients through reliable, scalable, and locally-tailored telecom solutions.";
+                const descriptionWords = descriptionText.split(" ");
+                
+                return descriptionWords.map((word, index) => {
+                  // Calculate color progress for each word based on scroll position
+                  // Use a multiplier to ensure we reach the end of the text
+                  const wordProgress = Math.max(0, Math.min(1, (scrollProgress * descriptionWords.length * 1.2) - index));
+                  
+                  // Color transition from grey (#858D9D) to dark (#001933)
+                  const greyR = 133, greyG = 141, greyB = 157;
+                  const darkR = 0, darkG = 25, darkB = 51;
+                  
+                  const currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
+                  const currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
+                  const currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+                  
+                  return (
+                    <span
+                      key={index}
+                      className="inline-block transition-colors duration-300"
+                      style={{
+                        color: `rgb(${currentR}, ${currentG}, ${currentB})`
+                      }}
+                    >
+                      {word}&nbsp;
+                    </span>
+                  );
+                });
+              })()}
             </p>
           </div>
         </div>

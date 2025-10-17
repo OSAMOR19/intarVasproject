@@ -1,13 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const VisionMissionSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isVisionVisible, setIsVisionVisible] = useState(false);
+  const [isMissionVisible, setIsMissionVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            // Stagger the vision and mission animations
+            setTimeout(() => setIsVisionVisible(true), 300);
+            setTimeout(() => setIsMissionVisible(true), 600);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const section = document.getElementById("vision-mission-section");
+    if (section) {
+      observer.observe(section);
+    }
+
+    return () => {
+      if (section) {
+        observer.unobserve(section);
+      }
+    };
+  }, []);
   return (
-    <section className="bg-gray-50 py-20 px-8">
+    <section id="vision-mission-section" className="bg-gray-50 py-20 px-8">
       <div className="max-w-7xl mx-auto space-y-24">
         {/* Vision Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left - Text Content */}
-          <div className="order-2 lg:order-1">
+          <div className={`order-2 lg:order-1 transition-all duration-1000 ${
+            isVisionVisible 
+              ? "opacity-100 transform translate-x-0" 
+              : "opacity-0 transform -translate-x-20"
+          }`}>
             <div className="mb-4">
               <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
                 Our Vision
@@ -31,7 +65,11 @@ const VisionMissionSection = () => {
           </div>
 
           {/* Right - Image */}
-          <div className="order-1 lg:order-2">
+          <div className={`order-1 lg:order-2 transition-all duration-1000 ${
+            isVisionVisible 
+              ? "opacity-100 transform translate-x-0" 
+              : "opacity-0 transform translate-x-20"
+          }`}>
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-blue-200 to-blue-100 rounded-3xl opacity-50"></div>
               <div className="relative rounded-3xl overflow-hidden shadow-xl">
@@ -48,7 +86,11 @@ const VisionMissionSection = () => {
         {/* Mission Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left - Image */}
-          <div>
+          <div className={`transition-all duration-1000 ${
+            isMissionVisible 
+              ? "opacity-100 transform translate-x-0" 
+              : "opacity-0 transform -translate-x-20"
+          }`}>
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-blue-200 to-blue-100 rounded-3xl opacity-50"></div>
               <div className="relative rounded-3xl overflow-hidden shadow-xl">
@@ -62,7 +104,11 @@ const VisionMissionSection = () => {
           </div>
 
           {/* Right - Text Content */}
-          <div>
+          <div className={`transition-all duration-1000 ${
+            isMissionVisible 
+              ? "opacity-100 transform translate-x-0" 
+              : "opacity-0 transform translate-x-20"
+          }`}>
             <div className="mb-4">
               <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
                 Our Mission

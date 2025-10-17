@@ -13,27 +13,24 @@ import callicon from "@/assets/callrecordicon.svg";
 import analyticsicon from "@/assets/analysicreporticon.svg";
 import voicemailicon from "@/assets/voicetoemailicon.svg";
 import callfowardicon from "@/assets/addplus.svg";
-import laptop from "@/assets/allinoneimage.svg";
+import laptop from "@/assets/laptopimg.svg";
 
 export default function PBX() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const trustRef = useRef<HTMLDivElement>(null);
   const [titleText, setTitleText] = useState("");
-  const [descriptionText, setDescriptionText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const [descriptionWords, setDescriptionWords] = useState<string[]>([]);
-  const [showDescription, setShowDescription] = useState(false);
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isTrustVisible, setIsTrustVisible] = useState(false);
   const [showTrustCards, setShowTrustCards] = useState(false);
+  const [isLaptopSectionVisible, setIsLaptopSectionVisible] = useState(false);
 
   const fullTitle = "IntarvAS PBX";
   const fullDescription =
     "Run your business on a smarter, cloud-based PBX that connects teams, customers, and partners with ease.";
-  const descriptionWordsArray =
-    "With IntarvAS PBX, you get enterprise-grade call management without the cost of on-site hardware. Create extensions for your team, route calls intelligently, and manage everything from a simple dashboard.".split(
-      " "
-    );
+  const descriptionText = "With IntarvAS PBX, you get enterprise-grade call management without the cost of on-site hardware. Create extensions for your team, route calls intelligently, and manage everything from a simple dashboard.";
+  const descriptionWords = descriptionText.split(" ");
 
   useEffect(() => {
     // Typewriter effect for title
@@ -46,16 +43,7 @@ export default function PBX() {
         clearInterval(titleInterval);
         // Start description typing after title is complete
         setTimeout(() => {
-          let descIndex = 0;
-          const descInterval = setInterval(() => {
-            if (descIndex <= fullDescription.length) {
-              setDescriptionText(fullDescription.slice(0, descIndex));
-              descIndex++;
-            } else {
-              clearInterval(descInterval);
-              setIsTypingComplete(true);
-            }
-          }, 30); // Slower typing for description
+          setIsTypingComplete(true);
         }, 500);
       }
     }, 100); // Faster typing for title
@@ -66,44 +54,28 @@ export default function PBX() {
   }, []);
 
   useEffect(() => {
-    // Animate description section when it comes into view
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShowDescription(true);
-            // Start word-by-word animation for first 7 words
-            let wordIndex = 0;
-            const wordInterval = setInterval(() => {
-              if (wordIndex < 7) {
-                setDescriptionWords((prev) => [
-                  ...prev,
-                  descriptionWordsArray[wordIndex],
-                ]);
-                wordIndex++;
-              } else {
-                clearInterval(wordInterval);
-                // Add remaining words all at once after a brief delay
-                setTimeout(() => {
-                  setDescriptionWords(descriptionWordsArray);
-                }, 300);
-              }
-            }, 150); // Faster animation for first 7 words
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
+    // Scroll-based color transition animation focused on description section
+    const handleScroll = () => {
+      const descriptionSection = document.getElementById("description-section");
+      if (!descriptionSection) return;
+      
+      const rect = descriptionSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculate progress based on when the section comes into view
+      // Start animation when section is 50% visible, complete when fully scrolled past
+      const startPoint = windowHeight * 0.5; // Start when section is 50% visible
+      const endPoint = -rect.height; // Complete when section is fully scrolled past
+      
+      const progress = Math.max(0, Math.min(1, (startPoint - rect.top) / (startPoint - endPoint)));
+      setScrollProgress(progress);
+    };
 
-    const descriptionElement = document.getElementById("description-section");
-    if (descriptionElement) {
-      observer.observe(descriptionElement);
-    }
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
 
     return () => {
-      if (descriptionElement) {
-        observer.unobserve(descriptionElement);
-      }
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -116,19 +88,7 @@ export default function PBX() {
       const cardHeight = scrollContainer.clientHeight;
       const activeCard = Math.floor(scrollTop / cardHeight);
 
-      // Update dot colors
-      for (let i = 1; i <= 4; i++) {
-        const dot = document.getElementById(`dot-${i}`);
-        if (dot) {
-          if (i === activeCard + 1) {
-            dot.className =
-              "w-2 h-2 bg-blue-500 rounded-full transition-all duration-300 scale-125";
-          } else {
-            dot.className =
-              "w-2 h-2 bg-gray-300 rounded-full transition-all duration-300";
-          }
-        }
-      }
+      setCurrentCardIndex(activeCard);
     };
 
     scrollContainer.addEventListener("scroll", updateDots);
@@ -161,6 +121,31 @@ export default function PBX() {
     return () => {
       if (trustRef.current) {
         observer.unobserve(trustRef.current);
+      }
+    };
+  }, []);
+
+  // Laptop section animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsLaptopSectionVisible(true);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    const laptopSection = document.getElementById("laptop-section");
+    if (laptopSection) {
+      observer.observe(laptopSection);
+    }
+
+    return () => {
+      if (laptopSection) {
+        observer.unobserve(laptopSection);
       }
     };
   }, []);
@@ -238,34 +223,41 @@ export default function PBX() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div
-            className={`transition-all duration-1000 ${
-              showDescription
-                ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-8"
-            }`}
+            className="transition-all duration-1000 opacity-100 transform translate-y-0"
           >
-            <p className="mx-auto font-inter text-[35px] font-[600] text-[#858D9D] max-w-4xl text-center text-1.1xl leading-[1.2] hover:scale-105 transition-transform duration-500 cursor-default">
-              {descriptionWords.map((word, index) => (
-                <span
-                  key={index}
-                  className={`inline-block ${
-                    index < 7 ? "animate-fade-in-up" : "animate-fade-in"
-                  }`}
-                  style={{
-                    animationDelay: index < 7 ? `${index * 0.1}s` : "0.8s",
-                    animationFillMode: "both",
-                  }}
-                >
-                  {word}&nbsp;
-                </span>
-              ))}
+            <p className="mx-auto font-inter text-[35px] font-[600] max-w-4xl text-center text-1.1xl leading-[1.2] hover:scale-105 transition-all duration-500 cursor-default">
+              {descriptionWords.map((word, index) => {
+                // Calculate color progress for each word based on scroll position
+                // Use a multiplier to ensure we reach the end of the text
+                const wordProgress = Math.max(0, Math.min(1, (scrollProgress * descriptionWords.length * 1.2) - index));
+                
+                // Color transition from grey (#858D9D) to dark (#001933)
+                const greyR = 133, greyG = 141, greyB = 157;
+                const darkR = 0, darkG = 25, darkB = 51;
+                
+                const currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
+                const currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
+                const currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+                
+                return (
+                  <span
+                    key={index}
+                    className="inline-block transition-colors duration-300"
+                    style={{
+                      color: `rgb(${currentR}, ${currentG}, ${currentB})`
+                    }}
+                  >
+                    {word}&nbsp;
+                  </span>
+                );
+              })}
             </p>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#F6F6F6] py-20">
-        <div className="container grid grid-cols-1 md:grid-cols-2 gap-10">
+      <section id="cards-section" className="bg-[#F6F6F6] py-20">
+        <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Left Column - Description */}
           <div className="max-w-lg">
             <div className="inline-block mb-4">
@@ -292,32 +284,39 @@ export default function PBX() {
           {/* Right Column - Scroll-snapped cards container */}
           <div
             ref={scrollContainerRef}
-            className="h-[80vh] overflow-y-scroll snap-y snap-mandatory scrollbar-hide relative"
+            className="h-[80vh] overflow-y-scroll snap-y snap-mandatory scrollbar-hide relative cursor-pointer"
+            style={{ scrollBehavior: 'smooth' }}
           >
             {/* Scroll indicator dots */}
             <div className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 flex flex-col gap-3">
-              <div
-                className="w-2 h-2 bg-blue-500 rounded-full transition-all duration-300"
-                id="dot-1"
-              ></div>
-              <div
-                className="w-2 h-2 bg-gray-300 rounded-full transition-all duration-300"
-                id="dot-2"
-              ></div>
-              <div
-                className="w-2 h-2 bg-gray-300 rounded-full transition-all duration-300"
-                id="dot-3"
-              ></div>
-              <div
-                className="w-2 h-2 bg-gray-300 rounded-full transition-all duration-300"
-                id="dot-4"
-              ></div>
+              {[0, 1].map((index) => (
+                <div
+                  key={index}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentCardIndex
+                      ? "bg-blue-500 scale-125"
+                      : "bg-gray-300"
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Scroll hint */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
+              <div className="flex items-center gap-2 text-gray-400 text-sm">
+                <span>Scroll to explore</span>
+                <div className="animate-bounce">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-8">
               <div className="snap-start h-[80vh] flex items-center justify-center group">
                 <div className="transform transition-all duration-700 ease-out group-hover:scale-105 group-hover:rotate-1">
-            <AllInSolutionCard
+                  <AllInSolutionCard
                     icon={
                       <img
                         src={"/icon/voicemail.svg"}
@@ -327,16 +326,16 @@ export default function PBX() {
                         style={{ objectFit: "contain" }}
                       />
                     }
-              title="Call Recording"
-              description="Securely record and store customer conversations, ensuring accountability, training opportunities, and compliance with industry standards."
+                    title="Call Recording"
+                    description="Securely record and store customer conversations, ensuring accountability, training opportunities, and compliance with industry standards."
                     img={"/images/callrecording.png"}
-            />
+                  />
                 </div>
               </div>
 
               <div className="snap-start h-[80vh] flex items-center justify-center group">
                 <div className="transform transition-all duration-700 ease-out group-hover:scale-105 group-hover:-rotate-1">
-            <AllInSolutionCard
+                  <AllInSolutionCard
                     icon={
                       <img
                         src={"/icon/chart.svg"}
@@ -346,50 +345,50 @@ export default function PBX() {
                         style={{ objectFit: "contain" }}
                       />
                     }
-              title="Analytics"
+                    title="Analytics"
                     description="Track call volumes, duration, and performance in real time with clear dashboards that help you make smarter business decisions."
                     img={"/images/analytics.png"}
                   />
                 </div>
               </div>
 
-              {/* <div className="snap-start h-[80vh] flex items-center justify-center group">
-                <div className="transform transition-all duration-700 ease-out group-hover:scale-105 group-hover:rotate-1">
-                  <AllInSolutionCard
-                    icon={
-                      <img
-                        src={"/icon/ticket.svg"}
-                        alt="Ticketing & Automation"
-                        width={24}
-                        height={24}
-                        style={{ objectFit: "contain" }}
-                      />
-                    }
-                    title="Ticketing & Automation"
-                    description="Automate workflows, assign tasks, and resolve issues faster with a streamlined ticketing system built to boost productivity."
-                    img={"/images/pbx3.svg"}
-                  />
-                </div>
-              </div> */}
-
-              {/* <div className="snap-start h-[80vh] flex items-center justify-center group">
+              <div className="snap-start h-[80vh] flex items-center justify-center group">
                 <div className="transform transition-all duration-700 ease-out group-hover:scale-105 group-hover:-rotate-1">
                   <AllInSolutionCard
                     icon={
                       <img
-                        src={"/icon/omni.svg"}
-                        alt="Omnichannel Support"
+                        src={"/icon/extensionicon.svg"}
+                        alt="Analytics"
                         width={24}
                         height={24}
                         style={{ objectFit: "contain" }}
                       />
                     }
-                    title="Omnichannel Support"
-                    description="Keep every customer connected. Handle calls, chats, emails, and social media with ease, all from a single dashboard."
-                    img={"/images/pbx4.svg"}
+                    title="Extensions"
+                    description="Give every team member a professional business line with unique extensions, whether they’re in the office or working remotely."
+                    img={"/images/extimage.svg"}
                   />
                 </div>
-              </div> */}
+              </div>
+
+              <div className="snap-start h-[80vh] flex items-center justify-center group">
+                <div className="transform transition-all duration-700 ease-out group-hover:scale-105 group-hover:-rotate-1">
+                  <AllInSolutionCard
+                    icon={
+                      <img
+                        src={"/icon/scalability.svg"}
+                        alt="Analytics"
+                        width={24}
+                        height={24}
+                        style={{ objectFit: "contain" }}
+                      />
+                    }
+                    title="Scalability"
+                    description="Start small and expand seamlessly. Add or remove lines as your business grows, without costly hardware or downtime."
+                    img={"/images/sclimage.svg"}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -426,6 +425,7 @@ export default function PBX() {
           </div>
 
           <div
+            id="laptop-section"
             className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center transition-all duration-1000 ${
               showTrustCards
                 ? "opacity-100 transform translate-y-0"
@@ -433,7 +433,11 @@ export default function PBX() {
             }`}
           >
             {/* Feature List */}
-            <div className="bg-[#0C0C0C] rounded-3xl p-8 space-y-8 h-[400px] flex flex-col justify-center hover:scale-105 transition-transform duration-300">
+            <div className={`bg-[#0C0C0C] rounded-3xl p-8 space-y-8 h-[400px] flex flex-col justify-center hover:scale-105 transition-all duration-1000 ${
+              isLaptopSectionVisible 
+                ? "opacity-100 transform translate-x-0" 
+                : "opacity-0 transform -translate-x-20"
+            }`}>
               {/* Feature 1 */}
               <div className="flex relative items-center gap-4 group">
                 {/* Icon */}
@@ -558,7 +562,11 @@ export default function PBX() {
             </div>
 
             {/* Dashboard Screenshot */}
-            <div className="relative">
+            <div className={`relative transition-all duration-1000 ${
+              isLaptopSectionVisible 
+                ? "opacity-100 transform translate-x-0" 
+                : "opacity-0 transform translate-x-20"
+            }`}>
               <div className="bg-[#0C0C0C] rounded-3xl p-8 flex justify-center items-center h-[400px] hover:scale-105 transition-transform duration-300">
                 <img
                   src={laptop}

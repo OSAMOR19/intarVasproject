@@ -1,12 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Network, DollarSign, Phone, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ServicesShowcase = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            // Stagger card animations
+            setTimeout(() => setVisibleCards([0]), 200);
+            setTimeout(() => setVisibleCards([0, 1]), 400);
+            setTimeout(() => setVisibleCards([0, 1, 2]), 600);
+            setTimeout(() => setVisibleCards([0, 1, 2, 3]), 800);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const section = document.getElementById("services-showcase-section");
+    if (section) {
+      observer.observe(section);
+    }
+
+    return () => {
+      if (section) {
+        observer.unobserve(section);
+      }
+    };
+  }, []);
   const services = [
     {
       icon: <Network className="w-8 h-8 text-blue-500" />,
-      title: "IntarVAS PBX",
+      title: "IntarvAS PBX",
       description:
         "We provide cloud PBX (Private Branch Exchange) solutions designed to help telecom operators and large organizations modernize their voice services.",
       mockupType: "summary",
@@ -39,10 +70,14 @@ const ServicesShowcase = () => {
   ];
 
   return (
-    <section className="bg-[#F6F6F6] py-20 px-8">
+    <section id="services-showcase-section" className="bg-[#F6F6F6] py-20 px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-16">
+        <div className={`mb-16 transition-all duration-1000 ${
+          isVisible 
+            ? "opacity-100 transform translate-y-0" 
+            : "opacity-0 transform translate-y-8"
+        }`}>
           <div className="mb-4">
             <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
               Our services
@@ -65,7 +100,11 @@ const ServicesShowcase = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-shadow"
+              className={`bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-1000 ${
+                visibleCards.includes(index)
+                  ? "opacity-100 transform translate-y-0 scale-100"
+                  : "opacity-0 transform translate-y-8 scale-95"
+              }`}
             >
               {/* Service Header */}
               <div className=" p-9">
