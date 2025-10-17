@@ -55,18 +55,18 @@ const AllInOneCTA = () => {
   const column3 = features.filter((f) => f.column === 3);
 
   return (
-    <section ref={sectionRef} className="bg-gray-50 py-20 px-8 relative overflow-hidden">
+    <section ref={sectionRef} className="bg-gray-50 py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-4 sm:left-20 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-4 sm:right-20 w-40 sm:w-60 lg:w-80 h-40 sm:h-60 lg:h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
       </div>
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className={`rounded-[3rem] p-12 lg:p-16 shadow-2xl transition-all duration-1000 ${
+        <div className={`rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-8 lg:p-16 shadow-2xl transition-all duration-1000 overflow-hidden ${
           isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
         }`} style={{ backgroundColor: '#004B98' }}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
             {/* Left Side - Content */}
             <div className={`transition-all duration-1000 ${
               showLeftContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-8'
@@ -82,7 +82,7 @@ const AllInOneCTA = () => {
               </div>
 
               {/* Heading */}
-              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight hover:scale-105 transition-transform duration-300">
+              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white mb-8 leading-tight">
                 Get the{" "}
                 <span className="italic font-light">All in one solution.</span>
                 <br />
@@ -93,7 +93,7 @@ const AllInOneCTA = () => {
               <div className="border-t border-blue-700 mb-8 hover:border-blue-600 transition-colors duration-300"></div>
 
               {/* Features Grid */}
-              <div className={`grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4 mb-8 transition-all duration-1000 ${
+              <div className={`grid grid-cols-1 md:grid-cols-3 gap-x-4 sm:gap-x-6 lg:gap-x-8 gap-y-4 mb-8 transition-all duration-1000 ${
                 showFeatures ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
               }`}>
                 {/* Column 1 */}
@@ -146,7 +146,7 @@ const AllInOneCTA = () => {
             }`}>
               {/* Pricing */}
               <div className="text-center lg:text-right mb-8">
-                <div className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-2 hover:scale-105 transition-transform duration-300">
+                <div className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-2">
                   ₦ 30,000<span className="text-lg sm:text-xl lg:text-2xl font-normal">/user/month</span>
                 </div>
                 <p className="text-blue-200 text-base sm:text-lg italic hover:text-blue-100 transition-colors duration-300">

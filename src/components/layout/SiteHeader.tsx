@@ -49,9 +49,9 @@ export default function SiteHeader() {
           : 'bg-transparent'
       }`}
     >
-      <div className="md:container md:mx-auto flex h-16 items-center justify-between md:px-4">
+      <div className="lg:container lg:mx-auto flex h-16 items-center justify-between lg:px-4">
         <div className="flex items-center gap-8">
-          <Link to="/" className="md:flex items-center gap-2 font-semibold">
+          <Link to="/" className="lg:flex items-center gap-2 font-semibold">
             <img
               src={shouldUseBlackLogo ? intervaslogoblack : "/images/Logo.svg"}
               alt="IntarVAS Logo"
@@ -59,7 +59,7 @@ export default function SiteHeader() {
             />
           </Link>
 
-          <nav className="hidden md:gap-6 md:flex">
+          <nav className="hidden lg:gap-6 lg:flex">
           <NavLink color="#C2C6CE" to="/" end className={linkCls}>
             Home
           </NavLink>
@@ -106,7 +106,7 @@ export default function SiteHeader() {
           </nav>
         </div>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <Button variant="outline" asChild>
             <a href="https://wiki.ccaas.intarvas.com" target="_blank" rel="noopener noreferrer">Explore Services</a>
           </Button>
@@ -115,7 +115,7 @@ export default function SiteHeader() {
           </Button>
         </div>
 
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <button className="p-2">
