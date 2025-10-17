@@ -100,8 +100,8 @@ const AllInOneCTA = () => {
                 <div className="space-y-4">
                   {column1.map((feature, index) => (
                     <div key={index} className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
-                      <div className="flex-shrink-0">
-                        <Check className="w-5 h-5 text-white hover:text-blue-300 transition-colors duration-300" strokeWidth={3} />
+                      <div className="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-300">
+                        <Check className="w-4 h-4 text-blue-600" strokeWidth={3} />
                       </div>
                       <span className="text-white text-base hover:text-blue-300 transition-colors duration-300">
                         {feature.name}
@@ -114,8 +114,8 @@ const AllInOneCTA = () => {
                 <div className="space-y-4">
                   {column2.map((feature, index) => (
                     <div key={index} className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
-                      <div className="flex-shrink-0">
-                        <Check className="w-5 h-5 text-white hover:text-blue-300 transition-colors duration-300" strokeWidth={3} />
+                      <div className="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-300">
+                        <Check className="w-4 h-4 text-blue-600" strokeWidth={3} />
                       </div>
                       <span className="text-white text-base hover:text-blue-300 transition-colors duration-300">
                         {feature.name}
@@ -128,8 +128,8 @@ const AllInOneCTA = () => {
                 <div className="space-y-4">
                   {column3.map((feature, index) => (
                     <div key={index} className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
-                      <div className="flex-shrink-0">
-                        <Check className="w-5 h-5 text-white hover:text-blue-300 transition-colors duration-300" strokeWidth={3} />
+                      <div className="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-300">
+                        <Check className="w-4 h-4 text-blue-600" strokeWidth={3} />
                       </div>
                       <span className="text-white text-base hover:text-blue-300 transition-colors duration-300">
                         {feature.name}
@@ -145,9 +145,9 @@ const AllInOneCTA = () => {
               showRightContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform translate-x-8'
             }`}>
               {/* Pricing */}
-              <div className="text-right mb-8">
+              <div className="text-right  mb-8">
                 <div className="text-5xl lg:text-6xl font-bold text-white mb-2 hover:scale-105 transition-transform duration-300">
-                  ₦ 30,000<span className="text-2xl font-normal">/month</span>
+                  ₦ 30,000<span className="text-2xl font-normal">/user/month</span>
                 </div>
                 <p className="text-blue-200 text-lg italic hover:text-blue-100 transition-colors duration-300">
                   Flat pricing. Unlimited features.

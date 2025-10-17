@@ -74,7 +74,7 @@ export default function SiteHeader() {
                   to="/services/all-in-solutions" 
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#007DFE] transition-colors"
                 >
-                  All In Solutions
+                  All In one Solutions
                 </Link>
                 <Link 
                   to="/services/pbx" 
@@ -176,7 +176,7 @@ export default function SiteHeader() {
                           }`}
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
-                          All In Solutions
+                          All In one Solutions
                         </Link>
                         <Link 
                           to="/services/pbx" 
