@@ -256,9 +256,13 @@ export default function SiteHeader() {
                     className="w-full text-lg py-6"
                     asChild
                   >
-                    <a href="https://api.ccaas.intarvas.com" target="_blank" rel="noopener noreferrer">
+                    <Link 
+                      to="/contact"
+                      className="w-full block text-center"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
                       Request Demo
-                    </a>
+                    </Link>
                   </Button>
                 </div>
               </div>
