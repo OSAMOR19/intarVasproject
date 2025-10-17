@@ -16,7 +16,10 @@ export default function AllInSolutions() {
   const [isFeaturesVisible, setIsFeaturesVisible] = useState(false);
   const [hasAnimatedDescription, setHasAnimatedDescription] = useState(false);
   const [activeCard, setActiveCard] = useState(0);
-  const [scrollY, setScrollY] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  
+  const descriptionText = "Nigerian businesses and government agencies need simplicity and speed. Our CRM solution centralizes customer communication, so your team saves time, improves response rates, and never loses track of a customer.";
+  const descriptionWords = descriptionText.split(" ");
   
   const heroRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -25,13 +28,26 @@ export default function AllInSolutions() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Scroll listener for color changes
+    // Scroll-based color transition animation focused on description section
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      const descriptionSection = document.getElementById("description-section");
+      if (!descriptionSection) return;
+      
+      const rect = descriptionSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculate progress based on when the section comes into view
+      // Start animation when section is 50% visible, complete when fully scrolled past
+      const startPoint = windowHeight * 0.5; // Start when section is 50% visible
+      const endPoint = -rect.height; // Complete when section is fully scrolled past
+      
+      const progress = Math.max(0, Math.min(1, (startPoint - rect.top) / (startPoint - endPoint)));
+      setScrollProgress(progress);
     };
 
     window.addEventListener('scroll', handleScroll);
-    
+    handleScroll(); // Initial call
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -187,7 +203,7 @@ export default function AllInSolutions() {
       </section>
 
       {/* Description Section */}
-      <section ref={descriptionRef} className="bg-muted/30 py-36 relative overflow-hidden">
+      <section ref={descriptionRef} id="description-section" className="bg-muted/30 py-36 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"></div>
@@ -198,10 +214,32 @@ export default function AllInSolutions() {
           <div className={`transition-all duration-1000 ${
             isDescriptionVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
           }`}>
-            <p className={`mx-auto max-w-4xl text-center text-[38px] font-inter font-[600] leading-relaxed transition-colors duration-300 ${
-              scrollY > 800 ? 'text-blue-600' : 'text-muted-foreground'
-            } hover:text-gray-600`}>
-              Nigerian businesses and government agencies need simplicity and speed. Our CRM solution centralizes customer communication, so your team saves time, improves response rates, and never loses track of a customer.
+            <p className="mx-auto font-inter text-[38px] font-[600] max-w-4xl text-center leading-[1.2] hover:scale-105 transition-all duration-500 cursor-default">
+              {descriptionWords.map((word, index) => {
+                // Calculate color progress for each word based on scroll position
+                // Use a multiplier to ensure we reach the end of the text
+                const wordProgress = Math.max(0, Math.min(1, (scrollProgress * descriptionWords.length * 1.2) - index));
+                
+                // Color transition from grey (#858D9D) to dark (#001933)
+                const greyR = 133, greyG = 141, greyB = 157;
+                const darkR = 0, darkG = 25, darkB = 51;
+                
+                const currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
+                const currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
+                const currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+                
+                return (
+                  <span
+                    key={index}
+                    className="inline-block transition-colors duration-300"
+                    style={{
+                      color: `rgb(${currentR}, ${currentG}, ${currentB})`
+                    }}
+                  >
+                    {word}{index < descriptionWords.length - 1 ? ' ' : ''}
+                  </span>
+                );
+              })}
             </p>
           </div>
         </div>
