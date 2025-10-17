@@ -14,16 +14,28 @@ export default function AllInSolutions() {
   const [isImageVisible, setIsImageVisible] = useState(false);
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
   const [isFeaturesVisible, setIsFeaturesVisible] = useState(false);
-  const [descriptionText, setDescriptionText] = useState("");
-  const [showDescriptionRest, setShowDescriptionRest] = useState(false);
   const [hasAnimatedDescription, setHasAnimatedDescription] = useState(false);
   const [activeCard, setActiveCard] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
   
   const heroRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const descriptionRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Scroll listener for color changes
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     // Hero section animation
@@ -58,26 +70,13 @@ export default function AllInSolutions() {
       imageObserver.observe(imageRef.current);
     }
 
-    // Description section animation with typewriter effect
+    // Description section animation
     const descriptionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasAnimatedDescription) {
             setIsDescriptionVisible(true);
             setHasAnimatedDescription(true);
-            // Typewriter effect for first part
-            const firstPart = "Nigerian businesses and government agencies need simplicity and speed.";
-            let index = 0;
-            const typeInterval = setInterval(() => {
-              if (index <= firstPart.length) {
-                setDescriptionText(firstPart.slice(0, index));
-                index++;
-              } else {
-                clearInterval(typeInterval);
-                // Show rest after typewriter completes
-                setTimeout(() => setShowDescriptionRest(true), 500);
-              }
-            }, 50);
           }
         });
       },
@@ -199,13 +198,10 @@ export default function AllInSolutions() {
           <div className={`transition-all duration-1000 ${
             isDescriptionVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
           }`}>
-            <p className="mx-auto max-w-4xl text-center text-[38px] font-inter font-[600] leading-relaxed text-muted-foreground hover:text-gray-600 transition-colors duration-300">
-              <span className="inline-block">{descriptionText}</span>
-              {showDescriptionRest && (
-                <span className="inline-block animate-fade-in">
-                  {" "}Our CRM solution centralizes customer communication, so your team saves time, improves response rates, and never loses track of a customer.
-                </span>
-              )}
+            <p className={`mx-auto max-w-4xl text-center text-[38px] font-inter font-[600] leading-relaxed transition-colors duration-300 ${
+              scrollY > 800 ? 'text-blue-600' : 'text-muted-foreground'
+            } hover:text-gray-600`}>
+              Nigerian businesses and government agencies need simplicity and speed. Our CRM solution centralizes customer communication, so your team saves time, improves response rates, and never loses track of a customer.
             </p>
           </div>
         </div>
@@ -258,6 +254,22 @@ export default function AllInSolutions() {
                 title="Security & Compliance"
                 description="We use enterprise-grade encryption, guarantee 99.9% uptime, and are fully compliant with telecom standards."
                 img={"/images/image2.png"}
+              />
+            </div>
+            <div className="snap-start h-[80vh] flex items-center justify-center hover:scale-105 transition-transform duration-300">
+              <AllInSolutionCard
+                icon={<img src={"/icon/ticket.svg"} alt="Bulk Messaging" />}
+                title="Ticketing & Automation"
+                description="We use enterprise-grade encryption, guarantee 99.9% uptime, and are fully compliant with telecom standards."
+                img={"/images/ticketingimg.svg"}
+              />
+            </div>
+            <div className="snap-start h-[80vh] flex items-center justify-center hover:scale-105 transition-transform duration-300">
+              <AllInSolutionCard
+                icon={<img src={"/icon/headset.svg"} alt="Bulk Messaging" />}
+                title="Omnichannel Support"
+                description="We use enterprise-grade encryption, guarantee 99.9% uptime, and are fully compliant with telecom standards."
+                img={"/images/omniimg.svg"}
               />
             </div>
           </div>
