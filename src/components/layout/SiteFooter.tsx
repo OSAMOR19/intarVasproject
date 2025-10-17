@@ -141,7 +141,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/services"
+                  to="/services/all-in-solutions"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Services

@@ -157,7 +157,7 @@ export default function AllInSolutions() {
           name="description"
           content="Explore our comprehensive suite of telecom solutions designed for modern businesses."
         />
-        <link rel="canonical" href="/services/bulk-messaging" />
+        <link rel="canonical" href="/services/all-in-solutions" />
       </Helmet>
 
       {/* Hero Section */}
