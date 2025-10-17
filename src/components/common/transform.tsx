@@ -64,7 +64,7 @@ const Transform = () => {
   return (
     <div ref={sectionRef} className="bg-black text-white py-20 px-4 relative ">
       <div className="max-w-7xl mx-[200px] flex flex-col gap-32">
-        <p className="font-inter text-[30px] md:text-[48px] font-[800]  leading-[1.2] mb-[30px]">
+        <p className="font-inter text-[38px] md:text-[38px] font-[500]  leading-[1.2] mb-[30px]">
           Transform your call centre.{" "}
           <span className="opacity-70">
             With IntarvAS, you can reduce escalations, improve business

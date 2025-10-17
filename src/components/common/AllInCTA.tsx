@@ -73,7 +73,10 @@ const AllInOneCTA = () => {
             }`}>
               {/* Badge */}
               <div className="inline-block mb-6">
-                <span className="px-6 py-2 bg-white text-gray-900 rounded-full text-sm font-semibold hover:scale-105 transition-transform duration-300">
+                <span
+                  className="px-6 py-2 bg-white text-gray-900 rounded-full text-sm font-semibold hover:scale-105 transition-transform duration-300"
+                  style={{ border: '2px solid #007DFE', display: 'inline-block' }}
+                >
                   One plan. All Features. No Limits
                 </span>
               </div>
@@ -153,14 +156,14 @@ const AllInOneCTA = () => {
 
               {/* CTA Buttons */}
               <div className="w-full max-w-sm space-y-4">
-                <Button variant="hero" className="w-full py-4 rounded-md text-lg hover:scale-105 transition-transform duration-300">
+                <Button variant="hero" className="w-full h-[52px] rounded-md text-lg hover:scale-105 transition-transform duration-300">
                   Get Started
                 </Button>
                 <a 
                   href="https://wiki.ccaas.intarvas.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-full py-4 bg-white text-gray-900 rounded-xl font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 block text-center"
+                  className="w-full h-[52px] bg-white text-gray-900 rounded-xl font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 flex items-center justify-center"
                 >
                   Explore Services
                 </a>
