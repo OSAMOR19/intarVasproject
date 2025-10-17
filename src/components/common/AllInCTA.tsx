@@ -141,21 +141,21 @@ const AllInOneCTA = () => {
             </div>
 
             {/* Right Side - Pricing & CTA */}
-            <div className={`flex flex-col items-end justify-between h-full transition-all duration-1000 ${
+            <div className={`flex flex-col lg:items-end lg:justify-between lg:h-full transition-all duration-1000 ${
               showRightContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform translate-x-8'
             }`}>
               {/* Pricing */}
-              <div className="text-right  mb-8">
-                <div className="text-5xl lg:text-6xl font-bold text-white mb-2 hover:scale-105 transition-transform duration-300">
-                  ₦ 30,000<span className="text-2xl font-normal">/user/month</span>
+              <div className="text-center lg:text-right mb-8">
+                <div className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-2 hover:scale-105 transition-transform duration-300">
+                  ₦ 30,000<span className="text-lg sm:text-xl lg:text-2xl font-normal">/user/month</span>
                 </div>
-                <p className="text-blue-200 text-lg italic hover:text-blue-100 transition-colors duration-300">
+                <p className="text-blue-200 text-base sm:text-lg italic hover:text-blue-100 transition-colors duration-300">
                   Flat pricing. Unlimited features.
                 </p>
               </div>
 
               {/* CTA Buttons */}
-              <div className="w-full max-w-sm space-y-4">
+              <div className="w-full lg:max-w-sm space-y-4">
                 <Button variant="hero" className="w-full h-[52px] rounded-md text-lg hover:scale-105 transition-transform duration-300">
                   Get Started
                 </Button>
