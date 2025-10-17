@@ -63,7 +63,7 @@ const Transform = () => {
   }, [isVisible]);
   return (
     <div ref={sectionRef} className="bg-black text-white py-20 px-4 relative ">
-      <div className="max-w-7xl mx-[200px] flex flex-col gap-32">
+      <div className="max-w-7xl mx-auto px-4 flex flex-col gap-32">
         <p className="font-inter text-[38px] md:text-[38px] font-[500]  leading-[1.2] mb-[30px]">
           Transform your call centre.{" "}
           <span className="opacity-70">
@@ -89,7 +89,7 @@ const Transform = () => {
         <img
           src="/images/TransformIllustration.png"
           alt="Transform your call center"
-          className="absolute bottom-0 right-0 w-[400px] h-auto animate-pulse hover:scale-105 transition-all duration-1000"
+          className="absolute bottom-0 right-0 w-[300px] md:w-[400px] h-auto animate-pulse hover:scale-105 transition-all duration-1000"
           style={{
             animation: 'breathe 3s ease-in-out infinite'
           }}
