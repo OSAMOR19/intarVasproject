@@ -21,7 +21,7 @@ const ServicesShowcase = () => {
             setTimeout(() => setVisibleCards([0, 1]), 400);
             setTimeout(() => setVisibleCards([0, 1, 2]), 600);
             setTimeout(() => setVisibleCards([0, 1, 2, 3]), 800);
-            
+
             // Stagger phone image animations (after cards appear)
             setTimeout(() => setVisibleImages([0]), 600);
             setTimeout(() => setVisibleImages([0, 1]), 700);
@@ -83,11 +83,13 @@ const ServicesShowcase = () => {
     <section id="services-showcase-section" className="bg-[#F6F6F6] py-20 px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className={`mb-16 transition-all duration-1000 ${
-          isVisible 
-            ? "opacity-100 transform translate-y-0" 
-            : "opacity-0 transform translate-y-8"
-        }`}>
+        <div
+          className={`mb-16 transition-all duration-1000 ${
+            isVisible
+              ? "opacity-100 transform translate-y-0"
+              : "opacity-0 transform translate-y-8"
+          }`}
+        >
           <div className="mb-4">
             <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
               Our services
@@ -100,9 +102,6 @@ const ServicesShowcase = () => {
             Discover reliable telecom tools built for Nigerian businesses and
             government agencies.
           </p>
-          <Button variant="hero" className="px-6 py-3">
-            Learn More
-          </Button>
         </div>
 
         {/* Services Grid */}
@@ -132,11 +131,13 @@ const ServicesShowcase = () => {
 
               {/* Phone Mockup */}
               <div className="relative px-9">
-                <div className={`transition-all duration-1000 delay-300 ${
-                  visibleImages.includes(index)
-                    ? "opacity-100 transform translate-y-0 scale-100"
-                    : "opacity-0 transform translate-y-8 scale-95"
-                }`}>
+                <div
+                  className={`transition-all duration-1000 delay-300 ${
+                    visibleImages.includes(index)
+                      ? "opacity-100 transform translate-y-0 scale-100"
+                      : "opacity-0 transform translate-y-8 scale-95"
+                  }`}
+                >
                   <img
                     src={service.img}
                     alt={`${service.title} Mockup`}

@@ -17,10 +17,46 @@ export default function AllInSolutions() {
   const [hasAnimatedDescription, setHasAnimatedDescription] = useState(false);
   const [activeCard, setActiveCard] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
-  
-  const descriptionText = "Nigerian businesses and government agencies need simplicity and speed. Our CRM solution centralizes customer communication, so your team saves time, improves response rates, and never loses track of a customer.";
+
+  const allInSolutionData = [
+    {
+      icon: "/icon/CRM.svg",
+      title: "Smart CRM",
+      name: "crm",
+      description:
+        "Personalize every customer interaction with a smart, unified CRM that keeps your history organized.",
+      image: "/images/image1.png",
+    },
+    {
+      icon: "/icon/tick.svg",
+      title: "Security & Compliance",
+      name: "security",
+      description:
+        "We use enterprise-grade encryption, guarantee 99.9% uptime, and are fully compliant with telecom standards.",
+      image: "/images/image2.png",
+    },
+    // {
+    //   icon: "/icon/ticket.svg",
+    //   title: "Ticketing & Automation",
+    //   name: "ticketing",
+    //   description:
+    //     "Automate repetitive tasks and streamline your support process with our advanced ticketing system.",
+    //   image: "/images/ticketingimg.svg",
+    // },
+    // {
+    //   icon: "/icon/headset.svg",
+    //   title: "Omnichannel Support",
+    //   name: "omnichannel",
+    //   description:
+    //     "Provide seamless support across voice, chat, email, and social media from a single platform.",
+    //   image: "/images/omniimg.svg",
+    // },
+  ];
+
+  const descriptionText =
+    "Nigerian businesses and government agencies need simplicity and speed. Our CRM solution centralizes customer communication, so your team saves time, improves response rates, and never loses track of a customer.";
   const descriptionWords = descriptionText.split(" ");
-  
+
   const heroRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const descriptionRef = useRef<HTMLDivElement>(null);
@@ -32,24 +68,27 @@ export default function AllInSolutions() {
     const handleScroll = () => {
       const descriptionSection = document.getElementById("description-section");
       if (!descriptionSection) return;
-      
+
       const rect = descriptionSection.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
+
       // Calculate progress based on when the section comes into view
       // Start animation when section is 50% visible, complete when fully scrolled past
       const startPoint = windowHeight * 0.5; // Start when section is 50% visible
       const endPoint = -rect.height; // Complete when section is fully scrolled past
-      
-      const progress = Math.max(0, Math.min(1, (startPoint - rect.top) / (startPoint - endPoint)));
+
+      const progress = Math.max(
+        0,
+        Math.min(1, (startPoint - rect.top) / (startPoint - endPoint))
+      );
       setScrollProgress(progress);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll(); // Initial call
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -129,22 +168,25 @@ export default function AllInSolutions() {
         setActiveCard(Math.min(newActiveCard, 1)); // Max 1 since we have 2 cards (0-indexed)
       };
 
-      scrollContainer.addEventListener('scroll', updateActiveCard);
+      scrollContainer.addEventListener("scroll", updateActiveCard);
       updateActiveCard(); // Initial call
 
       return () => {
-        scrollContainer.removeEventListener('scroll', updateActiveCard);
+        scrollContainer.removeEventListener("scroll", updateActiveCard);
         if (heroRef.current) heroObserver.unobserve(heroRef.current);
         if (imageRef.current) imageObserver.unobserve(imageRef.current);
-        if (descriptionRef.current) descriptionObserver.unobserve(descriptionRef.current);
-        if (featuresRef.current) featuresObserver.unobserve(featuresRef.current);
+        if (descriptionRef.current)
+          descriptionObserver.unobserve(descriptionRef.current);
+        if (featuresRef.current)
+          featuresObserver.unobserve(featuresRef.current);
       };
     }
 
     return () => {
       if (heroRef.current) heroObserver.unobserve(heroRef.current);
       if (imageRef.current) imageObserver.unobserve(imageRef.current);
-      if (descriptionRef.current) descriptionObserver.unobserve(descriptionRef.current);
+      if (descriptionRef.current)
+        descriptionObserver.unobserve(descriptionRef.current);
       if (featuresRef.current) featuresObserver.unobserve(featuresRef.current);
     };
   }, [hasAnimatedDescription]);
@@ -161,28 +203,40 @@ export default function AllInSolutions() {
       </Helmet>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="bg-background pt-32 pb-12 relative overflow-hidden">
+      <section
+        ref={heroRef}
+        className="bg-background pt-32 pb-12 relative overflow-hidden"
+      >
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 text-center relative z-10">
-          <div className={`transition-all duration-1000 ${
-            isHeroVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
-          }`}>
+          <div
+            className={`transition-all duration-1000 ${
+              isHeroVisible
+                ? "opacity-100 transform translate-y-0"
+                : "opacity-0 transform translate-y-8"
+            }`}
+          >
             <h1 className="text-4xl font-inter font-semibold tracking-tight md:text-[64px] mb-3">
               All in one solution
             </h1>
             <p className="mx-auto font-inter mt-4 max-w-xl text-lg text-muted-foreground">
-              Our All-in-One CRM & Omnichannel Suite helps you manage voice, chat,
-              email, and social from a single, powerful platform.
+              Our All-in-One CRM & Omnichannel Suite helps you manage voice,
+              chat, email, and social from a single, powerful platform.
             </p>
             <div className="mt-8">
               <Link to="/contact">
-                <Button size="lg" className="hover:scale-105 transition-transform duration-300">Contact Us</Button>
+                <Button
+                  size="lg"
+                  className="hover:scale-105 transition-transform duration-300"
+                >
+                  Contact Us
+                </Button>
               </Link>
             </div>
           </div>
@@ -191,9 +245,13 @@ export default function AllInSolutions() {
 
       {/* Image Section */}
       <section ref={imageRef} className="container mx-auto px-4 py-12">
-        <div className={`max-full transition-all duration-1000 ${
-          isImageVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
-        }`}>
+        <div
+          className={`max-full transition-all duration-1000 ${
+            isImageVisible
+              ? "opacity-100 transform translate-y-0"
+              : "opacity-0 transform translate-y-8"
+          }`}
+        >
           <img
             src={"/images/allinsoluheroimg.png"}
             alt="Bulk messaging platform with colorful message illustrations"
@@ -203,40 +261,65 @@ export default function AllInSolutions() {
       </section>
 
       {/* Description Section */}
-      <section ref={descriptionRef} id="description-section" className="bg-muted/30 py-36 relative overflow-hidden">
+      <section
+        ref={descriptionRef}
+        id="description-section"
+        className="bg-muted/30 py-36 relative overflow-hidden"
+      >
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"></div>
           <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
-          <div className={`transition-all duration-1000 ${
-            isDescriptionVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
-          }`}>
+          <div
+            className={`transition-all duration-1000 ${
+              isDescriptionVisible
+                ? "opacity-100 transform translate-y-0"
+                : "opacity-0 transform translate-y-8"
+            }`}
+          >
             <p className="mx-auto font-inter text-[38px] font-[600] max-w-4xl text-center leading-[1.2] hover:scale-105 transition-all duration-500 cursor-default">
               {descriptionWords.map((word, index) => {
                 // Calculate color progress for each word based on scroll position
                 // Use a multiplier to ensure we reach the end of the text
-                const wordProgress = Math.max(0, Math.min(1, (scrollProgress * descriptionWords.length * 1.2) - index));
-                
+                const wordProgress = Math.max(
+                  0,
+                  Math.min(
+                    1,
+                    scrollProgress * descriptionWords.length * 1.2 - index
+                  )
+                );
+
                 // Color transition from grey (#858D9D) to dark (#001933)
-                const greyR = 133, greyG = 141, greyB = 157;
-                const darkR = 0, darkG = 25, darkB = 51;
-                
-                const currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
-                const currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
-                const currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
-                
+                const greyR = 133,
+                  greyG = 141,
+                  greyB = 157;
+                const darkR = 0,
+                  darkG = 25,
+                  darkB = 51;
+
+                const currentR = Math.round(
+                  greyR + (darkR - greyR) * wordProgress
+                );
+                const currentG = Math.round(
+                  greyG + (darkG - greyG) * wordProgress
+                );
+                const currentB = Math.round(
+                  greyB + (darkB - greyB) * wordProgress
+                );
+
                 return (
                   <span
                     key={index}
                     className="inline-block transition-colors duration-300"
                     style={{
-                      color: `rgb(${currentR}, ${currentG}, ${currentB})`
+                      color: `rgb(${currentR}, ${currentG}, ${currentB})`,
                     }}
                   >
-                    {word}{index < descriptionWords.length - 1 ? ' ' : ''}
+                    {word}
+                    {index < descriptionWords.length - 1 ? " " : ""}
                   </span>
                 );
               })}
@@ -245,24 +328,31 @@ export default function AllInSolutions() {
         </div>
       </section>
 
-      <section ref={featuresRef} className="bg-[#F6F6F6] py-20 relative overflow-hidden">
+      <section
+        ref={featuresRef}
+        className="bg-[#F6F6F6] py-20 relative overflow-hidden"
+      >
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500/5 rounded-full blur-xl animate-pulse"></div>
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-500/5 rounded-full blur-xl animate-pulse delay-1000"></div>
         </div>
-        
+
         <div className="container grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
-          <div className={`max-w-lg transition-all duration-1000 ${
-            isFeaturesVisible ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-8'
-          }`}>
+          <div
+            className={`max-w-lg transition-all duration-1000 ${
+              isFeaturesVisible
+                ? "opacity-100 transform translate-x-0"
+                : "opacity-0 transform -translate-x-8"
+            }`}
+          >
             <div className="inline-block mb-4">
               <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
                 Features
               </span>
             </div>
             <h3 className="font-inter text-[38px] font-[600] leading-[1.2] hover:scale-105 transition-transform duration-300">
-              Simplifying personalized <br/> conversations.
+              Simplifying personalized <br /> conversations.
             </h3>
             <p className="text-[#858D9D] mb-3 hover:text-gray-600 transition-colors duration-300">
               Drive business results with our meaningful customer conversations.
@@ -275,51 +365,27 @@ export default function AllInSolutions() {
               Learn More
             </Button>
           </div>
-          <div className={`h-[80vh] overflow-y-scroll snap-y snap-mandatory scrollbar-hide transition-all duration-1000 delay-300 ${
-            isFeaturesVisible ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform translate-x-8'
-          }`} ref={scrollContainerRef}>
-            <div className="snap-start h-[80vh] flex items-center justify-center hover:scale-105 transition-transform duration-300">
-              <AllInSolutionCard
-                icon={<img src={"/icon/CRM.svg"} alt="Bulk Messaging" />}
-                title="Smart CRM"
-                description="Personalize every customer interaction with a smart, unified CRM that keeps your history organized."
-                img={"/images/image1.png"}
-              />
-            </div>
-            <div className="snap-start h-[80vh] flex items-center justify-center hover:scale-105 transition-transform duration-300">
-              <AllInSolutionCard
-                icon={<img src={"/icon/tick.svg"} alt="Bulk Messaging" />}
-                title="Security & Compliance"
-                description="We use enterprise-grade encryption, guarantee 99.9% uptime, and are fully compliant with telecom standards."
-                img={"/images/image2.png"}
-              />
-            </div>
-            <div className="snap-start h-[80vh] flex items-center justify-center hover:scale-105 transition-transform duration-300">
-              <AllInSolutionCard
-                icon={<img src={"/icon/ticket.svg"} alt="Bulk Messaging" />}
-                title="Ticketing & Automation"
-                description="We use enterprise-grade encryption, guarantee 99.9% uptime, and are fully compliant with telecom standards."
-                img={"/images/ticketingimg.svg"}
-              />
-            </div>
-            <div className="snap-start h-[80vh] flex items-center justify-center hover:scale-105 transition-transform duration-300">
-              <AllInSolutionCard
-                icon={<img src={"/icon/headset.svg"} alt="Bulk Messaging" />}
-                title="Omnichannel Support"
-                description="We use enterprise-grade encryption, guarantee 99.9% uptime, and are fully compliant with telecom standards."
-                img={"/images/omniimg.svg"}
-              />
-            </div>
-          </div>
-          
-          {/* Scroll indicators */}
-          <div className="flex justify-center mt-4 space-x-2">
-            <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              activeCard === 0 ? 'bg-blue-500 scale-125' : 'bg-gray-300'
-            }`}></div>
-            <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              activeCard === 1 ? 'bg-blue-500 scale-125' : 'bg-gray-300'
-            }`}></div>
+          <div
+            className={`h-[60vh] flex flex-col gap-10 overflow-y-scroll snap-y snap-mandatory scrollbar-hide transition-all duration-1000 delay-300 ${
+              isFeaturesVisible
+                ? "opacity-100 transform translate-x-0"
+                : "opacity-0 transform translate-x-8"
+            }`}
+            ref={scrollContainerRef}
+          >
+            {allInSolutionData.map((item) => (
+              <div
+                key={item.name}
+                className="snap-start flex items-center justify-center "
+              >
+                <AllInSolutionCard
+                  icon={<img src={item.icon} alt={item.title} />}
+                  title={item.title}
+                  description={item.description}
+                  img={item.image}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>

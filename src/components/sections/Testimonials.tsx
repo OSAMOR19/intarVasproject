@@ -24,19 +24,26 @@ const TestimonialsSection = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Animation control
   useEffect(() => {
     if (!isVisible) return;
 
-    const animateElement = (element: HTMLDivElement | null, direction: 'left' | 'right' | 'up' | 'down', speed: number) => {
+    const animateElement = (
+      element: HTMLDivElement | null,
+      direction: "left" | "right" | "up" | "down",
+      speed: number
+    ) => {
       if (!element) return;
+      if (direction === "down") {
+        element.style.transform = `translateY(-${element.scrollHeight / 2}px)`;
+      }
 
       let startTime: number | null = null;
       let pausedTime = 0;
@@ -56,18 +63,20 @@ const TestimonialsSection = () => {
         }
 
         const elapsed = currentTime - startTime - pausedTime;
-        
-        if (direction === 'left') {
+
+        if (direction === "left") {
           const translateX = -(elapsed * speed) % (element.scrollWidth / 2);
           element.style.transform = `translateX(${translateX}px)`;
-        } else if (direction === 'right') {
+        } else if (direction === "right") {
           const translateX = (elapsed * speed) % (element.scrollWidth / 2);
           element.style.transform = `translateX(${translateX}px)`;
-        } else if (direction === 'up') {
+        } else if (direction === "up") {
           const translateY = -(elapsed * speed) % (element.scrollHeight / 2);
           element.style.transform = `translateY(${translateY}px)`;
-        } else if (direction === 'down') {
-          const translateY = (elapsed * speed) % (element.scrollHeight / 2);
+        } else if (direction === "down") {
+          const offset = -element.scrollHeight / 2;
+          const translateY =
+            offset + ((elapsed * speed) % (element.scrollHeight / 2));
           element.style.transform = `translateY(${translateY}px)`;
         }
 
@@ -84,16 +93,26 @@ const TestimonialsSection = () => {
     const cleanupFunctions: (() => void)[] = [];
 
     if (isMobile) {
-      cleanupFunctions.push(animateElement(animationRefs.current.mobileRow1, 'left', 0.1));
-      cleanupFunctions.push(animateElement(animationRefs.current.mobileRow2, 'right', 0.1));
+      cleanupFunctions.push(
+        animateElement(animationRefs.current.mobileRow1, "left", 0.1)
+      );
+      cleanupFunctions.push(
+        animateElement(animationRefs.current.mobileRow2, "right", 0.1)
+      );
     } else {
-      cleanupFunctions.push(animateElement(animationRefs.current.desktopCol1, 'up', 0.05));
-      cleanupFunctions.push(animateElement(animationRefs.current.desktopCol2, 'down', 0.05));
-      cleanupFunctions.push(animateElement(animationRefs.current.desktopCol3, 'up', 0.05));
+      cleanupFunctions.push(
+        animateElement(animationRefs.current.desktopCol1, "up", 0.05)
+      );
+      cleanupFunctions.push(
+        animateElement(animationRefs.current.desktopCol2, "down", 0.05)
+      );
+      cleanupFunctions.push(
+        animateElement(animationRefs.current.desktopCol3, "up", 0.05)
+      );
     }
 
     return () => {
-      cleanupFunctions.forEach(cleanup => cleanup());
+      cleanupFunctions.forEach((cleanup) => cleanup());
     };
   }, [isVisible, isPaused, isMobile]);
 
@@ -243,9 +262,13 @@ const TestimonialsSection = () => {
     <section ref={sectionRef} className="bg-gray-50 py-16 px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
-        }`}>
+        <div
+          className={`text-center mb-16 transition-all duration-1000 ${
+            isVisible
+              ? "opacity-100 transform translate-y-0"
+              : "opacity-0 transform translate-y-8"
+          }`}
+        >
           <div className="inline-block mb-4 animate-bounce-in">
             <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
               Testimonials
@@ -262,7 +285,7 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Moving Testimonials */}
-        <div 
+        <div
           className="relative"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
@@ -273,11 +296,15 @@ const TestimonialsSection = () => {
             /* Mobile: 2 Rows - Left/Right Animation */
             <>
               {/* Row 1 - Moving Left */}
-              <div className={`flex gap-4 mb-4 transition-all duration-1000 ${
-                isVisible ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform translate-x-8'
-              }`}>
-                <div 
-                  ref={(el) => animationRefs.current.mobileRow1 = el}
+              <div
+                className={`flex gap-4 mb-4 transition-all duration-1000 ${
+                  isVisible
+                    ? "opacity-100 transform translate-x-0"
+                    : "opacity-0 transform translate-x-8"
+                }`}
+              >
+                <div
+                  ref={(el) => (animationRefs.current.mobileRow1 = el)}
                   className="flex gap-4"
                 >
                   {testimonials.slice(0, 3).map((testimonial, index) => (
@@ -298,7 +325,9 @@ const TestimonialsSection = () => {
                           <h4 className="font-semibold text-gray-900 text-sm">
                             {testimonial.name}
                           </h4>
-                          <p className="text-xs text-gray-500">{testimonial.company}</p>
+                          <p className="text-xs text-gray-500">
+                            {testimonial.company}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -322,7 +351,9 @@ const TestimonialsSection = () => {
                           <h4 className="font-semibold text-gray-900 text-sm">
                             {testimonial.name}
                           </h4>
-                          <p className="text-xs text-gray-500">{testimonial.company}</p>
+                          <p className="text-xs text-gray-500">
+                            {testimonial.company}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -331,11 +362,15 @@ const TestimonialsSection = () => {
               </div>
 
               {/* Row 2 - Moving Right */}
-              <div className={`flex gap-4 transition-all duration-1000 delay-500 ${
-                isVisible ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-8'
-              }`}>
-                <div 
-                  ref={(el) => animationRefs.current.mobileRow2 = el}
+              <div
+                className={`flex gap-4 transition-all duration-1000 delay-500 ${
+                  isVisible
+                    ? "opacity-100 transform translate-x-0"
+                    : "opacity-0 transform -translate-x-8"
+                }`}
+              >
+                <div
+                  ref={(el) => (animationRefs.current.mobileRow2 = el)}
                   className="flex gap-4"
                 >
                   {testimonials.slice(3, 6).map((testimonial, index) => (
@@ -356,7 +391,9 @@ const TestimonialsSection = () => {
                           <h4 className="font-semibold text-gray-900 text-sm">
                             {testimonial.name}
                           </h4>
-                          <p className="text-xs text-gray-500">{testimonial.company}</p>
+                          <p className="text-xs text-gray-500">
+                            {testimonial.company}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -380,7 +417,9 @@ const TestimonialsSection = () => {
                           <h4 className="font-semibold text-gray-900 text-sm">
                             {testimonial.name}
                           </h4>
-                          <p className="text-xs text-gray-500">{testimonial.company}</p>
+                          <p className="text-xs text-gray-500">
+                            {testimonial.company}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -392,11 +431,15 @@ const TestimonialsSection = () => {
             /* Desktop: 3 Columns - Up/Down Wave Animation */
             <div className="grid grid-cols-3 gap-8">
               {/* Column 1 - Scrolls Up */}
-              <div className={`transition-all duration-2000 overflow-hidden h-[500px] ${
-                isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
-              }`}>
-                <div 
-                  ref={(el) => animationRefs.current.desktopCol1 = el}
+              <div
+                className={`transition-all duration-2000 overflow-hidden h-[500px] ${
+                  isVisible
+                    ? "opacity-100 transform translate-y-0"
+                    : "opacity-0 transform translate-y-8"
+                }`}
+              >
+                <div
+                  ref={(el) => (animationRefs.current.desktopCol1 = el)}
                   className="space-y-6"
                 >
                   {/* First set of testimonials */}
@@ -418,7 +461,9 @@ const TestimonialsSection = () => {
                           <h4 className="font-semibold text-gray-900">
                             {testimonial.name}
                           </h4>
-                          <p className="text-sm text-gray-500">{testimonial.company}</p>
+                          <p className="text-sm text-gray-500">
+                            {testimonial.company}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -442,7 +487,9 @@ const TestimonialsSection = () => {
                           <h4 className="font-semibold text-gray-900">
                             {testimonial.name}
                           </h4>
-                          <p className="text-sm text-gray-500">{testimonial.company}</p>
+                          <p className="text-sm text-gray-500">
+                            {testimonial.company}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -451,17 +498,21 @@ const TestimonialsSection = () => {
               </div>
 
               {/* Column 2 - Scrolls Down */}
-              <div className={`transition-all duration-1000 delay-300 overflow-hidden h-[500px] ${
-                isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-8'
-              }`}>
-                <div 
-                  ref={(el) => animationRefs.current.desktopCol2 = el}
+              <div
+                className={`transition-all duration-1000 delay-300 overflow-hidden h-[500px] ${
+                  isVisible
+                    ? "opacity-100 transform translate-y-0"
+                    : "opacity-0 transform -translate-y-8"
+                }`}
+              >
+                <div
+                  ref={(el) => (animationRefs.current.desktopCol2 = el)}
                   className="space-y-6"
                 >
                   {/* First set of testimonials */}
                   {testimonials.slice(2, 4).map((testimonial, index) => (
                     <div
-                      key={`desktop-col2-${index}`}
+                      key={`desktop-col2-dup-${index}`}
                       className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
                     >
                       <p className="text-gray-700 leading-relaxed mb-8">
@@ -477,7 +528,9 @@ const TestimonialsSection = () => {
                           <h4 className="font-semibold text-gray-900">
                             {testimonial.name}
                           </h4>
-                          <p className="text-sm text-gray-500">{testimonial.company}</p>
+                          <p className="text-sm text-gray-500">
+                            {testimonial.company}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -501,7 +554,9 @@ const TestimonialsSection = () => {
                           <h4 className="font-semibold text-gray-900">
                             {testimonial.name}
                           </h4>
-                          <p className="text-sm text-gray-500">{testimonial.company}</p>
+                          <p className="text-sm text-gray-500">
+                            {testimonial.company}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -510,11 +565,15 @@ const TestimonialsSection = () => {
               </div>
 
               {/* Column 3 - Scrolls Up */}
-              <div className={`transition-all duration-1000 delay-600 overflow-hidden h-[500px] ${
-                isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
-              }`}>
-                <div 
-                  ref={(el) => animationRefs.current.desktopCol3 = el}
+              <div
+                className={`transition-all duration-1000 delay-600 overflow-hidden h-[500px] ${
+                  isVisible
+                    ? "opacity-100 transform translate-y-0"
+                    : "opacity-0 transform translate-y-8"
+                }`}
+              >
+                <div
+                  ref={(el) => (animationRefs.current.desktopCol3 = el)}
                   className="space-y-6"
                 >
                   {/* First set of testimonials */}
@@ -536,7 +595,9 @@ const TestimonialsSection = () => {
                           <h4 className="font-semibold text-gray-900">
                             {testimonial.name}
                           </h4>
-                          <p className="text-sm text-gray-500">{testimonial.company}</p>
+                          <p className="text-sm text-gray-500">
+                            {testimonial.company}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -560,7 +621,9 @@ const TestimonialsSection = () => {
                           <h4 className="font-semibold text-gray-900">
                             {testimonial.name}
                           </h4>
-                          <p className="text-sm text-gray-500">{testimonial.company}</p>
+                          <p className="text-sm text-gray-500">
+                            {testimonial.company}
+                          </p>
                         </div>
                       </div>
                     </div>

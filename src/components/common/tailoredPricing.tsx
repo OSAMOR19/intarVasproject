@@ -2,26 +2,25 @@ import React from "react";
 
 const CustomQuoteBanner = () => {
   return (
-    <section className="bg-gray-100 py-16 px-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="relative bg-gradient-to-r from-blue-600 to-blue-500 rounded-2xl p-12 shadow-xl overflow-hidden">
-          {/* Corner Decorations */}
-          <div className="absolute top-4 left-4 w-8 h-8 border-l-4 border-t-4 border-white opacity-50"></div>
-          <div className="absolute top-4 right-4 w-8 h-8 border-r-4 border-t-4 border-white opacity-50"></div>
-          <div className="absolute bottom-4 left-4 w-8 h-8 border-l-4 border-b-4 border-white opacity-50"></div>
-          <div className="absolute bottom-4 right-4 w-8 h-8 border-r-4 border-b-4 border-white opacity-50"></div>
-
+    <section className="bg-gray-100 py-28 px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="relative bg-[#0064CB]/95 rounded-[30px]  shadow-xl overflow-hidden">
+          <img
+            className="absolute bg-transparent w-full h-full object-fill"
+            src="/images/TestingIllustration.svg"
+            alt="illustration of business people discussing pricing options"
+          />
           {/* Content */}
-          <div className="relative text-center">
+          <div className="relative p-12 text-center">
             {/* Badge */}
             <div className="inline-block mb-6">
-              <span className="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium border border-white/30">
-                Priced fluently
+              <span className="px-4 py-2 bg-[#E5F2FF] backdrop-blur-sm text-[#007DFE] rounded-full text-sm font-medium border border-[#C6E2FF]">
+                Tailored Pricing
               </span>
             </div>
 
             {/* Heading */}
-            <h2 className="text-[24px] font-inter font-[800] lg:text-[38px] text-white mb-4">
+            <h2 className="text-[24px] font-inter font-[900] lg:text-[38px] text-white mb-4 leading-[1.2]">
               Every business is
               <br />
               different

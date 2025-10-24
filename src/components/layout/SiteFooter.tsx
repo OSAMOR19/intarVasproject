@@ -68,13 +68,16 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Column 1: Logo and Address */}
           <div className="space-y-6">
-          <Link to="/" className="md:flex items-center gap-2 font-semibold ml-[-20px]">
-            <img
-              src="/images/Logo.svg"
-              alt="IntarVAS Logo"
-              className="h-8 w-[200px]"
-            />
-          </Link>
+            <Link
+              to="/"
+              className="md:flex items-center gap-2 font-semibold ml-[-20px]"
+            >
+              <img
+                src="/images/Logo.svg"
+                alt="IntarVAS Logo"
+                className="h-8 w-[200px]"
+              />
+            </Link>
             <div className="text-gray-400 text-sm leading-relaxed space-y-2">
               <p>Churchgate Tower 2,</p>
               <p>30 Churchgate Street (formerly Afribank</p>
@@ -232,7 +235,7 @@ const Footer = () => {
       <div className=" border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-8 py-6">
           <p className="text-center text-gray-400 text-sm">
-            © All rights reserved by IntarVAS.
+            © All rights reserved by IntarvAS.
           </p>
         </div>
       </div>

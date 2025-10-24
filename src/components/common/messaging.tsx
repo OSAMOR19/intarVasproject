@@ -39,7 +39,7 @@ const MessagingPlatformSection = () => {
 
   return (
     <section className="bg-black text-white min-h-screen py-16 px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[85rem] mx-auto">
         {/* Header */}
         <div className="mb-16">
           <h2 className="text-4xl lg:text-[38px] font-light leading-tight max-w-full ">
@@ -58,7 +58,7 @@ const MessagingPlatformSection = () => {
         </div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Side - Features List */}
           <div className="space-y-4">
             {features.map((feature, index) => (
@@ -67,12 +67,12 @@ const MessagingPlatformSection = () => {
                 onMouseEnter={() => setActiveFeature(index)}
                 className={`p-6 rounded-xl transition-all duration-300 cursor-pointer ${
                   activeFeature === index
-                    ? "bg-gray-900 border-l-4 border-blue-500"
-                    : "bg-transparent hover:bg-gray-900/50"
+                    ? "bg-gray-900 border-l-2 border-blue-500"
+                    : "bg-[#14161B] hover:bg-gray-900/50 border-l-2 border-transparent"
                 }`}
               >
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-gray-400 text-[12px] md:text-[16px] leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -83,16 +83,16 @@ const MessagingPlatformSection = () => {
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="/assets/woman.svg"
+                src="/images/LadyNumber.png"
                 alt="Person using messaging platform"
                 className="w-full h-auto object-cover"
               />
 
               {/* Compliance Badge Overlay */}
-              <div className="absolute lg:bottom-[20rem] lg:left-[calc(-20%-4rem)] ">
+              <div className="absolute lg:bottom-[16rem] lg:left-[calc(-20%-4rem)] bg-gradient-to-br from-[#FFFFFF00]/0 to-[#FFFFFF40]/25 p-5 rounded-3xl border-2 ">
                 <div className="bg-white rounded-2xl p-4 shadow-lg flex items-center gap-3">
                   <div className="flex-1">
-                    <p className="text-gray-800 text-sm font-medium">
+                    <p className="text-gray-800 text-sm font-inter font-semibold">
                       This message is fully DND-compliant and follows NCC
                       regulations
                     </p>

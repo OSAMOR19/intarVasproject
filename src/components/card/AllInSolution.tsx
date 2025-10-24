@@ -2,7 +2,7 @@ import React from "react";
 
 const AllInSolutionCard = ({ icon, title, description, img }) => {
   return (
-    <div className="md:w-[619px] min-h-[415px] bg-white border rounded-lg">
+    <div className="md:w-[619px] min-h-[415px] bg-white border rounded-3xl">
       <div className=" flex flex-col justify-between space-y-4 p-8 h-full ">
         <div className="flex flex-col items-start space-y-1">
           <span className="bg-[#DEEEFF] p-2 rounded">{icon}</span>
