@@ -1,6 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { HeroSection, ClientLogosSection, SecuritySection } from "@/components/sections";
+import {
+  HeroSection,
+  ClientLogosSection,
+  SecuritySection,
+} from "@/components/sections";
 import FeaturesSection from "@/components/common/LandingFeature";
 import ProvenResultsSection from "@/components/common/LandingStats";
 import { Testimonials as TestimonialsSection } from "@/components/sections";
@@ -18,10 +22,7 @@ const Index = () => {
         <link rel="canonical" href="/" />
       </Helmet>
 
-      <HeroSection 
-        onSecondaryClick={() => window.open('https://wiki.ccaas.intarvas.com', '_blank')}
-        onPrimaryClick={() => window.open('https://api.ccaas.intarvas.com', '_blank')}
-      />
+      <HeroSection />
 
       <ClientLogosSection />
 

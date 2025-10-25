@@ -157,7 +157,7 @@ export default function Numbers() {
                   }}
                 />
                 <img
-                  src={"/images/number3.png"}
+                  src={"/images/manonphone.png"}
                   alt="Illustration showing a person working on a laptop with various telecom icons around them"
                   className="w-full h-full object-fill"
                   style={{

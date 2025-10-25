@@ -29,6 +29,19 @@ const ScrollToTop = () => {
   return null;
 };
 
+export function ScrollToHashElement() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const element = document.getElementById(hash.replace("#", ""));
+      if (element) element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [hash]);
+
+  return null;
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
@@ -38,6 +51,7 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <SiteHeader />
+          <ScrollToHashElement />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />

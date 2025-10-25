@@ -9,31 +9,43 @@ const MessagingPlatformSection = () => {
       title: "Bulk Campaigns",
       description:
         "Reach thousands (or millions) with marketing messages and promotions in a few clicks.",
+      imgSrc: "/images/bulk1.png",
+      text: "Flash offer! Get 18% off on items, today only. shop now.",
     },
     {
       title: "OTP Messaging",
       description:
         "Send one-time passwords, verification codes and alerts instantly with high deliverability.",
+      imgSrc: "/images/bulk2.png",
+      text: "Your login code is 452817. Do not share this code with anyone",
     },
     {
       title: "Analytics & Reporting",
       description:
         "Track message delivery, failure diagnostics and campaign performance in real time.",
+      imgSrc: "/images/bulk3.png",
+      text: "Connected: Contatces synced automatically ",
     },
     {
       title: "Compliance & Regulatory",
       description:
         "Fully compliant with NCC rules, spam filters and opt-in/out policies.",
+      imgSrc: "/images/bulk4.png",
+      text: "This message is fully DND-compliant and follows NCC regulations",
     },
     {
       title: "API & Integration",
       description:
         "Easily integrate messaging into your apps for automation and scheduling.",
+      imgSrc: "/images/bulk5.png",
+      text: "Connect to us via API, send messages auto-trigger when leads are updated",
     },
     {
       title: "Cost Efficiency",
       description:
         "Competitive pricing for large volumes, with scalable infrastructure to handle growth.",
+      imgSrc: "/images/bulk6.png",
+      text: "Save up to 35% on messaging costs with optimized delivery routes",
     },
   ];
 
@@ -83,7 +95,7 @@ const MessagingPlatformSection = () => {
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="/images/LadyNumber.png"
+                src={`${features[activeFeature].imgSrc}`}
                 alt="Person using messaging platform"
                 className="w-full h-auto object-cover"
               />
@@ -93,8 +105,7 @@ const MessagingPlatformSection = () => {
                 <div className="bg-white rounded-2xl p-4 shadow-lg flex items-center gap-3">
                   <div className="flex-1">
                     <p className="text-gray-800 text-sm font-inter font-semibold">
-                      This message is fully DND-compliant and follows NCC
-                      regulations
+                      {features[activeFeature].text}
                     </p>
                   </div>
                   <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />

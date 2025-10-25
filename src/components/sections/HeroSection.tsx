@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface HeroSectionProps {
   title?: string;
@@ -101,7 +102,9 @@ const HeroSection = ({
               onClick={onSecondaryClick}
               className="bg-white text-[#001933] border-[#001933] hover:bg-gray-50 w-full sm:w-auto sm:px-6"
             >
-              {secondaryButtonText}
+              <Link to={"/about#services-showcase-section"}>
+                {secondaryButtonText}
+              </Link>
             </Button>
             <Button
               variant="hero"
@@ -109,7 +112,7 @@ const HeroSection = ({
               onClick={onPrimaryClick}
               className="w-full sm:w-auto sm:px-6"
             >
-              {primaryButtonText}
+              <Link to="/contact">{primaryButtonText}</Link>
             </Button>
           </div>
         </div>

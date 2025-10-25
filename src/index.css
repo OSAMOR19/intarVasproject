@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 @keyframes breathe {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.8;
   }
@@ -116,10 +117,14 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground font-sans antialiased;
     overflow-x: hidden;
+    overscroll-behavior: none;
+    transform: none !important;
   }
-  
+
   html {
     overflow-x: hidden;
+    overscroll-behavior: none;
+    transform: none !important;
   }
 }
 
@@ -127,15 +132,17 @@ All colors MUST be HSL.
   .story-link {
     @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
   }
-  .hover-scale { @apply transition-transform duration-200 hover:scale-105; }
-  
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+
   /* Hide scrollbar but keep functionality */
   .scrollbar-hide {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
   }
-  .scrollbar-hide::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
   }
 }
 
@@ -235,4 +242,71 @@ All colors MUST be HSL.
 
 .animate-pause {
   animation-play-state: paused !important;
+}
+
+/* testimonial scroll  */
+
+.scroller {
+  display: flex;
+  flex-direction: column;
+  animation: scroll-up linear infinite;
+}
+
+.scroller-reverse {
+  animation: scroll-down linear infinite;
+}
+
+.scroller,
+.scroller-reverse {
+  animation-duration: 35s;
+}
+
+.paused {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scroll-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.horizontal-scroll {
+  display: flex;
+  white-space: nowrap;
+  animation: scroll-left 35s linear infinite;
+}
+
+.horizontal-scroll.reverse {
+  animation: scroll-right 35s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

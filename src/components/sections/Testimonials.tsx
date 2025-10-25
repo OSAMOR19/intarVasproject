@@ -1,3 +1,4 @@
+import { Car } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 
 const TestimonialsSection = () => {
@@ -46,7 +47,6 @@ const TestimonialsSection = () => {
       }
 
       let startTime: number | null = null;
-      let pausedTime = 0;
       let isAnimating = true;
 
       const animate = (currentTime: number) => {
@@ -57,12 +57,12 @@ const TestimonialsSection = () => {
         }
 
         if (isPaused) {
-          pausedTime = currentTime - startTime;
+          // Freeze the timer progression here
           requestAnimationFrame(animate);
           return;
         }
 
-        const elapsed = currentTime - startTime - pausedTime;
+        const elapsed = currentTime - startTime;
 
         if (direction === "left") {
           const translateX = -(elapsed * speed) % (element.scrollWidth / 2);
@@ -139,25 +139,6 @@ const TestimonialsSection = () => {
       }
     };
   }, []);
-
-  // Touch/Pause handlers
-  const handleTouchStart = (e: React.TouchEvent) => {
-    e.preventDefault();
-    setIsPaused(true);
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    e.preventDefault();
-    setIsPaused(false);
-  };
-
-  const handleMouseEnter = () => {
-    setIsPaused(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsPaused(false);
-  };
 
   const testimonials = [
     {
@@ -258,380 +239,89 @@ const TestimonialsSection = () => {
     },
   ];
 
+  const Card = ({ testimonial }) => {
+    return (
+      <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
+        <p className="text-gray-700 leading-relaxed mb-8">{testimonial.text}</p>
+        <div className="flex items-center gap-3">
+          <img
+            src={testimonial.avatar}
+            alt={testimonial.name}
+            className="w-12 h-12 rounded-full bg-gray-200"
+          />
+          <div>
+            <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+            <p className="text-sm text-gray-500">{testimonial.company}</p>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <section ref={sectionRef} className="bg-gray-50 py-16 px-8 overflow-hidden">
+    <section className="bg-gray-50 py-16 px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isVisible
-              ? "opacity-100 transform translate-y-0"
-              : "opacity-0 transform translate-y-8"
-          }`}
-        >
-          <div className="inline-block mb-4 animate-bounce-in">
-            <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
-              Testimonials
-            </span>
-          </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-16">
+          <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
+            Testimonials
+          </span>
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 my-4">
             What our clients say
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
+          <p className="text-gray-600 max-w-3xl mx-auto text-lg">
             From government agencies to growing enterprises, our clients trust
-            IntarVAS to deliver reliable telecom solutions that keep their teams
-            connected.
+            IntarVAS.
           </p>
         </div>
 
-        {/* Moving Testimonials */}
+        {/* MOBILE — 2 Horizontal Scrolling Rows */}
         <div
-          className="relative"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          className="space-y-6 md:hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
         >
-          {isMobile ? (
-            /* Mobile: 2 Rows - Left/Right Animation */
-            <>
-              {/* Row 1 - Moving Left */}
+          {[testimonials.slice(0, 5), testimonials.slice(5, 10)].map(
+            (group, i) => (
               <div
-                className={`flex gap-4 mb-4 transition-all duration-1000 ${
-                  isVisible
-                    ? "opacity-100 transform translate-x-0"
-                    : "opacity-0 transform translate-x-8"
+                key={i}
+                className={`horizontal-scroll ${i % 2 === 1 ? "reverse" : ""} ${
+                  isPaused ? "paused" : ""
                 }`}
               >
-                <div
-                  ref={(el) => (animationRefs.current.mobileRow1 = el)}
-                  className="flex gap-4"
-                >
-                  {testimonials.slice(0, 3).map((testimonial, index) => (
-                    <div
-                      key={`mobile-row1-${index}`}
-                      className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-72"
-                    >
-                      <p className="text-gray-700 leading-relaxed mb-6 text-sm">
-                        {testimonial.text}
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-10 h-10 rounded-full bg-gray-200"
-                        />
-                        <div>
-                          <h4 className="font-semibold text-gray-900 text-sm">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-xs text-gray-500">
-                            {testimonial.company}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  {/* Duplicate for seamless loop */}
-                  {testimonials.slice(0, 3).map((testimonial, index) => (
-                    <div
-                      key={`mobile-row1-dup-${index}`}
-                      className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-72"
-                    >
-                      <p className="text-gray-700 leading-relaxed mb-6 text-sm">
-                        {testimonial.text}
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-10 h-10 rounded-full bg-gray-200"
-                        />
-                        <div>
-                          <h4 className="font-semibold text-gray-900 text-sm">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-xs text-gray-500">
-                            {testimonial.company}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                {[...group, ...group].map((t, index) => (
+                  <Card testimonial={t} key={index} />
+                ))}
               </div>
-
-              {/* Row 2 - Moving Right */}
-              <div
-                className={`flex gap-4 transition-all duration-1000 delay-500 ${
-                  isVisible
-                    ? "opacity-100 transform translate-x-0"
-                    : "opacity-0 transform -translate-x-8"
-                }`}
-              >
-                <div
-                  ref={(el) => (animationRefs.current.mobileRow2 = el)}
-                  className="flex gap-4"
-                >
-                  {testimonials.slice(3, 6).map((testimonial, index) => (
-                    <div
-                      key={`mobile-row2-${index}`}
-                      className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-72"
-                    >
-                      <p className="text-gray-700 leading-relaxed mb-6 text-sm">
-                        {testimonial.text}
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-10 h-10 rounded-full bg-gray-200"
-                        />
-                        <div>
-                          <h4 className="font-semibold text-gray-900 text-sm">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-xs text-gray-500">
-                            {testimonial.company}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  {/* Duplicate for seamless loop */}
-                  {testimonials.slice(3, 6).map((testimonial, index) => (
-                    <div
-                      key={`mobile-row2-dup-${index}`}
-                      className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0 w-72"
-                    >
-                      <p className="text-gray-700 leading-relaxed mb-6 text-sm">
-                        {testimonial.text}
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-10 h-10 rounded-full bg-gray-200"
-                        />
-                        <div>
-                          <h4 className="font-semibold text-gray-900 text-sm">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-xs text-gray-500">
-                            {testimonial.company}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </>
-          ) : (
-            /* Desktop: 3 Columns - Up/Down Wave Animation */
-            <div className="grid grid-cols-3 gap-8">
-              {/* Column 1 - Scrolls Up */}
-              <div
-                className={`transition-all duration-2000 overflow-hidden h-[500px] ${
-                  isVisible
-                    ? "opacity-100 transform translate-y-0"
-                    : "opacity-0 transform translate-y-8"
-                }`}
-              >
-                <div
-                  ref={(el) => (animationRefs.current.desktopCol1 = el)}
-                  className="space-y-6"
-                >
-                  {/* First set of testimonials */}
-                  {testimonials.slice(0, 2).map((testimonial, index) => (
-                    <div
-                      key={`desktop-col1-${index}`}
-                      className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
-                    >
-                      <p className="text-gray-700 leading-relaxed mb-8">
-                        {testimonial.text}
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-12 h-12 rounded-full bg-gray-200"
-                        />
-                        <div>
-                          <h4 className="font-semibold text-gray-900">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-sm text-gray-500">
-                            {testimonial.company}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  {/* Duplicate set for seamless loop */}
-                  {testimonials.slice(0, 2).map((testimonial, index) => (
-                    <div
-                      key={`desktop-col1-dup-${index}`}
-                      className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
-                    >
-                      <p className="text-gray-700 leading-relaxed mb-8">
-                        {testimonial.text}
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-12 h-12 rounded-full bg-gray-200"
-                        />
-                        <div>
-                          <h4 className="font-semibold text-gray-900">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-sm text-gray-500">
-                            {testimonial.company}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Column 2 - Scrolls Down */}
-              <div
-                className={`transition-all duration-1000 delay-300 overflow-hidden h-[500px] ${
-                  isVisible
-                    ? "opacity-100 transform translate-y-0"
-                    : "opacity-0 transform -translate-y-8"
-                }`}
-              >
-                <div
-                  ref={(el) => (animationRefs.current.desktopCol2 = el)}
-                  className="space-y-6"
-                >
-                  {/* First set of testimonials */}
-                  {testimonials.slice(2, 4).map((testimonial, index) => (
-                    <div
-                      key={`desktop-col2-dup-${index}`}
-                      className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
-                    >
-                      <p className="text-gray-700 leading-relaxed mb-8">
-                        {testimonial.text}
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-12 h-12 rounded-full bg-gray-200"
-                        />
-                        <div>
-                          <h4 className="font-semibold text-gray-900">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-sm text-gray-500">
-                            {testimonial.company}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  {/* Duplicate set for seamless loop */}
-                  {testimonials.slice(2, 4).map((testimonial, index) => (
-                    <div
-                      key={`desktop-col2-dup-${index}`}
-                      className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
-                    >
-                      <p className="text-gray-700 leading-relaxed mb-8">
-                        {testimonial.text}
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-12 h-12 rounded-full bg-gray-200"
-                        />
-                        <div>
-                          <h4 className="font-semibold text-gray-900">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-sm text-gray-500">
-                            {testimonial.company}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Column 3 - Scrolls Up */}
-              <div
-                className={`transition-all duration-1000 delay-600 overflow-hidden h-[500px] ${
-                  isVisible
-                    ? "opacity-100 transform translate-y-0"
-                    : "opacity-0 transform translate-y-8"
-                }`}
-              >
-                <div
-                  ref={(el) => (animationRefs.current.desktopCol3 = el)}
-                  className="space-y-6"
-                >
-                  {/* First set of testimonials */}
-                  {testimonials.slice(4, 6).map((testimonial, index) => (
-                    <div
-                      key={`desktop-col3-${index}`}
-                      className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
-                    >
-                      <p className="text-gray-700 leading-relaxed mb-8">
-                        {testimonial.text}
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-12 h-12 rounded-full bg-gray-200"
-                        />
-                        <div>
-                          <h4 className="font-semibold text-gray-900">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-sm text-gray-500">
-                            {testimonial.company}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  {/* Duplicate set for seamless loop */}
-                  {testimonials.slice(4, 6).map((testimonial, index) => (
-                    <div
-                      key={`desktop-col3-dup-${index}`}
-                      className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300"
-                    >
-                      <p className="text-gray-700 leading-relaxed mb-8">
-                        {testimonial.text}
-                      </p>
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-12 h-12 rounded-full bg-gray-200"
-                        />
-                        <div>
-                          <h4 className="font-semibold text-gray-900">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-sm text-gray-500">
-                            {testimonial.company}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            )
           )}
+        </div>
+
+        {/* DESKTOP — 3 Vertical Auto-Scrolling Columns */}
+        <div
+          className="hidden md:grid grid-cols-3 gap-8 h-[500px]"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {[0, 1, 2].map((col) => {
+            const group = testimonials.slice(col * 5, col * 5 + 5);
+            const reverse = col === 1;
+            return (
+              <div key={col} className="overflow-hidden">
+                <div
+                  className={`${reverse ? "scroller-reverse" : "scroller"} ${
+                    isPaused ? "paused" : ""
+                  } space-y-4`}
+                >
+                  {[...group, ...group].map((t, index) => (
+                    <Card testimonial={t} key={index} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

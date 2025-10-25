@@ -35,22 +35,22 @@ export default function AllInSolutions() {
         "We use enterprise-grade encryption, guarantee 99.9% uptime, and are fully compliant with telecom standards.",
       image: "/images/image2.png",
     },
-    // {
-    //   icon: "/icon/ticket.svg",
-    //   title: "Ticketing & Automation",
-    //   name: "ticketing",
-    //   description:
-    //     "Automate repetitive tasks and streamline your support process with our advanced ticketing system.",
-    //   image: "/images/ticketingimg.svg",
-    // },
-    // {
-    //   icon: "/icon/headset.svg",
-    //   title: "Omnichannel Support",
-    //   name: "omnichannel",
-    //   description:
-    //     "Provide seamless support across voice, chat, email, and social media from a single platform.",
-    //   image: "/images/omniimg.svg",
-    // },
+    {
+      icon: "/icon/ticket.svg",
+      title: "Ticketing & Automation",
+      name: "ticketing",
+      description:
+        "Automate repetitive tasks and streamline your support process with our advanced ticketing system.",
+      image: "/images/ticketingimg.svg",
+    },
+    {
+      icon: "/icon/headset.svg",
+      title: "Omnichannel Support",
+      name: "omnichannel",
+      description:
+        "Provide seamless support across voice, chat, email, and social media from a single platform.",
+      image: "/images/omniimg.svg",
+    },
   ];
 
   const descriptionText =
@@ -328,56 +328,31 @@ export default function AllInSolutions() {
         </div>
       </section>
 
-      <section
-        ref={featuresRef}
-        className="bg-[#F6F6F6] py-20 relative overflow-hidden"
-      >
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500/5 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-500/5 rounded-full blur-xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="container grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
+      {/* Feature Section */}
+      <section ref={featuresRef} className="bg-[#F6F6F6] py-20 relative">
+        <div className="container grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10 min-h-[600px] px-4">
+          {/* LEFT STICKY */}
           <div
-            className={`max-w-lg transition-all duration-1000 ${
-              isFeaturesVisible
-                ? "opacity-100 transform translate-x-0"
-                : "opacity-0 transform -translate-x-8"
-            }`}
+            className={`sticky top-20 max-w-lg transition-opacity duration-700`}
           >
             <div className="inline-block mb-4">
               <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
                 Features
               </span>
             </div>
-            <h3 className="font-inter text-[38px] font-[600] leading-[1.2] hover:scale-105 transition-transform duration-300">
+            <h3 className="font-inter text-[38px] font-[600] leading-[1.2]">
               Simplifying personalized <br /> conversations.
             </h3>
-            <p className="text-[#858D9D] mb-3 hover:text-gray-600 transition-colors duration-300">
+            <p className="text-[#858D9D] mb-3">
               Drive business results with our meaningful customer conversations.
             </p>
-            <Button
-              variant="hero"
-              className="hover:scale-105 transition-transform duration-300"
-              size="lg"
-            >
-              Learn More
-            </Button>
+            <Button size="lg">Learn More</Button>
           </div>
-          <div
-            className={`h-[60vh] flex flex-col gap-10 overflow-y-scroll snap-y snap-mandatory scrollbar-hide transition-all duration-1000 delay-300 ${
-              isFeaturesVisible
-                ? "opacity-100 transform translate-x-0"
-                : "opacity-0 transform translate-x-8"
-            }`}
-            ref={scrollContainerRef}
-          >
+
+          {/* RIGHT COLUMN */}
+          <div className="flex flex-col gap-10">
             {allInSolutionData.map((item) => (
-              <div
-                key={item.name}
-                className="snap-start flex items-center justify-center "
-              >
+              <div key={item.name} className="flex items-center justify-center">
                 <AllInSolutionCard
                   icon={<img src={item.icon} alt={item.title} />}
                   title={item.title}

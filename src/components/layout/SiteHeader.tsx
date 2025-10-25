@@ -52,8 +52,8 @@ export default function SiteHeader() {
           : "bg-transparent"
       }`}
     >
-      <div className="lg:container lg:mx-auto flex h-16 items-center justify-between lg:px-4 lg:py-5">
-        <div className="flex items-center gap-8">
+      <div className="lg:container lg:mx-auto flex  items-center justify-between lg:px-4 lg:py-5 py-10">
+        <div className="flex items-center gap-8 py-5">
           <Link to="/" className="lg:flex items-center gap-2 font-semibold">
             <img
               src={shouldUseBlackLogo ? intervaslogoblack : "/images/Logo.svg"}
@@ -112,22 +112,10 @@ export default function SiteHeader() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <Button variant="outline" asChild>
-            <a
-              href="https://wiki.ccaas.intarvas.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Explore Services
-            </a>
+            <Link to="/about#services-showcase-section">Explore Services</Link>
           </Button>
           <Button variant="hero" asChild>
-            <a
-              href="https://api.ccaas.intarvas.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Request Demo
-            </a>
+            <Link to="/contact">Request Demo</Link>
           </Button>
         </div>
 
@@ -266,11 +254,7 @@ export default function SiteHeader() {
                     className="w-full text-lg py-6"
                     asChild
                   >
-                    <a
-                      href="https://wiki.ccaas.intarvas.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a href="/About" target="_blank" rel="noopener noreferrer">
                       Explore Services
                     </a>
                   </Button>
@@ -280,7 +264,7 @@ export default function SiteHeader() {
                     asChild
                   >
                     <Link
-                      to="/contact"
+                      to="/Contact"
                       className="w-full block text-center"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >

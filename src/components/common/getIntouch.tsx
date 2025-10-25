@@ -194,10 +194,12 @@ const ContactUsSection = () => {
                   referrerPolicy="no-referrer-when-downgrade"
                   title="IntarVAS Office Location - Victoria Island, Lagos"
                 ></iframe>
-                
+
                 {/* Overlay Card */}
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl p-4 shadow-xl w-[580px]">
-                  <h3 className="text-lg font-bold mb-3 text-gray-900">Visit Our Office</h3>
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl p-4 shadow-xl w-[300px] md:w-[580px]">
+                  <h3 className="text-lg font-bold mb-3 text-gray-900">
+                    Visit Our Office
+                  </h3>
                   <div className="flex items-start gap-3 mb-3">
                     <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
                       <MapPin className="w-4 h-4 text-white" />
@@ -208,7 +210,7 @@ const ContactUsSection = () => {
                       <p>Street) Victoria Island Lagos, Nigeria.</p>
                     </div>
                   </div>
-                  <a 
+                  <a
                     href="https://www.google.com/maps/dir/?api=1&destination=Churchgate+Tower+2,+30+Churchgate+Street,+Victoria+Island,+Lagos,+Nigeria"
                     target="_blank"
                     rel="noopener noreferrer"

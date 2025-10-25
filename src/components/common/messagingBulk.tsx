@@ -3,38 +3,44 @@ import { CheckCircle } from "lucide-react";
 import MessagingPlatformSection from "./messaging";
 
 const MessagingPlatformSectionNumber = () => {
-  const [activeFeature, setActiveFeature] = useState(3);
+  const [activeFeature, setActiveFeature] = useState(2);
 
   const features = [
     {
       title: "Memorable Numbers",
       description:
         "Make it easy for customers to remember your business. With our numbers, your brand stays top of mind and instantly recognizable.",
+      imgSrc: "/images/number01.png",
     },
     {
       title: "Professional Image",
       description:
         "Project credibility and trust with numbers associated with established organizations, benefit from perception of professionalism",
+      imgSrc: "/images/number02.png",
     },
     {
       title: "Flexible Management",
       description:
         "Route calls to different departments, teams or location using one central number. Ensure every customer reaches the right person",
+      imgSrc: "/images/number03.png",
     },
     {
       title: "Nationwide Accessibility",
       description:
         "Give your customers a single number they can call from anywhere in Nigeria. No matter the region, you remain accessible and consistent.",
+      imgSrc: "/images/number04.png",
     },
     {
       title: "Scalable",
       description:
         "As your business expands, our numbers scale with you. Supporting advanced telecom features.",
+      imgSrc: "/images/number05.png",
     },
     {
       title: "Cost-effective Communication",
       description:
         "Customers call freely, with a low-cost option for businesses to manage engagement affordaly.",
+      imgSrc: "/images/number06.png",
     },
   ];
 
@@ -82,13 +88,17 @@ const MessagingPlatformSectionNumber = () => {
           {/* Right Side - Image with Overlay */}
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
+              {}
               <img
-                src="/images/man_number.png"
+                src={`${features[activeFeature].imgSrc}`}
                 alt="Person using messaging platform"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-contain"
+                loading="lazy"
+                width={200}
+                height={200}
               />
 
-              {/* Compliance Badge Overlay */}
+              {/* Compliance Badg e Overlay */}
               {/* <div className="absolute lg:bottom-[20rem] lg:left-[calc(-20%-4rem)] ">
                 <div className="bg-white rounded-2xl p-4 shadow-lg flex items-center gap-3">
                   <div className="flex-1">
