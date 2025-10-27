@@ -90,7 +90,7 @@ const PbxFooter = () => {
           >
             <Button
               variant="hero"
-              className="hover:scale-105 transition-transform duration-300 hover:shadow-lg"
+              className="hover:scale-105 transition-transform duration-300 hover:shadow-lg w-32"
             >
               <a
                 href="https://wiki.ccaas.intarvas.com"
@@ -102,7 +102,7 @@ const PbxFooter = () => {
             </Button>
             <Button
               variant="outline"
-              className="hover:scale-105 transition-transform duration-300 hover:shadow-lg"
+              className="hover:scale-105 transition-transform duration-300 hover:shadow-lg w-32"
             >
               <a
                 href="https://api.ccaas.intarvas.com"

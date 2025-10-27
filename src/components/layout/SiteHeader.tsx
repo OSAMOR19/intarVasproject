@@ -52,8 +52,8 @@ export default function SiteHeader() {
           : "bg-transparent"
       }`}
     >
-      <div className="lg:container lg:mx-auto flex  items-center justify-between lg:px-4 lg:py-5 py-10">
-        <div className="flex items-center gap-8 py-5">
+      <div className="lg:container lg:mx-auto flex  items-center justify-between lg:px-4 lg:py-3 py-7">
+        <div className="flex items-center gap-8 py-3">
           <Link to="/" className="lg:flex items-center gap-2 font-semibold">
             <img
               src={shouldUseBlackLogo ? intervaslogoblack : "/images/Logo.svg"}
