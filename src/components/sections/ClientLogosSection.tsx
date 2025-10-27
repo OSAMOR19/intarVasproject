@@ -7,16 +7,29 @@ interface ClientLogosSectionProps {
 const ClientLogosSection = ({
   title = "Innovators worldwide trust us"
 }: ClientLogosSectionProps) => {
-  // Array of client logos - you can replace these with actual logo paths
+  // Array of client logos - updated with actual client logos from images folder
   const logos = [
-    { src: "/images/innovators.png", alt: "Client Logo 1" },
-    { src: "/images/innovators.png", alt: "Client Logo 2" },
-    { src: "/images/innovators.png", alt: "Client Logo 3" },
-    { src: "/images/innovators.png", alt: "Client Logo 4" },
-    { src: "/images/innovators.png", alt: "Client Logo 5" },
-    { src: "/images/innovators.png", alt: "Client Logo 6" },
-    { src: "/images/innovators.png", alt: "Client Logo 7" },
-    { src: "/images/innovators.png", alt: "Client Logo 8" },
+    { src: "/images/airtel.svg", alt: "Airtel" },
+    { src: "/images/fcmb.svg", alt: "FCMB" },
+    { src: "/images/mafab.svg", alt: "Mafab" },
+    { src: "/images/lotus.svg", alt: "Lotus" },
+    { src: "/images/aero-logo.svg", alt: "Aero" },
+    { src: "/images/ICN.svg", alt: "ICN" },
+    { src: "/images/Klayed.svg", alt: "Klayed" },
+    { src: "/images/MiGO-Mobile-Black-Logo.svg", alt: "MiGO Mobile" },
+    { src: "/images/Monieswitch.svg", alt: "Monieswitch" },
+    { src: "/images/NMRC-Logo.svg", alt: "NMRC" },
+    { src: "/images/Paycelar.svg", alt: "Paycelar" },
+    { src: "/images/Renmoney.svg", alt: "Renmoney" },
+    { src: "/images/The lux Auto.svg", alt: "The Lux Auto" },
+    { src: "/images/WGC.svg", alt: "WGC" },
+    { src: "/images/capital metriq.svg", alt: "Capital Metriq" },
+    { src: "/images/christian association of nigeria.svg", alt: "Christian Association of Nigeria" },
+    { src: "/images/logo-rapidbts.svg", alt: "RapidBTS" },
+    { src: "/images/rubies-logo.svg", alt: "Rubies" },
+    { src: "/images/sendtruly.svg", alt: "SendTruly" },
+    { src: "/images/travna-logo.svg", alt: "Travna" },
+    { src: "/images/xrnet-logo.svg", alt: "XRNet" },
   ];
 
   return (
