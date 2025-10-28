@@ -428,24 +428,25 @@ const FeaturesSection = () => {
     >
       {/* Header Navigation */}
       <div
-        className={`flex md:max-w-[44rem] mx-auto md:p-1 rounded-full md:flex-wrap bg-[#0C0C0C]  items-center justify-center md:gap-8 mb-10 md:mb-20 transition-all duration-1000 ${
+        className={`flex max-w-[300px] md:max-w-[44rem] mx-auto md:p-1 rounded-full md:flex-wrap bg-[#0C0C0C]  items-center justify-center md:gap-8 mb-10 md:mb-20 transition-all duration-1000 ${
           isVisible
             ? "opacity-100 transform translate-y-0"
             : "opacity-0 transform translate-y-8"
         }`}
       >
         <button
-          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[10px] md:text-sm transition-all duration-300 ${
+          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[12px] md:text-sm transition-all duration-300 ${
             activeTab === "pbx"
               ? "bg-[#007DFE] text-white"
               : "text-gray-400 hover:text-white"
           }`}
           onClick={() => setActiveTab("pbx")}
         >
-          IntarvAS PBX
+          <span className="hidden sm:inline">IntarvAS PBX</span>
+          <span className="sm:hidden">PBX</span>
         </button>
         <button
-          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[10px] md:text-sm transition-all duration-300 truncate ${
+          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[12px] md:text-sm transition-all duration-300 truncate ${
             activeTab === "allinone"
               ? "bg-[#007DFE] text-white"
               : "text-gray-400 hover:text-white"
@@ -453,10 +454,10 @@ const FeaturesSection = () => {
           onClick={() => setActiveTab("allinone")}
         >
           <span className="hidden sm:inline">All in one solution</span>
-          <span className="sm:hidden">All in one...</span>
+          <span className="sm:hidden">AIO...</span>
         </button>
         <button
-          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[10px] md:text-sm transition-all duration-300 ${
+          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[12px] md:text-sm transition-all duration-300 ${
             activeTab === "messaging"
               ? "bg-[#007DFE] text-white"
               : "text-gray-400 hover:text-white"
@@ -466,14 +467,15 @@ const FeaturesSection = () => {
           Bulk Messaging
         </button>
         <button
-          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[10px] md:text-sm transition-all duration-300 ${
+          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[12px] md:text-sm transition-all duration-300 ${
             activeTab === "numbers"
               ? "bg-[#007DFE] text-white"
               : "text-gray-400 hover:text-white"
           }`}
           onClick={() => setActiveTab("numbers")}
         >
-          0700 & 0800
+          <span className="hidden sm:inline">0700 & 0800</span>
+          <span className="sm:hidden">Numbers</span>
         </button>
       </div>
 
