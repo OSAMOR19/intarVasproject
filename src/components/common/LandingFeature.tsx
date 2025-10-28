@@ -422,18 +422,18 @@ const FeaturesSection = () => {
   return (
     <div
       ref={sectionRef}
-      className="min-h-screen bg-black text-white px-8 py-20 relative overflow-hidden"
+      className="min-h-screen bg-black text-white px-8 py-8 md:py-20 relative overflow-hidden"
     >
       {/* Header Navigation */}
       <div
-        className={`grid grid-cols-2 gap-4 md:flex md:flex-wrap lg:flex-nowrap items-center justify-center md:gap-8 mb-20 transition-all duration-1000 ${
+        className={`flex md:max-w-[44rem] mx-auto md:p-1 rounded-full md:flex-wrap bg-[#0C0C0C]  items-center justify-center md:gap-8 mb-10 md:mb-20 transition-all duration-1000 ${
           isVisible
             ? "opacity-100 transform translate-y-0"
             : "opacity-0 transform translate-y-8"
         }`}
       >
         <button
-          className={`px-6 py-2 rounded-full text-sm transition-all duration-300 ${
+          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[10px] md:text-sm transition-all duration-300 ${
             activeTab === "pbx"
               ? "bg-[#007DFE] text-white"
               : "text-gray-400 hover:text-white"
@@ -443,7 +443,7 @@ const FeaturesSection = () => {
           IntarvAS PBX
         </button>
         <button
-          className={`px-6 py-2 rounded-full text-sm transition-all duration-300 truncate ${
+          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[10px] md:text-sm transition-all duration-300 truncate ${
             activeTab === "allinone"
               ? "bg-[#007DFE] text-white"
               : "text-gray-400 hover:text-white"
@@ -454,7 +454,7 @@ const FeaturesSection = () => {
           <span className="sm:hidden">All in one...</span>
         </button>
         <button
-          className={`px-6 py-2 rounded-full text-sm transition-all duration-300 ${
+          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[10px] md:text-sm transition-all duration-300 ${
             activeTab === "messaging"
               ? "bg-[#007DFE] text-white"
               : "text-gray-400 hover:text-white"
@@ -464,7 +464,7 @@ const FeaturesSection = () => {
           Bulk Messaging
         </button>
         <button
-          className={`px-6 py-2 rounded-full text-sm transition-all duration-300 ${
+          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[10px] md:text-sm transition-all duration-300 ${
             activeTab === "numbers"
               ? "bg-[#007DFE] text-white"
               : "text-gray-400 hover:text-white"
@@ -519,7 +519,7 @@ const FeaturesSection = () => {
               {/* Connector Line */}
               {index < getCurrentFeatures().length - 1 && (
                 <div
-                  className="absolute top-[-20px] overflow-hidden left-[39px] mt-16 w-0.5 h-10 border-l-2 border-dashed border-blue-500 animate-pulse-slow"
+                  className="absolute top-[-20px] overflow-hidden left-[39px] mt-16 w-0.5 h-16 md:h-10 border-l-2 border-dashed border-blue-500 animate-pulse-slow"
                   style={{ marginLeft: "-16px" }}
                 ></div>
               )}

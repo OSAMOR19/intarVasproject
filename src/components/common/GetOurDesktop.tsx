@@ -76,7 +76,7 @@ const DeskphonesPricing = () => {
 
           {/* Right Side - Pricing Cards */}
           <div>
-            <div className="flex gap-2 md:gap-6">
+            <div className="flex flex-col md:flex-row gap-2 md:gap-6">
               {plans.map((plan, index) => (
                 <div
                   key={index}

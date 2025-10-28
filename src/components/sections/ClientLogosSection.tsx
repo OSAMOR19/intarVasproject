@@ -5,7 +5,7 @@ interface ClientLogosSectionProps {
 }
 
 const ClientLogosSection = ({
-  title = "Innovators worldwide trust us"
+  title = "Innovators worldwide trust us",
 }: ClientLogosSectionProps) => {
   // Array of client logos - updated with actual client logos from images folder
   const logos = [
@@ -24,12 +24,17 @@ const ClientLogosSection = ({
     { src: "/images/The lux Auto.svg", alt: "The Lux Auto" },
     { src: "/images/WGC.svg", alt: "WGC" },
     { src: "/images/capital metriq.svg", alt: "Capital Metriq" },
-    { src: "/images/christian association of nigeria.svg", alt: "Christian Association of Nigeria" },
+    {
+      src: "/images/christian association of nigeria.svg",
+      alt: "Christian Association of Nigeria",
+    },
     { src: "/images/logo-rapidbts.svg", alt: "RapidBTS" },
     { src: "/images/rubies-logo.svg", alt: "Rubies" },
     { src: "/images/sendtruly.svg", alt: "SendTruly" },
     { src: "/images/travna-logo.svg", alt: "Travna" },
     { src: "/images/xrnet-logo.svg", alt: "XRNet" },
+    { src: "/images/Partner Logos/PNGs/SUNTRUST-LOGO.png", alt: "Suntrust" },
+    { src: "/images/Partner Logos/PNGs/ruut_csm-.png", alt: "Ruut CSM" },
   ];
 
   return (
@@ -38,7 +43,7 @@ const ClientLogosSection = ({
         <p className="mb-8 text-center text-sm font-medium text-muted-foreground animate-fade-in-up">
           {title}
         </p>
-        
+
         {/* Animated Scrolling Logos */}
         <div className="relative">
           <div className="flex animate-scroll-left">
@@ -51,7 +56,7 @@ const ClientLogosSection = ({
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-8 md:h-12 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="h-8 w-16 md:h-20 md:w-20 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                 />
               </div>
             ))}
@@ -64,7 +69,7 @@ const ClientLogosSection = ({
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-8 md:h-12 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="h-8 w-16 md:h-20 md:w-20 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                 />
               </div>
             ))}
@@ -76,4 +81,3 @@ const ClientLogosSection = ({
 };
 
 export default ClientLogosSection;
-

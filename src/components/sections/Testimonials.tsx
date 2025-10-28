@@ -241,8 +241,10 @@ const TestimonialsSection = () => {
 
   const Card = ({ testimonial }) => {
     return (
-      <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
-        <p className="text-gray-700 leading-relaxed mb-8">{testimonial.text}</p>
+      <div className="bg-white rounded-2xl w-[300px] md:w-full p-8 shadow-sm hover:shadow-md transition-all duration-300">
+        <p className="text-gray-700 w-full leading-relaxed mb-8">
+          {testimonial.text}
+        </p>
         <div className="flex items-center gap-3">
           <img
             src={testimonial.avatar}
@@ -259,8 +261,8 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-16 px-8 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-gray-50 py-16 px-8 ">
+      <div className="md:max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
@@ -289,7 +291,7 @@ const TestimonialsSection = () => {
                 key={i}
                 className={`horizontal-scroll ${i % 2 === 1 ? "reverse" : ""} ${
                   isPaused ? "paused" : ""
-                }`}
+                } flex w-full space-x-4`}
               >
                 {[...group, ...group].map((t, index) => (
                   <Card testimonial={t} key={index} />

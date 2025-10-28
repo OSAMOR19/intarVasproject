@@ -114,7 +114,7 @@ export default function Numbers() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="bg-background pt-20 md:py-20 mb-10 h-screen">
+      <section className="bg-background pt-32 md:py-20 mb-10 h-screen">
         <div className="container mx-auto px-4 h-full">
           <div className="grid md:gap-12 md:grid-cols-12 md:items-center h-full">
             <div className="col-span-5">

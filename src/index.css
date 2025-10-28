@@ -285,7 +285,7 @@ All colors MUST be HSL.
 
 .horizontal-scroll {
   display: flex;
-  white-space: nowrap;
+  width: max-content;
   animation: scroll-left 35s linear infinite;
 }
 
