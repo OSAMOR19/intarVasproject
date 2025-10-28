@@ -55,27 +55,42 @@ const AllInOneCTA = () => {
   const column3 = features.filter((f) => f.column === 3);
 
   return (
-    <section ref={sectionRef} className="bg-gray-50 py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="bg-gray-50 py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+    >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-4 sm:left-20 w-32 sm:w-48 lg:w-64 h-32 sm:h-48 lg:h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"></div>
         <div className="absolute bottom-20 right-4 sm:right-20 w-40 sm:w-60 lg:w-80 h-40 sm:h-60 lg:h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className={`rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-8 lg:p-16 shadow-2xl transition-all duration-1000 overflow-hidden ${
-          isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
-        }`} style={{ backgroundColor: '#004B98' }}>
+        <div
+          className={`rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-8 lg:p-16 shadow-2xl transition-all duration-1000 overflow-hidden ${
+            isVisible
+              ? "opacity-100 transform translate-y-0"
+              : "opacity-0 transform translate-y-8"
+          }`}
+          style={{ backgroundColor: "#004B98" }}
+        >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
             {/* Left Side - Content */}
-            <div className={`transition-all duration-1000 ${
-              showLeftContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-8'
-            }`}>
+            <div
+              className={`transition-all duration-1000 ${
+                showLeftContent
+                  ? "opacity-100 transform translate-x-0"
+                  : "opacity-0 transform -translate-x-8"
+              }`}
+            >
               {/* Badge */}
               <div className="inline-block mb-6">
                 <span
                   className="px-6 py-2 bg-white text-gray-900 rounded-full text-sm font-semibold hover:scale-105 transition-transform duration-300"
-                  style={{ border: '2px solid #007DFE', display: 'inline-block' }}
+                  style={{
+                    border: "2px solid #007DFE",
+                    display: "inline-block",
+                  }}
                 >
                   One plan. All Features. No Limits
                 </span>
@@ -93,15 +108,25 @@ const AllInOneCTA = () => {
               <div className="border-t border-blue-700 mb-8 hover:border-blue-600 transition-colors duration-300"></div>
 
               {/* Features Grid */}
-              <div className={`grid grid-cols-1 md:grid-cols-3 gap-x-4 sm:gap-x-6 lg:gap-x-8 gap-y-4 mb-8 transition-all duration-1000 ${
-                showFeatures ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
-              }`}>
+              <div
+                className={`grid grid-cols-1 md:grid-cols-3 gap-x-4 sm:gap-x-6 lg:gap-x-8 gap-y-4 mb-8 transition-all duration-1000 ${
+                  showFeatures
+                    ? "opacity-100 transform translate-y-0"
+                    : "opacity-0 transform translate-y-4"
+                }`}
+              >
                 {/* Column 1 */}
                 <div className="space-y-4">
                   {column1.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 hover:scale-105 transition-transform duration-300"
+                    >
                       <div className="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-300">
-                        <Check className="w-4 h-4 text-blue-600" strokeWidth={3} />
+                        <Check
+                          className="w-4 h-4 text-blue-600"
+                          strokeWidth={3}
+                        />
                       </div>
                       <span className="text-white text-base hover:text-blue-300 transition-colors duration-300">
                         {feature.name}
@@ -113,9 +138,15 @@ const AllInOneCTA = () => {
                 {/* Column 2 */}
                 <div className="space-y-4">
                   {column2.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 hover:scale-105 transition-transform duration-300"
+                    >
                       <div className="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-300">
-                        <Check className="w-4 h-4 text-blue-600" strokeWidth={3} />
+                        <Check
+                          className="w-4 h-4 text-blue-600"
+                          strokeWidth={3}
+                        />
                       </div>
                       <span className="text-white text-base hover:text-blue-300 transition-colors duration-300">
                         {feature.name}
@@ -127,9 +158,15 @@ const AllInOneCTA = () => {
                 {/* Column 3 */}
                 <div className="space-y-4">
                   {column3.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 hover:scale-105 transition-transform duration-300"
+                    >
                       <div className="flex-shrink-0 w-6 h-6 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-300">
-                        <Check className="w-4 h-4 text-blue-600" strokeWidth={3} />
+                        <Check
+                          className="w-4 h-4 text-blue-600"
+                          strokeWidth={3}
+                        />
                       </div>
                       <span className="text-white text-base hover:text-blue-300 transition-colors duration-300">
                         {feature.name}
@@ -141,13 +178,20 @@ const AllInOneCTA = () => {
             </div>
 
             {/* Right Side - Pricing & CTA */}
-            <div className={`flex flex-col lg:items-end lg:justify-between lg:h-full transition-all duration-1000 ${
-              showRightContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform translate-x-8'
-            }`}>
+            <div
+              className={`flex flex-col lg:items-end lg:justify-between lg:h-full transition-all duration-1000 ${
+                showRightContent
+                  ? "opacity-100 transform translate-x-0"
+                  : "opacity-0 transform translate-x-8"
+              }`}
+            >
               {/* Pricing */}
               <div className="text-center lg:text-right mb-8">
                 <div className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-2">
-                  ₦ 30,000<span className="text-lg sm:text-xl lg:text-2xl font-normal">/user/month</span>
+                  ₦ 35,000
+                  <span className="text-lg sm:text-xl lg:text-2xl font-normal">
+                    /user/month
+                  </span>
                 </div>
                 <p className="text-blue-200 text-base sm:text-lg italic hover:text-blue-100 transition-colors duration-300">
                   Flat pricing. Unlimited features.
@@ -156,12 +200,15 @@ const AllInOneCTA = () => {
 
               {/* CTA Buttons */}
               <div className="w-full lg:max-w-sm space-y-4">
-                <Button variant="hero" className="w-full h-[52px] rounded-md text-lg hover:scale-105 transition-transform duration-300">
+                <Button
+                  variant="hero"
+                  className="w-full h-[52px] rounded-md text-lg hover:scale-105 transition-transform duration-300"
+                >
                   Get Started
                 </Button>
-                <a 
-                  href="https://wiki.ccaas.intarvas.com" 
-                  target="_blank" 
+                <a
+                  href="https://wiki.ccaas.intarvas.com"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-full h-[52px] bg-white text-gray-900 rounded-xl font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 flex items-center justify-center"
                 >

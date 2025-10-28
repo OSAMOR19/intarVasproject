@@ -93,7 +93,7 @@ const MessagingPlatformSection = () => {
 
           {/* Right Side - Image with Overlay */}
           <div className="relative">
-            <div className="rounded-3xl overflow-hidden shadow-2xl">
+            <div className="rounded-3xl shadow-2xl">
               <img
                 src={`${features[activeFeature].imgSrc}`}
                 alt="Person using messaging platform"
@@ -101,15 +101,15 @@ const MessagingPlatformSection = () => {
               />
 
               {/* Compliance Badge Overlay */}
-              <div className="absolute -top-10 left-20 lg:bottom-[16rem] lg:left-[calc(-20%-4rem)] bg-gradient-to-br from-[#FFFFFF00]/0 to-[#FFFFFF40]/25 p-2 md:p-5 rounded-3xl border-2 ">
-                <div className="bg-white rounded-2xl py-2 px-3 md:p-4 shadow-lg flex items-center gap-3">
-                  <div className="flex-1">
-                    <p className="text-gray-800 text-[10px] md:text-sm font-inter font-semibold">
-                      {features[activeFeature].text}
-                    </p>
-                  </div>
-                  <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+            </div>
+            <div className="absolute inline -top-10 left-20 lg:top-[16rem] lg:left-[calc(-20%-4rem)] bg-gradient-to-br from-[#FFFFFF00]/0 to-[#FFFFFF40]/25 p-2 md:p-5 rounded-3xl border-2 ">
+              <div className="bg-white rounded-2xl py-2 px-3 md:p-4 shadow-lg flex items-center gap-3">
+                <div className="flex-1">
+                  <p className="text-gray-800 text-[10px] md:text-sm font-inter font-semibold">
+                    {features[activeFeature].text}
+                  </p>
                 </div>
+                <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
               </div>
             </div>
 

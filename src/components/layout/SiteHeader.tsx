@@ -173,50 +173,67 @@ export default function SiteHeader() {
                       />
                     </button>
                     {isServicesOpen && (
-                      <div className="flex flex-col max-w-[220px] space-y-3 pl-4 animate-fade-in">
+                      <div className="flex flex-col space-y-3 pl-4 animate-fade-in">
                         <Link
                           to="/services/all-in-solutions"
-                          className={`inline-block text-lg transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${
-                            location.pathname === "/services/all-in-solutions"
-                              ? "text-[#007DFE] after:scale-x-100"
-                              : "text-gray-700 hover:text-[#007DFE]"
-                          }`}
+                          className={`flex items-center relative text-lg transition-colors after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left`}
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
-                          All In one Solutions
+                          <span
+                            className={`relative inline-block after:w-full after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 ${
+                              location.pathname === "/services/all-in-solutions"
+                                ? "text-[#007DFE] after:scale-x-100"
+                                : "text-gray-700 hover:text-[#007DFE]"
+                            }`}
+                          >
+                            All In one Solutions
+                          </span>
                         </Link>
+
                         <Link
                           to="/services/pbx"
-                          className={`inline-block text-lg transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${
-                            location.pathname === "/services/pbx"
-                              ? "text-[#007DFE] after:scale-x-100"
-                              : "text-gray-700 hover:text-[#007DFE]"
-                          }`}
+                          className={`flex text-center text-lg transition-colors relative after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left `}
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
-                          IntarVAS PBX
+                          <span
+                            className={`relative inline-block after:w-full after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 ${
+                              location.pathname === "/services/pbx"
+                                ? "text-[#007DFE] after:scale-x-100"
+                                : "text-gray-700 hover:text-[#007DFE]"
+                            }`}
+                          >
+                            IntarVAS PBX
+                          </span>
                         </Link>
                         <Link
                           to="/services/bulk-messaging"
-                          className={`inline-block text-lg transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${
-                            location.pathname === "/services/bulk-messaging"
-                              ? "text-[#007DFE] after:scale-x-100"
-                              : "text-gray-700 hover:text-[#007DFE]"
-                          }`}
+                          className={`flex text-center text-lg transition-colors relative after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left `}
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
-                          Bulk Messaging
+                          <span
+                            className={`relative inline-block after:w-full after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300  ${
+                              location.pathname === "/services/bulk-messaging"
+                                ? "text-[#007DFE] after:scale-x-100"
+                                : "text-gray-700 hover:text-[#007DFE]"
+                            }`}
+                          >
+                            Bulk Messaging
+                          </span>
                         </Link>
                         <Link
                           to="/services/numbers"
-                          className={`inline-block text-lg transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${
-                            location.pathname === "/services/numbers"
-                              ? "text-[#007DFE] after:scale-x-100"
-                              : "text-gray-700 hover:text-[#007DFE]"
-                          }`}
+                          className={`flex text-center text-lg transition-colors relative after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left `}
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
-                          0700 & 0800 Numbers
+                          <span
+                            className={`relative inline-block after:w-full after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 ${
+                              location.pathname === "/services/numbers"
+                                ? "text-[#007DFE] after:scale-x-100"
+                                : "text-gray-700 hover:text-[#007DFE]"
+                            } `}
+                          >
+                            0700 & 0800 Numbers
+                          </span>
                         </Link>
                       </div>
                     )}

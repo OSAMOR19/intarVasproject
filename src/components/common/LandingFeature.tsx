@@ -424,7 +424,7 @@ const FeaturesSection = () => {
   return (
     <div
       ref={sectionRef}
-      className="md:min-h-screen bg-black text-white px-8 py-8 md:py-20 relative overflow-hidden"
+      className="md:min-h-screen bg-black text-white px-3 py-8 md:py-20 relative overflow-hidden"
     >
       {/* Header Navigation */}
       <div
