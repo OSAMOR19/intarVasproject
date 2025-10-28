@@ -46,13 +46,13 @@ export default function SiteHeader() {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+      className={`fixed top-0 z-50 w-full  transition-all duration-300 ${
         isScrolled
           ? "bg-white/5 backdrop-blur-sm border-b border-white/20"
           : "bg-transparent"
       }`}
     >
-      <div className="lg:container lg:mx-auto flex  items-center justify-between lg:px-4 lg:py-3 py-7">
+      <div className="lg:container lg:mx-auto flex  items-center justify-between lg:px-4 lg:py-3">
         <div className="flex items-center gap-8 py-3">
           <Link to="/" className="lg:flex items-center gap-2 font-semibold">
             <img
