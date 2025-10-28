@@ -37,6 +37,8 @@ import allinone from "@/assets/allinoneimage.svg";
 import phoneimage from "@/assets/0700phone.svg";
 
 import { Button } from "@/components/ui/button";
+import { Carousel } from "../ui/carousel";
+import { CarouselPlugin } from "./carousel";
 
 const FeaturesSection = () => {
   const [activeFeature, setActiveFeature] = useState(2);
@@ -422,7 +424,7 @@ const FeaturesSection = () => {
   return (
     <div
       ref={sectionRef}
-      className="min-h-screen bg-black text-white px-8 py-8 md:py-20 relative overflow-hidden"
+      className="md:min-h-screen bg-black text-white px-8 py-8 md:py-20 relative overflow-hidden"
     >
       {/* Header Navigation */}
       <div
@@ -477,7 +479,7 @@ const FeaturesSection = () => {
 
       {/* Main Content */}
       <div
-        className={`max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center transition-all duration-1000 ${
+        className={`max-w-7xl mx-auto hidden md:grid grid-cols-1 lg:grid-cols-2 gap-16 items-center transition-all duration-1000 ${
           isVisible
             ? "opacity-100 transform translate-y-0"
             : "opacity-0 transform translate-y-12"
@@ -541,6 +543,28 @@ const FeaturesSection = () => {
             alt={`${activeTab} Content`}
             className={`${getImageSize()} object-contain transition-all duration-500 ease-in-out animate-fade-in-right hover:scale-105`}
           />
+        </div>
+      </div>
+
+      <div>
+        {/* Mobile View */}
+        <div className="md:hidden mt-10">
+          <div
+            className={`flex flex-col items-center space-y-8 transition-all duration-1000 ${
+              isVisible
+                ? "opacity-100 transform translate-y-0"
+                : "opacity-0 transform translate-y-12"
+            }`}
+          >
+            <img
+              key={activeTab}
+              src={getCurrentImage()}
+              alt={`${activeTab} Content`}
+              className={`w-[300px] h-[300px] object-contain transition-all duration-500 ease-in-out animate-fade-in-right hover:scale-105`}
+            />
+
+            <CarouselPlugin list={getCurrentFeatures()} />
+          </div>
         </div>
       </div>
     </div>

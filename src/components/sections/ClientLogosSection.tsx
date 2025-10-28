@@ -56,7 +56,7 @@ const ClientLogosSection = ({
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-8 w-16 md:h-20 md:w-20 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="h-12 w-24 md:h-28 md:w-28 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                 />
               </div>
             ))}
@@ -69,7 +69,7 @@ const ClientLogosSection = ({
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-8 w-16 md:h-20 md:w-20 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="h-12 w-24 md:h-28 md:w-28 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                 />
               </div>
             ))}
