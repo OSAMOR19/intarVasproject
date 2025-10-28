@@ -48,7 +48,7 @@ export default function SiteHeader() {
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-white/10 backdrop-blur-md border-b border-white/20"
+          ? "bg-white/5 backdrop-blur-sm border-b border-white/20"
           : "bg-transparent"
       }`}
     >
@@ -241,26 +241,34 @@ export default function SiteHeader() {
 
                   <Link
                     to="/about"
-                    className={`text-2xl font-semibold transition-colors relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${
-                      location.pathname === "/about"
-                        ? "text-[#007DFE] after:scale-x-100"
-                        : "text-gray-900 hover:text-[#007DFE]"
-                    }`}
+                    className={`flex text-center text-2xl font-semibold transition-colors relative after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left `}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    About Us
+                    <span
+                      className={`relative inline-block after:w-full after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300  ${
+                        location.pathname === "/about"
+                          ? "text-[#007DFE] after:scale-x-100"
+                          : "text-gray-900 hover:text-[#007DFE]"
+                      }`}
+                    >
+                      About Us
+                    </span>
                   </Link>
 
                   <Link
                     to="/contact"
-                    className={`text-2xl font-semibold transition-colors relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${
-                      location.pathname === "/contact"
-                        ? "text-[#007DFE] after:scale-x-100"
-                        : "text-gray-900 hover:text-[#007DFE]"
-                    }`}
+                    className={`flex text-center text-2xl font-semibold transition-colors relative after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left `}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Contact Us
+                    <span
+                      className={`relative inline-block after:w-full after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 ${
+                        location.pathname === "/contact"
+                          ? "text-[#007DFE] after:scale-x-100"
+                          : "text-gray-900 hover:text-[#007DFE]"
+                      }`}
+                    >
+                      Contact Us
+                    </span>
                   </Link>
                 </nav>
 
