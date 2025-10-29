@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import foranimation1 from "@/assets/phoneforanimation.svg";
+import foranimation2 from "@/assets/dashboardforanimation.svg";
+import foranimation3 from "@/assets/businesscard.svg";
 
 interface HeroSectionProps {
   title?: string;

@@ -173,6 +173,19 @@ All colors MUST be HSL.
   animation: scroll-right 20s linear infinite;
 }
 
+.animate-logo-scroll {
+  animation: logo-scroll 60s linear infinite;
+}
+
+@keyframes logo-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 /* Fade in up animation */
 @keyframes fade-in-up {
   0% {

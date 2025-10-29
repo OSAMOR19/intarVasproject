@@ -45,18 +45,19 @@ const ClientLogosSection = ({
         </p>
 
         {/* Animated Scrolling Logos */}
-        <div className="relative">
-          <div className="flex animate-scroll-left">
+        <div className="relative w-full overflow-hidden">
+          <div className="flex w-max animate-logo-scroll will-change-transform">
             {/* First set of logos */}
             {logos.map((logo, index) => (
               <div
                 key={`first-${index}`}
-                className="flex-shrink-0 mx-8 flex items-center justify-center"
+                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center min-w-[120px] md:min-w-[160px]"
               >
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-12 w-24 md:h-28 md:w-28 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="h-12 w-auto md:h-16 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  loading="lazy"
                 />
               </div>
             ))}
@@ -64,12 +65,13 @@ const ClientLogosSection = ({
             {logos.map((logo, index) => (
               <div
                 key={`second-${index}`}
-                className="flex-shrink-0 mx-8 flex items-center justify-center"
+                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center min-w-[120px] md:min-w-[160px]"
               >
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-12 w-24 md:h-28 md:w-28 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="h-12 w-auto md:h-16 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  loading="lazy"
                 />
               </div>
             ))}
