@@ -51,12 +51,12 @@ const ClientLogosSection = ({
             {logos.map((logo, index) => (
               <div
                 key={`first-${index}`}
-                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center min-w-[120px] md:min-w-[160px]"
+                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center w-[100px] h-[60px] md:w-[120px] md:h-[70px]"
               >
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-12 w-auto md:h-16 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="w-full h-full object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                   loading="lazy"
                 />
               </div>
@@ -65,12 +65,12 @@ const ClientLogosSection = ({
             {logos.map((logo, index) => (
               <div
                 key={`second-${index}`}
-                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center min-w-[120px] md:min-w-[160px]"
+                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center w-[100px] h-[60px] md:w-[120px] md:h-[70px]"
               >
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-12 w-auto md:h-16 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="w-full h-full object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                   loading="lazy"
                 />
               </div>
