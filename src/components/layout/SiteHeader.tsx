@@ -71,7 +71,7 @@ export default function SiteHeader() {
                 <span className={linkCls({ isActive: false })}>Services</span>
                 <ChevronDown className="h-4 w-4 transition-all duration-300 group-hover:rotate-180 group-hover:text-[#007DFE]" />
               </div>
-              <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg border border-gray-200 rounded-b-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+              <div className="absolute top-full left-0 mt-2 min-w-[240px] bg-white shadow-lg border border-gray-200 rounded-b-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
                 <div className="py-2">
                   <Link
                     to="/services/pbx"
@@ -96,7 +96,7 @@ export default function SiteHeader() {
                     to="/services/numbers"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#007DFE] transition-colors"
                   >
-                    0700 & 0800 Numbers
+                    Vanity & toll free numbers
                   </Link>
                 </div>
               </div>
@@ -232,7 +232,7 @@ export default function SiteHeader() {
                                 : "text-gray-700 hover:text-[#007DFE]"
                             } `}
                           >
-                            0700 & 0800 Numbers
+                            Vanity & toll free numbers
                           </span>
                         </Link>
                       </div>

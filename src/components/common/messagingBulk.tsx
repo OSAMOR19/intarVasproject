@@ -66,29 +66,50 @@ const MessagingPlatformSectionNumber = () => {
           {/* Left Side - Features List */}
           <div className="space-y-4">
             {features.map((feature, index) => (
-              <div
-                key={index}
-                onMouseEnter={() => setActiveFeature(index)}
-                className={`p-6 rounded-xl transition-all duration-300 cursor-pointer ${
-                  activeFeature === index
-                    ? "bg-gray-900 border-l-2 border-blue-500"
-                    : "bg-[#14161B] border-l-2 border-transparent hover:bg-gray-900/50"
-                }`}
-              >
-                <h3 className="text-lg md:text-xl font-semibold mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-400 text-[14px] md:text-[16px] leading-relaxed">
-                  {feature.description}
-                </p>
+              <div key={index}>
+                <div
+                  onMouseEnter={() => setActiveFeature(index)}
+                  onClick={() => setActiveFeature(index)}
+                  className={`p-6 rounded-xl transition-all duration-300 cursor-pointer ${
+                    activeFeature === index
+                      ? "bg-gray-900 border-l-2 border-blue-500"
+                      : "bg-[#14161B] border-l-2 border-transparent hover:bg-gray-900/50"
+                  }`}
+                >
+                  <h3 className="text-lg md:text-xl font-semibold mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-400 text-[14px] md:text-[16px] leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+                {/* Mobile Image - Shows below each feature when active */}
+                <div className="lg:hidden mt-4 relative">
+                  <div
+                    className={`rounded-3xl overflow-hidden shadow-2xl transition-all duration-300 ${
+                      activeFeature === index
+                        ? "opacity-100 max-h-[500px] transform translate-y-0"
+                        : "opacity-0 max-h-0 transform -translate-y-4 pointer-events-none"
+                    }`}
+                  >
+                    <img
+                      src={feature.imgSrc}
+                      alt={feature.title}
+                      className="w-full h-auto object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                  {/* Decorative Elements for Mobile */}
+                  <div className="absolute -top-2 -right-2 w-16 h-16 bg-blue-500/10 rounded-full blur-xl"></div>
+                  <div className="absolute -bottom-2 -left-2 w-20 h-20 bg-blue-500/10 rounded-full blur-2xl"></div>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* Right Side - Image with Overlay */}
-          <div className="relative">
+          {/* Right Side - Image with Overlay (Desktop Only) */}
+          <div className="hidden lg:block relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
-              {}
               <img
                 src={`${features[activeFeature].imgSrc}`}
                 alt="Person using messaging platform"
@@ -97,19 +118,6 @@ const MessagingPlatformSectionNumber = () => {
                 width={200}
                 height={200}
               />
-
-              {/* Compliance Badg e Overlay */}
-              {/* <div className="absolute lg:bottom-[20rem] lg:left-[calc(-20%-4rem)] ">
-                <div className="bg-white rounded-2xl p-4 shadow-lg flex items-center gap-3">
-                  <div className="flex-1">
-                    <p className="text-gray-800 text-sm font-medium">
-                      This message is fully DND-compliant and follows NCC
-                      regulations
-                    </p>
-                  </div>
-                  <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                </div>
-              </div> */}
             </div>
 
             {/* Decorative Elements */}

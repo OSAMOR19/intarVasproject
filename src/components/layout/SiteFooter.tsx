@@ -188,7 +188,7 @@ const Footer = () => {
                   to="/services/pbx"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  IntarVAS PBX
+                  IntarvAS PBX
                 </Link>
               </li>
               <li>
@@ -196,7 +196,7 @@ const Footer = () => {
                   to="/services/numbers"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  0700 & 0800
+                  Vanity & toll free numbers
                 </Link>
               </li>
             </ul>
