@@ -368,7 +368,10 @@ export default function AllInSolutions() {
       <Transform />
       <AllInOneCTA />
       <TestimonialsSection />
-      <BusinessCom />
+      <BusinessCom 
+        dashboardImage="/images/allinonedashboard.svg" 
+        backgroundFrame="/images/bgframe.svg"
+      />
     </main>
   );
 }

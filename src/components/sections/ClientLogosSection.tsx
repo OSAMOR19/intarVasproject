@@ -51,7 +51,7 @@ const ClientLogosSection = ({
             {logos.map((logo, index) => (
               <div
                 key={`first-${index}`}
-                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center w-[100px] h-[60px] md:w-[120px] md:h-[70px]"
+                className="group relative flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center w-[100px] h-[60px] md:w-[120px] md:h-[70px] cursor-pointer"
               >
                 <img
                   src={logo.src}
@@ -59,13 +59,16 @@ const ClientLogosSection = ({
                   className="w-full h-full object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                   loading="lazy"
                 />
+                <span className="absolute left-full ml-2 top-1/2 -translate-y-1/2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-[100] shadow-lg">
+                  {logo.alt}
+                </span>
               </div>
             ))}
             {/* Duplicate set for seamless loop */}
             {logos.map((logo, index) => (
               <div
                 key={`second-${index}`}
-                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center w-[100px] h-[60px] md:w-[120px] md:h-[70px]"
+                className="group relative flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center w-[100px] h-[60px] md:w-[120px] md:h-[70px] cursor-pointer"
               >
                 <img
                   src={logo.src}
@@ -73,6 +76,9 @@ const ClientLogosSection = ({
                   className="w-full h-full object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                   loading="lazy"
                 />
+                <span className="absolute left-full ml-2 top-1/2 -translate-y-1/2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-[100] shadow-lg">
+                  {logo.alt}
+                </span>
               </div>
             ))}
           </div>

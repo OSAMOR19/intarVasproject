@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 
-const BusinessCom = () => {
+interface BusinessComProps {
+  dashboardImage?: string;
+  backgroundFrame?: string;
+}
+
+const BusinessCom = ({ 
+  dashboardImage = "/images/CommDashboard.png",
+  backgroundFrame 
+}: BusinessComProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -93,15 +101,22 @@ const BusinessCom = () => {
       </div>
 
       <div
-        className={`max-w-7xl mx-auto px-4 transition-all duration-1000 delay-600 ${
+        className={`max-w-7xl mx-auto px-4 transition-all duration-1000 delay-600 relative ${
           isVisible
             ? "opacity-100 transform translate-y-0"
             : "opacity-0 transform translate-y-12"
         }`}
       >
+        {backgroundFrame && (
+          <img
+            className="absolute left-4 md:left-8 -top-2 md:-top-3 w-full h-full object-contain object-left opacity-40 -z-10 scale-110"
+            src={backgroundFrame}
+            alt="Background Frame"
+          />
+        )}
         <img
-          className="w-full h-auto transition-all duration-500 hover:scale-105 hover:brightness-110"
-          src="/images/CommDashboard.png"
+          className="w-full h-auto transition-all duration-500 hover:scale-105 hover:brightness-110 relative z-10"
+          src={dashboardImage}
           alt="Business Communication Illustration"
         />
       </div>
