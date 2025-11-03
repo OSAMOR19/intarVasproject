@@ -109,7 +109,7 @@ const BusinessCom = ({
       >
         {backgroundFrame && (
           <img
-            className="absolute left-4 md:left-8 -top-2 md:-top-3 w-full h-full object-contain object-left opacity-40 -z-10 scale-110"
+            className="absolute left-5 md:left-12 -top-2 md:-top-3 w-full h-full object-contain object-left opacity-40 -z-10 scale-110"
             src={backgroundFrame}
             alt="Background Frame"
           />
