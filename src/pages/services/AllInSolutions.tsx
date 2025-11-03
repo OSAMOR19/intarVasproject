@@ -54,7 +54,7 @@ export default function AllInSolutions() {
   ];
 
   const descriptionText =
-    "Nigerian businesses and government agencies need simplicity and speed. Our CRM solution centralizes customer communication, so your team saves time, improves response rates, and never loses track of a customer.";
+    "Nigerian  businesses and government agencies need simplicity and speed. Our CRM solution centralizes customer communication, so your team saves time, improves response rates, and never loses track of a customer.";
   const descriptionWords = descriptionText.split(" ");
 
   const heroRef = useRef<HTMLDivElement>(null);
@@ -318,8 +318,7 @@ export default function AllInSolutions() {
                       color: `rgb(${currentR}, ${currentG}, ${currentB})`,
                     }}
                   >
-                    {word}
-                    {index < descriptionWords.length - 1 ? " " : ""}
+                    {word}&nbsp;
                   </span>
                 );
               })}

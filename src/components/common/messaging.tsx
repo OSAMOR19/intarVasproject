@@ -130,9 +130,14 @@ const MessagingPlatformSection = () => {
                       }}
                     >
                       <div className="bg-white rounded-xl py-1.5 px-2.5 shadow-lg flex items-center gap-2">
-                        <div className="flex-1">
-                          <p className="text-gray-800 text-[9px] font-inter font-semibold">
-                            {feature.text}
+                        <div className="flex-1 min-w-0">
+                          <p className="text-gray-800 text-[7px] font-inter font-semibold leading-normal break-words" style={{ wordSpacing: "0.5em", letterSpacing: "0.02em" }}>
+                            {feature.text.split(" ").map((word, i, arr) => (
+                              <React.Fragment key={i}>
+                                {word}
+                                {i < arr.length - 1 && <span style={{ marginLeft: "0.5em" }} />}
+                              </React.Fragment>
+                            ))}
                           </p>
                         </div>
                         <CheckCircle className="w-3 h-3 text-green-500 flex-shrink-0" />
@@ -168,9 +173,14 @@ const MessagingPlatformSection = () => {
               }}
             >
               <div className="bg-white rounded-xl py-1.5 px-2.5 md:py-2 md:px-3 shadow-lg flex items-center gap-2">
-                <div className="flex-1">
-                  <p className="text-gray-800 text-[9px] md:text-xs font-inter font-semibold">
-                    {features[activeFeature].text}
+                <div className="flex-1 min-w-0">
+                  <p className="text-gray-800 text-[9px] md:text-xs font-inter font-semibold leading-normal break-words" style={{ wordSpacing: "0.5em", letterSpacing: "0.02em" }}>
+                    {features[activeFeature].text.split(" ").map((word, i, arr) => (
+                      <React.Fragment key={i}>
+                        {word}
+                        {i < arr.length - 1 && <span style={{ marginLeft: "0.5em" }} />}
+                      </React.Fragment>
+                    ))}
                   </p>
                 </div>
                 <CheckCircle className="w-3 h-3 md:w-4 md:h-4 text-green-500 flex-shrink-0" />
