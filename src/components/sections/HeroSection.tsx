@@ -18,7 +18,7 @@ interface HeroSectionProps {
 
 const HeroSection = ({
   title = "Smart Telecom Solutions for Modern Businesses",
-  subtitle = "Special numbers, contact centre PBX, and bulk messaging — all tailored for fast‑growing Nigerian brands.",
+  subtitle = "Special Numbers, Call Centres, Bulk Messaging & Digital Solutions all tailored for modern Nigerian brands.",
   primaryButtonText = "Request Demo",
   secondaryButtonText = "Explore Services",
   onPrimaryClick,
@@ -62,7 +62,7 @@ const HeroSection = ({
   return (
     <section
       ref={sectionRef}
-      className="auto pt-18 lg:pt-16 lg:h-[95vh] overflow-hidden"
+      className="max-h-screen pt-18 lg:pt-16 overflow-hidden"
       style={{
         backgroundImage: "url(/images/herosectionbg.svg)",
         backgroundSize: "cover",
@@ -71,11 +71,11 @@ const HeroSection = ({
     >
       {/* Static Background Elements - No Animation */}
 
-      <div className="container h-full mx-auto grid gap-10 px-4 lg:px-0 pt-20 lg:pt-0 lg:py-4 lg:grid-cols-2 lg:items-center relative z-10">
+      <div className=" grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-12 lg:py-0">
         {/* Content */}
-        <div className="flex flex-col items-start pt-20 lg:pt-0 justify-center space-y-8 lg:pl-4">
+        <div className="flex flex-col pt-20 lg:pt-0 justify-center space-y-4 px-4 md:px-0 lg:pl-[150px]">
           <h1
-            className={`max-w-lg text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px] font-inter text-white font-[800] tracking-tight transition-all duration-1000 ${
+            className={`max-w-lg text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px] font-inter text-white font-[800] tracking-tight leading-[1.2] transition-all duration-1000 ${
               showTitle
                 ? "opacity-100 transform translate-y-0"
                 : "opacity-0 transform translate-y-8"
@@ -84,7 +84,7 @@ const HeroSection = ({
             {title}
           </h1>
           <p
-            className={`mt-4 text-[18px] text-[#C2C6CE] max-w-lg text-muted-foreground transition-all duration-1000 ${
+            className={` text-[20px] text-[#C2C6CE] max-w-xl transition-all duration-1000 ${
               showSubtitle
                 ? "opacity-100 transform translate-y-0"
                 : "opacity-0 transform translate-y-8"
@@ -121,14 +121,8 @@ const HeroSection = ({
         </div>
 
         {/* Image */}
-        <div className="flex items-end justify-end ">
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            className="md:absolute md:bottom-0 md:right-0 md:w-[585px] md:translate-x-0 rounded-xl   bg-bottom"
-            style={{ right: "-122px", height: "100%" }}
-            loading="eager"
-          />
+        <div className="px-4 md:px-0">
+          <img src={imageSrc} alt={imageAlt} className="" loading="eager" />
         </div>
       </div>
     </section>
