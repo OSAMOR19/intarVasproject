@@ -33,6 +33,7 @@ const HeroSection = ({
   const [showPhoneAnimation, setShowPhoneAnimation] = useState(false);
   const [showDashboardAnimation, setShowDashboardAnimation] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const whiteoutActive = showPhoneAnimation || showDashboardAnimation;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -82,6 +83,12 @@ const HeroSection = ({
         backgroundPosition: "center",
       }}
     >
+      {/* Whiteout overlay to hide background during animations */}
+      <div
+        className={`absolute inset-0 bg-white transition-opacity duration-500 pointer-events-none z-10 ${
+          whiteoutActive ? "opacity-100" : "opacity-0"
+        }`}
+      />
       {/* Static Background Elements - No Animation */}
 
       <div 
@@ -147,18 +154,7 @@ const HeroSection = ({
         </div>
       </div>
 
-      {/* Blue Background Backdrop for Dashboard */}
-      <div
-        className={`absolute inset-0 m-8 md:m-12 lg:m-16 rounded-3xl pointer-events-none transition-all duration-1000 ease-out z-20 ${
-          showDashboardAnimation
-            ? "translate-x-0 translate-y-0 opacity-100"
-            : "translate-x-[50%] translate-y-[50%] opacity-0"
-        }`}
-        style={{
-          transformOrigin: "bottom right",
-          backgroundColor: "rgba(0, 100, 203, 0.15)"
-        }}
-      />
+      {/* Removed blue backdrop for dashboard */}
 
       {/* Animated Images - Dashboard (Behind) - Covers only hero section from bottom-right */}
       <div
@@ -174,22 +170,13 @@ const HeroSection = ({
         <img
           src={foranimation2}
           alt="Dashboard Animation"
-          className="w-full h-full object-cover rounded-2xl"
+          className={`w-full h-full object-cover rounded-2xl transition-all duration-500 ${
+            showPhoneAnimation ? "scale-70 opacity-75" : "scale-100 opacity-100"
+          }`}
         />
       </div>
 
-      {/* Blue Background Backdrop for Phone */}
-      <div
-        className={`absolute inset-0 m-8 md:m-12 lg:m-16 rounded-3xl pointer-events-none transition-all duration-1000 ease-out z-30 ${
-          showPhoneAnimation
-            ? "translate-x-0 translate-y-0 opacity-100"
-            : "translate-x-[50%] translate-y-[50%] opacity-0"
-        }`}
-        style={{
-          transformOrigin: "bottom right",
-          backgroundColor: "rgba(0, 100, 203, 0.15)"
-        }}
-      />
+      {/* Removed blue backdrop for phone */}
 
       {/* Animated Images - Phone (On Top) - Positioned left on desktop, center on mobile */}
       <div
@@ -205,7 +192,9 @@ const HeroSection = ({
         <img
           src={foranimation1}
           alt="Phone Animation"
-          className="h-full w-auto object-contain max-w-[50%] lg:max-w-[40%]"
+          className={`h-full w-auto object-contain transition-all duration-500 drop-shadow-xl ${
+            showPhoneAnimation ? "max-w-[98%] lg:max-w-[78%]" : "max-w-[70%] lg:max-w-[60%]"
+          }`}
         />
       </div>
     </section>
