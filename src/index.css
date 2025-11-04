@@ -323,3 +323,48 @@ All colors MUST be HSL.
     transform: translateX(0);
   }
 }
+
+/* Loading screen pulse animation */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
+/* Enhanced loading screen logo animation */
+@keyframes logo-loading {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.1) translateY(0);
+  }
+  40% {
+    transform: scale(0.95) translateY(0);
+  }
+  60% {
+    transform: scale(1.05) translateY(0);
+  }
+  80% {
+    transform: scale(0.98) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-logo-loading {
+  animation: logo-loading 2s ease-in-out infinite;
+}

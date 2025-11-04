@@ -318,7 +318,8 @@ export default function AllInSolutions() {
                       color: `rgb(${currentR}, ${currentG}, ${currentB})`,
                     }}
                   >
-                    {word}&nbsp;
+                    {word}
+                    {index < descriptionWords.length - 1 ? " " : ""}
                   </span>
                 );
               })}

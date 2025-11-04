@@ -15,6 +15,7 @@ import NotFound from "./pages/NotFound";
 import SiteHeader from "./components/layout/SiteHeader";
 import SiteFooter from "./components/layout/SiteFooter";
 import { AllInSolutions } from "./pages/services";
+import LoadingScreen from "./components/common/LoadingScreen";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       <TooltipProvider>
+        <LoadingScreen />
         <Toaster />
         <Sonner />
         <BrowserRouter>
