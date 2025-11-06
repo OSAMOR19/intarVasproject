@@ -96,7 +96,7 @@ const PricingPlans = () => {
     {
       name: "Large Enterprise",
       icon: <TrendingUp className="w-6 h-6" />,
-      price: "115,300",
+      price: "CUSTOM PRICING",
       period: "/month",
       description: "Best for businesses with",
       userRange: "50+ users",
@@ -168,8 +168,12 @@ const PricingPlans = () => {
                 {/* Price */}
                 <div className="mb-4">
                   <div className="flex items-baseline gap-1">
-                    <span className="text-4xl font-bold">₦ {plan.price}</span>
-                    <span className="text-gray-500">{plan.period}</span>
+                    <span className={`text-4xl font-bold whitespace-nowrap ${plan.price === "CUSTOM PRICING" ? "text-3xl" : ""}`}>
+                      {plan.price === "CUSTOM PRICING" ? plan.price : `₦ ${plan.price}`}
+                    </span>
+                    {plan.price !== "CUSTOM PRICING" && (
+                      <span className="text-gray-500 whitespace-nowrap">{plan.period}</span>
+                    )}
                   </div>
                   <p className="text-sm text-gray-600 mt-2">
                     {plan.description}{" "}
