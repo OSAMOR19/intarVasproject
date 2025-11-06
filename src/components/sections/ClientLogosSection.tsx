@@ -9,32 +9,35 @@ const ClientLogosSection = ({
 }: ClientLogosSectionProps) => {
   // Array of client logos - updated with actual client logos from images folder
   const logos = [
-    { src: "/images/airtel.svg", alt: "Airtel" },
-    { src: "/images/fcmb.svg", alt: "FCMB" },
-    { src: "/images/mafab.svg", alt: "Mafab" },
-    { src: "/images/lotus.svg", alt: "Lotus" },
-    { src: "/images/aero-logo.svg", alt: "Aero" },
-    { src: "/images/ICN.svg", alt: "ICN" },
-    { src: "/images/Klayed.svg", alt: "Klayed" },
-    { src: "/images/MiGO-Mobile-Black-Logo.svg", alt: "MiGO Mobile" },
-    { src: "/images/Monieswitch.svg", alt: "Monieswitch" },
-    { src: "/images/NMRC-Logo.svg", alt: "NMRC" },
-    { src: "/images/Paycelar.svg", alt: "Paycelar" },
-    { src: "/images/Renmoney.svg", alt: "Renmoney" },
-    { src: "/images/The lux Auto.svg", alt: "The Lux Auto" },
-    { src: "/images/WGC.svg", alt: "WGC" },
-    { src: "/images/capital metriq.svg", alt: "Capital Metriq" },
+    { src: "/images/airtel.svg", alt: "Airtel", large: false },
+    { src: "/images/fcmb.svg", alt: "FCMB", large: false },
+    { src: "/images/mafab.svg", alt: "Mafab", large: false },
+    { src: "/images/lotus.svg", alt: "Lotus", large: false },
+    { src: "/images/aero-logo.svg", alt: "Aero", large: false },
+    { src: "/images/ICN.svg", alt: "ICN", large: true },
+    { src: "/images/Klayed.svg", alt: "Klayed", large: false },
+    { src: "/images/MiGO-Mobile-Black-Logo.svg", alt: "MiGO Mobile", large: false },
+    { src: "/images/Monieswitch.svg", alt: "Monieswitch", large: false },
+    { src: "/images/NMRC-Logo.svg", alt: "NMRC", large: false },
+    { src: "/images/Paycelar.svg", alt: "Paycelar", large: false },
+    { src: "/images/Renmoney.svg", alt: "Renmoney", large: false },
+    { src: "/images/bazeuniversityhospitallogo.svg", alt: "Baze University Hospital", large: false },
+    { src: "/images/globacomlogo.svg", alt: "Globacom", large: false },
+    { src: "/images/TelkoMS.svg", alt: "TelkoMS", large: true },
+    { src: "/images/WGC.svg", alt: "WGC", large: true },
+    { src: "/images/capital metriq.svg", alt: "Capital Metriq", large: false },
     {
       src: "/images/christian association of nigeria.svg",
       alt: "Christian Association of Nigeria",
+      large: false,
     },
-    { src: "/images/logo-rapidbts.svg", alt: "RapidBTS" },
-    { src: "/images/rubies-logo.svg", alt: "Rubies" },
-    { src: "/images/sendtruly.svg", alt: "SendTruly" },
-    { src: "/images/travna-logo.svg", alt: "Travna" },
-    { src: "/images/xrnet-logo.svg", alt: "XRNet" },
-    { src: "/images/Partner Logos/PNGs/SUNTRUST-LOGO.png", alt: "Suntrust" },
-    { src: "/images/Partner Logos/PNGs/ruut_csm-.png", alt: "Ruut CSM" },
+    { src: "/images/logo-rapidbts.svg", alt: "RapidBTS", large: false },
+    { src: "/images/rubies-logo.svg", alt: "Rubies", large: false },
+    { src: "/images/sendtruly.svg", alt: "SendTruly", large: true },
+    { src: "/images/travna-logo.svg", alt: "Travna", large: false },
+    { src: "/images/xrnet-logo.svg", alt: "XRNet", large: true },
+    { src: "/images/Partner Logos/PNGs/SUNTRUST-LOGO.png", alt: "Suntrust", large: false },
+    { src: "/images/Partner Logos/PNGs/ruut_csm-.png", alt: "Ruut CSM", large: false },
   ];
 
   return (
@@ -51,7 +54,11 @@ const ClientLogosSection = ({
             {logos.map((logo, index) => (
               <div
                 key={`first-${index}`}
-                className="group relative flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center w-[100px] h-[60px] md:w-[120px] md:h-[70px] cursor-pointer"
+                className={`group relative flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center cursor-pointer ${
+                  logo.large
+                    ? "w-[140px] h-[80px] md:w-[160px] md:h-[90px]"
+                    : "w-[100px] h-[60px] md:w-[120px] md:h-[70px]"
+                }`}
               >
                 <img
                   src={logo.src}
@@ -68,7 +75,11 @@ const ClientLogosSection = ({
             {logos.map((logo, index) => (
               <div
                 key={`second-${index}`}
-                className="group relative flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center w-[100px] h-[60px] md:w-[120px] md:h-[70px] cursor-pointer"
+                className={`group relative flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center cursor-pointer ${
+                  logo.large
+                    ? "w-[140px] h-[80px] md:w-[160px] md:h-[90px]"
+                    : "w-[100px] h-[60px] md:w-[120px] md:h-[70px]"
+                }`}
               >
                 <img
                   src={logo.src}

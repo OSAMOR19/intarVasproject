@@ -53,7 +53,7 @@ const BusinessCom = ({
         }`}
       >
         <h2
-          className={`font-inter text-[24px] md:text-[48px] text-white font-[700] max-w-md md:max-w-2xl mx-auto leading-[1.2] text-center pt-20 transition-all duration-700 ${
+          className={`font-inter text-[24px] md:text-[48px] text-white font-[700] max-w-md md:max-w-2xl mx-auto leading-[1.2] text-center pt-17 transition-all duration-700 ${
             isVisible
               ? "opacity-100 transform translate-y-0"
               : "opacity-0 transform translate-y-8"
