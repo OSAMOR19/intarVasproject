@@ -91,7 +91,7 @@ const HeroSection = ({
       {/* Static Background Elements - No Animation */}
 
       <div
-        className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 min-h-screen pt-12 md:py-0 xl:pt-16 transition-opacity duration-500 ${
+        className={` grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 min-h-screen pt-12 md:py-0 xl:pt-16 transition-opacity duration-500 ${
           showPhoneAnimation || showDashboardAnimation
             ? "opacity-0"
             : "opacity-100"
