@@ -75,7 +75,7 @@ const HeroSection = ({
   return (
     <section
       ref={sectionRef}
-      className="max-h-screen pt-18 lg:pt-16 overflow-hidden relative min-h-screen"
+      className="max-h-screen pt-18 lg:pt-16 overflow-hidden relative "
       style={{
         backgroundImage: "url(/images/herosectionbg.svg)",
         backgroundSize: "cover",
@@ -91,16 +91,16 @@ const HeroSection = ({
       {/* Static Background Elements - No Animation */}
 
       <div
-        className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 h-screen py-12 lg:py-0 transition-opacity duration-500 ${
+        className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 lg:h-[75vh] xl:h-screen py-12 lg:py-0 transition-opacity duration-500 ${
           showPhoneAnimation || showDashboardAnimation
             ? "opacity-0"
             : "opacity-100"
         }`}
       >
         {/* Content */}
-        <div className="flex flex-col pt-10 lg:pt-56 justify-start space-y-4 px-4 md:px-0 lg:pl-[170px]">
+        <div className="flex flex-col pt-10 md:pt-36 xl:pt-56 justify-start space-y-4 px-4 md:px-0 md:pl-[50px] xl:pl-[170px]">
           <h1
-            className={`max-w-2xl text-[32px] sm:text-[40px] md:text-[48px] lg:text-[64px] font-inter text-white font-[800] tracking-tight leading-[1.2] transition-all duration-1000 ${
+            className={`xl:max-w-2xl md:max-w-md text-[32px] sm:text-[40px] md:text-[48px] xl:text-[64px] font-inter text-white font-[800] tracking-tight leading-[1.2] transition-all duration-1000 ${
               showTitle
                 ? "opacity-100 transform translate-y-0"
                 : "opacity-0 transform translate-y-8"
