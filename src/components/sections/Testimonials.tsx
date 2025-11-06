@@ -142,101 +142,101 @@ const TestimonialsSection = () => {
 
   const testimonials = [
     {
-      text: "Switching to IntarVAS completely transformed how we handle customer calls. Our 0700 Vanity Number gave us instant brand recognition, and the cloud call centre dashboard makes it easy to track performance.",
-      name: "Chika Adewale",
-      company: "BrightPath Logistics",
+      text: "My experience with your platform has been great so far. The interface is user-friendly, responses are fast, and the customer support team is helpful and professional. I appreciate the efficiency and look forward to seeing more improvements and new features",
+      name: "Adesoji Emmanuel",
+      company: "XRNET Technologies LTD",
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Chika1",
     },
     {
-      text: "The bulk messaging service has been a game-changer for our marketing campaigns. We can now reach thousands of customers instantly with personalized messages, and the delivery rates are outstanding.",
-      name: "Adebayo Ogunlesi",
-      company: "TechStart Nigeria",
+      text: "I’ll give them 5 stars, their service has been really good. ",
+      name: "Olakunle Opajobi ",
+      company: "Winners Golden Chance Group",
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Adebayo1",
     },
     {
-      text: "IntarVAS PBX system has streamlined our internal communications significantly. The call quality is crystal clear, and the admin dashboard gives us complete control over our phone system.",
-      name: "Fatima Ibrahim",
-      company: "Lagos State Ministry",
+      text: "My experience using the IntarvAS PBX has been smooth so far.",
+      name: "Kpejoh Tamara ",
+      company: "XRNET Technologies LTD",
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Fatima1",
     },
-    {
-      text: "Our toll-free number has increased customer trust and accessibility. Customers feel more confident calling us, and we've seen a 40% increase in customer inquiries since implementation.",
-      name: "Emeka Nwosu",
-      company: "FirstBank Nigeria",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emeka1",
-    },
-    {
-      text: "The all-in-one solution has simplified our operations tremendously. Having calling, messaging, and CRM in one platform saves us time and reduces costs. Highly recommended!",
-      name: "Aisha Mohammed",
-      company: "GreenTech Solutions",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aisha1",
-    },
-    {
-      text: "IntarVAS has been instrumental in scaling our customer support. The call recording feature helps us train our team better, and the analytics provide valuable insights into customer behavior.",
-      name: "David Okonkwo",
-      company: "HealthPlus Pharmacy",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David1",
-    },
-    {
-      text: "The reliability of IntarVAS services is unmatched. We've never experienced downtime, and their customer support team is always available to help. Truly professional service.",
-      name: "Grace Okafor",
-      company: "EduTech Academy",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Grace1",
-    },
-    {
-      text: "Our vanity number has become synonymous with our brand. Customers remember it easily, and it has significantly improved our brand recognition across Nigeria.",
-      name: "Musa Abdullahi",
-      company: "Northern Logistics Ltd",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Musa1",
-    },
-    {
-      text: "The cloud-based system means we can manage our communications from anywhere. This flexibility has been crucial for our remote work setup during the pandemic.",
-      name: "Jennifer Uche",
-      company: "FinTech Innovations",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jennifer1",
-    },
-    {
-      text: "IntarVAS helped us transition from traditional phone systems to modern cloud solutions seamlessly. The migration was smooth, and the new features have boosted our productivity.",
-      name: "Ahmed Hassan",
-      company: "Kano State Government",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ahmed1",
-    },
-    {
-      text: "The bulk SMS service has revolutionized our customer engagement. We can send appointment reminders, promotional offers, and important updates instantly to our entire customer base.",
-      name: "Blessing Okafor",
-      company: "MediCare Hospital",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Blessing1",
-    },
-    {
-      text: "Cost-effective and reliable - that's what IntarVAS delivers. We've reduced our communication costs by 60% while improving service quality. The ROI has been incredible.",
-      name: "Samuel Adebayo",
-      company: "AgroTech Solutions",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Samuel1",
-    },
-    {
-      text: "The integration with our existing CRM was seamless. Now we have a complete view of customer interactions across all channels, making our sales process much more efficient.",
-      name: "Patience Okwu",
-      company: "RetailMax Stores",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Patience1",
-    },
-    {
-      text: "IntarVAS has been our trusted partner for over 3 years. Their technical support is excellent, and they're always quick to implement new features we request.",
-      name: "Ibrahim Tanko",
-      company: "Kaduna State University",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ibrahim1",
-    },
-    {
-      text: "The call forwarding feature has been perfect for our multi-location business. Customers can reach us anywhere, and calls are routed intelligently to the right department.",
-      name: "Victoria Nkem",
-      company: "Legal Associates Ltd",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Victoria1",
-    },
-    {
-      text: "We've been able to expand our customer base significantly with IntarVAS services. The toll-free number gives us national reach, and customers trust us more.",
-      name: "Mohammed Sani",
-      company: "Northern Bank PLC",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Mohammed1",
-    },
+    // {
+    //   text: "Our toll-free number has increased customer trust and accessibility. Customers feel more confident calling us, and we've seen a 40% increase in customer inquiries since implementation.",
+    //   name: "Emeka Nwosu",
+    //   company: "FirstBank Nigeria",
+    //   avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emeka1",
+    // },
+    // {
+    //   text: "The all-in-one solution has simplified our operations tremendously. Having calling, messaging, and CRM in one platform saves us time and reduces costs. Highly recommended!",
+    //   name: "Aisha Mohammed",
+    //   company: "GreenTech Solutions",
+    //   avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aisha1",
+    // },
+    // {
+    //   text: "IntarVAS has been instrumental in scaling our customer support. The call recording feature helps us train our team better, and the analytics provide valuable insights into customer behavior.",
+    //   name: "David Okonkwo",
+    //   company: "HealthPlus Pharmacy",
+    //   avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David1",
+    // },
+    // {
+    //   text: "The reliability of IntarVAS services is unmatched. We've never experienced downtime, and their customer support team is always available to help. Truly professional service.",
+    //   name: "Grace Okafor",
+    //   company: "EduTech Academy",
+    //   avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Grace1",
+    // },
+    // {
+    //   text: "Our vanity number has become synonymous with our brand. Customers remember it easily, and it has significantly improved our brand recognition across Nigeria.",
+    //   name: "Musa Abdullahi",
+    //   company: "Northern Logistics Ltd",
+    //   avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Musa1",
+    // },
+    // {
+    //   text: "The cloud-based system means we can manage our communications from anywhere. This flexibility has been crucial for our remote work setup during the pandemic.",
+    //   name: "Jennifer Uche",
+    //   company: "FinTech Innovations",
+    //   avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jennifer1",
+    // },
+    // {
+    //   text: "IntarVAS helped us transition from traditional phone systems to modern cloud solutions seamlessly. The migration was smooth, and the new features have boosted our productivity.",
+    //   name: "Ahmed Hassan",
+    //   company: "Kano State Government",
+    //   avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ahmed1",
+    // },
+    // {
+    //   text: "The bulk SMS service has revolutionized our customer engagement. We can send appointment reminders, promotional offers, and important updates instantly to our entire customer base.",
+    //   name: "Blessing Okafor",
+    //   company: "MediCare Hospital",
+    //   avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Blessing1",
+    // },
+    // {
+    //   text: "Cost-effective and reliable - that's what IntarVAS delivers. We've reduced our communication costs by 60% while improving service quality. The ROI has been incredible.",
+    //   name: "Samuel Adebayo",
+    //   company: "AgroTech Solutions",
+    //   avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Samuel1",
+    // },
+    // {
+    //   text: "The integration with our existing CRM was seamless. Now we have a complete view of customer interactions across all channels, making our sales process much more efficient.",
+    //   name: "Patience Okwu",
+    //   company: "RetailMax Stores",
+    //   avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Patience1",
+    // },
+    // {
+    //   text: "IntarVAS has been our trusted partner for over 3 years. Their technical support is excellent, and they're always quick to implement new features we request.",
+    //   name: "Ibrahim Tanko",
+    //   company: "Kaduna State University",
+    //   avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ibrahim1",
+    // },
+    // {
+    //   text: "The call forwarding feature has been perfect for our multi-location business. Customers can reach us anywhere, and calls are routed intelligently to the right department.",
+    //   name: "Victoria Nkem",
+    //   company: "Legal Associates Ltd",
+    //   avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Victoria1",
+    // },
+    // {
+    //   text: "We've been able to expand our customer base significantly with IntarVAS services. The toll-free number gives us national reach, and customers trust us more.",
+    //   name: "Mohammed Sani",
+    //   company: "Northern Bank PLC",
+    //   avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Mohammed1",
+    // },
   ];
 
   const Card = ({ testimonial }) => {
@@ -285,7 +285,7 @@ const TestimonialsSection = () => {
           onTouchStart={() => setIsPaused(true)}
           onTouchEnd={() => setIsPaused(false)}
         >
-          {[testimonials.slice(0, 5), testimonials.slice(5, 10)].map(
+          {[testimonials.slice(0, 2), testimonials.slice(0, 2)].map(
             (group, i) => (
               <div
                 key={i}
@@ -308,7 +308,7 @@ const TestimonialsSection = () => {
           onMouseLeave={() => setIsPaused(false)}
         >
           {[0, 1, 2].map((col) => {
-            const group = testimonials.slice(col * 5, col * 5 + 5);
+            const group = testimonials.slice(0, 3);
             const reverse = col === 1;
             return (
               <div key={col} className="overflow-hidden">
