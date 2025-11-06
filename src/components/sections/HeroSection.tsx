@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import foranimation1 from "@/assets/phoneforanimation.svg";
 import foranimation2 from "@/assets/dashboardforanimation.svg";
 
-
 interface HeroSectionProps {
   title?: string;
   subtitle?: string;
@@ -23,7 +22,7 @@ const HeroSection = ({
   secondaryButtonText = "Explore Services",
   onPrimaryClick,
   onSecondaryClick,
-  imageSrc = "images/Illustration.png",
+  imageSrc = "images/croppedHero.png",
   imageAlt = "Telecom analytics and smartphone dashboard",
 }: HeroSectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -64,19 +63,19 @@ const HeroSection = ({
 
   // Handle hover trigger for animations
   const handleImageHover = () => {
-    setShowDashboardAnimation(true);
-    setTimeout(() => setShowPhoneAnimation(true), 300);
+    // setShowDashboardAnimation(true);
+    // setTimeout(() => setShowPhoneAnimation(true), 300);
   };
 
   const handleImageLeave = () => {
-    setShowPhoneAnimation(false);
-    setShowDashboardAnimation(false);
+    // setShowPhoneAnimation(false);
+    // setShowDashboardAnimation(false);
   };
 
   return (
     <section
       ref={sectionRef}
-      className="max-h-screen pt-18 lg:pt-16 overflow-hidden relative"
+      className="max-h-screen pt-18 lg:pt-16 overflow-hidden relative min-h-screen"
       style={{
         backgroundImage: "url(/images/herosectionbg.svg)",
         backgroundSize: "cover",
@@ -91,15 +90,17 @@ const HeroSection = ({
       />
       {/* Static Background Elements - No Animation */}
 
-      <div 
-        className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-12 lg:py-0 transition-opacity duration-500 ${
-          showPhoneAnimation || showDashboardAnimation ? "opacity-0" : "opacity-100"
+      <div
+        className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 h-screen py-12 lg:py-0 transition-opacity duration-500 ${
+          showPhoneAnimation || showDashboardAnimation
+            ? "opacity-0"
+            : "opacity-100"
         }`}
       >
         {/* Content */}
-        <div className="flex flex-col pt-20 lg:pt-0 justify-center space-y-4 px-4 md:px-0 lg:pl-[150px]">
+        <div className="flex flex-col pt-10 lg:pt-56 justify-start space-y-4 px-4 md:px-0 lg:pl-[170px]">
           <h1
-            className={`max-w-lg text-[32px] sm:text-[40px] md:text-[48px] lg:text-[54px] font-inter text-white font-[800] tracking-tight leading-[1.2] transition-all duration-1000 ${
+            className={`max-w-2xl text-[32px] sm:text-[40px] md:text-[48px] lg:text-[64px] font-inter text-white font-[800] tracking-tight leading-[1.2] transition-all duration-1000 ${
               showTitle
                 ? "opacity-100 transform translate-y-0"
                 : "opacity-0 transform translate-y-8"
@@ -145,12 +146,17 @@ const HeroSection = ({
         </div>
 
         {/* Image */}
-        <div 
-          className="px-4 md:px-0 cursor-pointer"
+        <div
+          className="px-4 md:px-0 cursor-pointer flex justify-end items-end"
           onMouseEnter={handleImageHover}
           onMouseLeave={handleImageLeave}
         >
-          <img src={imageSrc} alt={imageAlt} className="" loading="eager" />
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            className="w-[60vw] object-contain "
+            loading="eager"
+          />
         </div>
       </div>
 
@@ -164,7 +170,7 @@ const HeroSection = ({
             : "translate-x-[50%] translate-y-[50%] opacity-0"
         }`}
         style={{
-          transformOrigin: "bottom right"
+          transformOrigin: "bottom right",
         }}
       >
         <img
@@ -186,14 +192,16 @@ const HeroSection = ({
             : "translate-x-[50%] translate-y-[50%] opacity-0"
         }`}
         style={{
-          transformOrigin: "bottom right"
+          transformOrigin: "bottom right",
         }}
       >
         <img
           src={foranimation1}
           alt="Phone Animation"
           className={`h-full w-auto object-contain transition-all duration-500 drop-shadow-xl ${
-            showPhoneAnimation ? "max-w-[98%] lg:max-w-[78%]" : "max-w-[70%] lg:max-w-[60%]"
+            showPhoneAnimation
+              ? "max-w-[98%] lg:max-w-[78%]"
+              : "max-w-[70%] lg:max-w-[60%]"
           }`}
         />
       </div>
