@@ -175,6 +175,22 @@ export default function SiteHeader() {
                     {isServicesOpen && (
                       <div className="flex flex-col space-y-3 pl-4 animate-fade-in">
                         <Link
+                          to="/services/pbx"
+                          className={`flex text-center text-lg transition-colors relative after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left `}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <span
+                            className={`relative inline-block after:w-full after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 ${
+                              location.pathname === "/services/pbx"
+                                ? "text-[#007DFE] after:scale-x-100"
+                                : "text-gray-700 hover:text-[#007DFE]"
+                            }`}
+                          >
+                            IntarvAS PBX
+                          </span>
+                        </Link>
+
+                        <Link
                           to="/services/all-in-solutions"
                           className={`flex items-center relative text-lg transition-colors after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left`}
                           onClick={() => setIsMobileMenuOpen(false)}
@@ -187,22 +203,6 @@ export default function SiteHeader() {
                             }`}
                           >
                             All In one Solutions
-                          </span>
-                        </Link>
-
-                        <Link
-                          to="/services/pbx"
-                          className={`flex text-center text-lg transition-colors relative after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left `}
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          <span
-                            className={`relative inline-block after:w-full after:content-[''] after:absolute after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 ${
-                              location.pathname === "/services/pbx"
-                                ? "text-[#007DFE] after:scale-x-100"
-                                : "text-gray-700 hover:text-[#007DFE]"
-                            }`}
-                          >
-                            IntarVAS PBX
                           </span>
                         </Link>
                         <Link

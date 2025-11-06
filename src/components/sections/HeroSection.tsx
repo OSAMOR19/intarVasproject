@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import foranimation1 from "@/assets/phoneforanimation.svg";
 import foranimation2 from "@/assets/dashboardforanimation.svg";
+import heroImage from "@/assets/Heroimage.svg";
 
 interface HeroSectionProps {
   title?: string;
@@ -22,7 +23,7 @@ const HeroSection = ({
   secondaryButtonText = "Explore Services",
   onPrimaryClick,
   onSecondaryClick,
-  imageSrc = "images/croppedHero.png",
+  imageSrc = heroImage,
   imageAlt = "Telecom analytics and smartphone dashboard",
 }: HeroSectionProps) => {
   const [isVisible, setIsVisible] = useState(false);

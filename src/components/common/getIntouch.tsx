@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Headphones, Mail, Clock, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import intervaslogoblack from "@/assets/intervaslogoblack.svg";
+import { sendTestEmail } from "@/lib/email";
 
 const ContactUsSection = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ const ContactUsSection = () => {
     subject: "",
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -19,10 +22,52 @@ const ContactUsSection = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setStatusMessage("");
+    
     console.log("Form submitted:", formData);
-    // Add your form submission logic here
+    
+    // Send test email
+    const result = await sendTestEmail();
+    
+    if (result.success) {
+      setStatusMessage("✅ Message sent successfully!");
+      // Reset form
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } else {
+      setStatusMessage("❌ Failed to send message. Please try again.");
+    }
+    
+    setIsLoading(false);
+    
+    // Clear message after 5 seconds
+    setTimeout(() => setStatusMessage(""), 5000);
+  };
+
+  const handleTestEmail = async () => {
+    setIsLoading(true);
+    setStatusMessage("");
+    
+    const result = await sendTestEmail();
+    
+    if (result.success) {
+      setStatusMessage("✅ Test email sent successfully!");
+    } else {
+      setStatusMessage(`❌ Failed: ${result.data?.message || 'Unknown error'}`);
+    }
+    
+    setIsLoading(false);
+    
+    // Clear message after 5 seconds
+    setTimeout(() => setStatusMessage(""), 5000);
   };
 
   return (
@@ -124,13 +169,28 @@ const ContactUsSection = () => {
                 ></textarea>
               </div>
 
-              {/* Submit Button */}
-              <div className="flex justify-end">
+              {/* Status Message */}
+              {statusMessage && (
+                <div className="text-center p-3 rounded-lg bg-gray-100">
+                  <p className="text-sm font-medium">{statusMessage}</p>
+                </div>
+              )}
+
+              {/* Submit Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 justify-end">
+                <Button
+                  onClick={handleTestEmail}
+                  disabled={isLoading}
+                  className="px-6 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-lg font-semibold"
+                >
+                  {isLoading ? "Sending..." : "Test Email"}
+                </Button>
                 <Button
                   onClick={handleSubmit}
+                  disabled={isLoading}
                   className="px-8 py-4 text-white bg-[#007DFE] hover:bg-[#0056b3] transition-colors duration-300 rounded-lg font-semibold"
                 >
-                  Submit
+                  {isLoading ? "Submitting..." : "Submit"}
                 </Button>
               </div>
             </div>

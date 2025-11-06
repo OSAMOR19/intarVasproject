@@ -96,7 +96,7 @@ const PricingPlans = () => {
     {
       name: "Large Enterprise",
       icon: <TrendingUp className="w-6 h-6" />,
-      price: "CUSTOM PRICING",
+      price: "Custom Pricing",
       period: "/month",
       description: "Best for businesses with",
       userRange: "50+ users",
