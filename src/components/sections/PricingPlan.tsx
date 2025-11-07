@@ -167,11 +167,15 @@ const PricingPlans = () => {
 
                 {/* Price */}
                 <div className="mb-4">
-                  <div className="flex items-baseline gap-1">
-                    <span className={`text-4xl font-bold whitespace-nowrap ${plan.price === "CUSTOM PRICING" ? "text-3xl" : ""}`}>
-                      {plan.price === "CUSTOM PRICING" ? plan.price : `₦ ${plan.price}`}
+                  <div className="flex items-baseline gap-1 flex-wrap">
+                    <span className={`font-bold ${
+                      plan.price === "Custom Pricing" 
+                        ? "text-lg sm:text-2xl md:text-2xl break-words" 
+                        : "text-4xl whitespace-nowrap"
+                    }`}>
+                      {plan.price === "Custom Pricing" ? plan.price : `₦ ${plan.price}`}
                     </span>
-                    {plan.price !== "CUSTOM PRICING" && (
+                    {plan.price !== "Custom Pricing" && (
                       <span className="text-gray-500 whitespace-nowrap">{plan.period}</span>
                     )}
                   </div>

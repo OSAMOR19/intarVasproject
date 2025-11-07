@@ -23,7 +23,7 @@ const DeskphonesPricing = () => {
         { text: "One year free subscription", included: true },
         { text: "Subscription after first year ₦ 25,000/year", included: true },
         {
-          text: "Free OLO for all internally connected phones",
+          text: "Free CUG for all internally connected phones",
           included: true,
         },
       ],
@@ -43,7 +43,7 @@ const DeskphonesPricing = () => {
           included: true,
         },
         {
-          text: "Free OLO for all internally connected phones",
+          text: "Free CUG for all internally connected phones",
           included: true,
         },
       ],
