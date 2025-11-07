@@ -17,7 +17,7 @@ const DeskphonesPricing = () => {
       icon: <Star size={20} />,
       price: "89,999",
       features: [
-        { text: "One Yealry or Toll-free number", included: true },
+        { text: "One Yearly or Toll-free number", included: true },
         { text: "Eligible for one IVR", included: true },
         { text: "Pro Desk phone", included: true },
         { text: "One year free subscription", included: true },
@@ -33,7 +33,7 @@ const DeskphonesPricing = () => {
       icon: <Trophy size={20} />,
       price: "119,999",
       features: [
-        { text: "One Yealry or Toll-free number", included: true },
+        { text: "One Yearly or Toll-free number", included: true },
         { text: "Eligible for one IVR", included: true },
         { text: "Ultra Premium Desk phone", included: true },
         { text: "One year free subscription", included: true },
