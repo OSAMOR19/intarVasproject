@@ -16,6 +16,7 @@ import SiteHeader from "./components/layout/SiteHeader";
 import SiteFooter from "./components/layout/SiteFooter";
 import { AllInSolutions } from "./pages/services";
 import LoadingScreen from "./components/common/LoadingScreen";
+import SupportWidget from "./components/common/SupportWidget";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +49,7 @@ const App = () => (
     <HelmetProvider>
       <TooltipProvider>
         <LoadingScreen />
+        <SupportWidget />
         <Toaster />
         <Sonner />
         <BrowserRouter>
