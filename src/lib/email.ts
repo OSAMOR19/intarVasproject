@@ -1,5 +1,5 @@
 /**
- * Send a test email using the Resend API
+ * Send a test email using the backend API
  * @returns Promise with the API response
  */
 export async function sendTestEmail() {
@@ -12,7 +12,6 @@ export async function sendTestEmail() {
     });
 
     if (!response.ok) {
-      // Handle non-200 responses
       let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
       try {
         const errorData = await response.json();
@@ -33,9 +32,7 @@ export async function sendTestEmail() {
     return { 
       success: false, 
       data: { 
-        message: error.message === 'Failed to fetch' 
-          ? 'Cannot connect to API. Make sure you\'re running "vercel dev" or the app is deployed.'
-          : `Network error: ${error.message}` 
+        message: '⚠️ Use "vercel dev" to enable email API'
       } 
     };
   }
