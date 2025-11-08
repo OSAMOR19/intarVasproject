@@ -8,15 +8,21 @@ const LoadingScreen = () => {
     // Minimum loading time - 4 seconds
     const timer = setTimeout(() => {
       setFadeOut(true);
-      setTimeout(() => setIsLoading(false), 800); // Wait for fade out animation
+      setTimeout(() => {
+        setIsLoading(false);
+        // THIS LINE IS CRITICAL — fires when loading screen is fully gone
+        window.dispatchEvent(new CustomEvent("logo-animation-complete"));
+      }, 800); // Wait for fade-out animation to finish
     }, 4000);
 
-    // Also check if page is fully loaded
+    // Also respect real page load (in case assets load faster)
     const handleLoad = () => {
+      clearTimeout(timer); // Cancel the 4s timer
+      setFadeOut(true);
       setTimeout(() => {
-        setFadeOut(true);
-        setTimeout(() => setIsLoading(false), 800);
-      }, 1000);
+        setIsLoading(false);
+        window.dispatchEvent(new CustomEvent("logo-animation-complete"));
+      }, 800);
     };
 
     if (document.readyState === "complete") {
@@ -45,7 +51,6 @@ const LoadingScreen = () => {
         pointerEvents: isLoading ? "auto" : "none",
       }}
     >
-      {/* Animated Logo */}
       <div className="flex flex-col items-center justify-center">
         <img
           src="/images/Logo.svg"
@@ -58,4 +63,3 @@ const LoadingScreen = () => {
 };
 
 export default LoadingScreen;
-

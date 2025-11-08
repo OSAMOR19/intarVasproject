@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import foranimation1 from "@/assets/phoneforanimation.svg";
-import foranimation2 from "@/assets/dashboardforanimation.svg";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import heroImage from "@/assets/Heroimage.svg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface HeroSectionProps {
   title?: string;
@@ -16,6 +18,9 @@ interface HeroSectionProps {
   imageAlt?: string;
 }
 
+// Global flag to track if this is the first ever load
+let isFirstPageLoad = true;
+
 const HeroSection = ({
   title = "Smart Telecom Solutions for Modern Businesses",
   subtitle = "Special Numbers, Call Centres, Bulk Messaging & Digital Solutions all tailored for modern Nigerian brands.",
@@ -26,104 +31,169 @@ const HeroSection = ({
   imageSrc = heroImage,
   imageAlt = "Telecom analytics and smartphone dashboard",
 }: HeroSectionProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [showTitle, setShowTitle] = useState(false);
-  const [showSubtitle, setShowSubtitle] = useState(false);
-  const [showButtons, setShowButtons] = useState(false);
-  const [showPhoneAnimation, setShowPhoneAnimation] = useState(false);
-  const [showDashboardAnimation, setShowDashboardAnimation] = useState(false);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const whiteoutActive = showPhoneAnimation || showDashboardAnimation;
+  const hasPlayed = useRef(false);
+  const canStartAnimation = useRef(!isFirstPageLoad);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            // Stagger animations
-            setTimeout(() => setShowTitle(true), 200);
-            setTimeout(() => setShowSubtitle(true), 400);
-            setTimeout(() => setShowButtons(true), 600);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+    if (isFirstPageLoad) {
+      const handleLoadingComplete = () => {
+        canStartAnimation.current = true;
+        isFirstPageLoad = false;
+        setupAnimation();
+      };
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+      window.addEventListener("logo-animation-complete", handleLoadingComplete);
+
+      return () => {
+        window.removeEventListener(
+          "logo-animation-complete",
+          handleLoadingComplete
+        );
+      };
+    } else {
+      setupAnimation();
     }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
   }, []);
 
-  // Handle hover trigger for animations
-  const handleImageHover = () => {
-    // setShowDashboardAnimation(true);
-    // setTimeout(() => setShowPhoneAnimation(true), 300);
-  };
+  const setupAnimation = () => {
+    if (!canStartAnimation.current) return;
 
-  const handleImageLeave = () => {
-    // setShowPhoneAnimation(false);
-    // setShowDashboardAnimation(false);
+    const ctx = gsap.context(() => {
+      gsap.set(
+        [
+          titleRef.current,
+          subtitleRef.current,
+          buttonsRef.current,
+          imageRef.current,
+        ],
+        { opacity: 0, visibility: "hidden" }
+      );
+
+      gsap.set(titleRef.current, { y: 30 });
+      gsap.set(subtitleRef.current, { y: 20 });
+      gsap.set(buttonsRef.current, { y: 20, scale: 0.8 });
+      gsap.set(imageRef.current, { y: 50 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play reverse play reverse",
+          onEnter: () => {
+            if (!hasPlayed.current) {
+              hasPlayed.current = true;
+            }
+            tl.play();
+          },
+          onEnterBack: () => tl.play(),
+          onLeave: () => tl.reverse(),
+          onLeaveBack: () => tl.reverse(),
+        },
+      });
+
+      tl.to(titleRef.current, {
+        opacity: 1,
+        visibility: "visible",
+        y: 0,
+        duration: 0.9,
+        ease: "power3.out",
+      })
+        .to(
+          imageRef.current,
+          {
+            opacity: 1,
+            visibility: "visible",
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+          },
+          "-=0.6"
+        )
+        .to(
+          subtitleRef.current,
+          {
+            opacity: 1,
+            visibility: "visible",
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.5"
+        )
+        .to(
+          buttonsRef.current,
+          {
+            opacity: 1,
+            visibility: "visible",
+            scale: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "back.out(1.7)",
+          },
+          "-=0.4"
+        );
+
+      // Force play if already in view on load
+      const checkIfInView = () => {
+        if (!sectionRef.current || hasPlayed.current) return;
+
+        const rect = sectionRef.current.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight * 0.8;
+
+        if (isInView) {
+          hasPlayed.current = true;
+          ScrollTrigger.refresh();
+          setTimeout(() => tl.play(), 100);
+        }
+      };
+
+      const timer = setTimeout(checkIfInView, 100);
+      window.addEventListener("load", checkIfInView);
+
+      const scrollHandler = () => checkIfInView();
+      window.addEventListener("scroll", scrollHandler);
+
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener("load", checkIfInView);
+        window.removeEventListener("scroll", scrollHandler);
+      };
+    }, sectionRef);
+
+    return () => ctx.revert();
   };
 
   return (
     <section
       ref={sectionRef}
-      className="max-h-screen pt-18 lg:pt-16 overflow-hidden relative "
+      className="max-h-screen pt-18 lg:pt-16 overflow-hidden relative"
       style={{
         backgroundImage: "url(/images/herosectionbg.svg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      {/* Whiteout overlay to hide background during animations */}
-      <div
-        className={`absolute inset-0 bg-white transition-opacity duration-500 pointer-events-none z-10 ${
-          whiteoutActive ? "opacity-100" : "opacity-0"
-        }`}
-      />
-      {/* Static Background Elements - No Animation */}
-
-      <div
-        className={` grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 min-h-screen pt-12 md:py-0 xl:pt-16 transition-opacity duration-500 ${
-          showPhoneAnimation || showDashboardAnimation
-            ? "opacity-0"
-            : "opacity-100"
-        }`}
-      >
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 min-h-screen pt-12 md:py-0 xl:pt-16">
         {/* Content */}
         <div className="flex flex-col pt-10 md:pt-24 lg:pt-36 2xl:pt-56 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px]">
           <h1
-            className={`2xl:max-w-2xl lg:max-w-xl md:max-w-lg text-[32px] sm:text-[40px] md:text-[44px] xl:text-[52px] 2xl:text-[64px] font-inter text-white font-[800] tracking-tight leading-[1.2] transition-all duration-1000 ${
-              showTitle
-                ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-8"
-            }`}
+            ref={titleRef}
+            className="2xl:max-w-2xl lg:max-w-xl md:max-w-lg text-[32px] sm:text-[40px] md:text-[44px] xl:text-[52px] 2xl:text-[64px] font-inter text-white font-[800] tracking-tight leading-[1.2]"
           >
             {title}
           </h1>
-          <p
-            className={` text-[20px] text-[#C2C6CE] max-w-xl transition-all duration-1000 ${
-              showSubtitle
-                ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-8"
-            }`}
-          >
+          <p ref={subtitleRef} className="text-[20px] text-[#C2C6CE] max-w-xl">
             {subtitle}
           </p>
           <div
-            className={`mt-8 flex flex-col sm:flex-row gap-3 w-full sm:w-auto sm:max-w-none transition-all duration-1000 ${
-              showButtons
-                ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-8"
-            }`}
+            ref={buttonsRef}
+            className="mt-8 flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
           >
             <Button
               variant="outline"
@@ -131,7 +201,7 @@ const HeroSection = ({
               onClick={onSecondaryClick}
               className="bg-white text-[#001933] border-[#001933] hover:bg-gray-50 w-full sm:w-auto sm:px-6"
             >
-              <Link to={"/about#services-showcase-section"}>
+              <Link to="/about#services-showcase-section">
                 {secondaryButtonText}
               </Link>
             </Button>
@@ -147,64 +217,14 @@ const HeroSection = ({
         </div>
 
         {/* Image */}
-        <div
-          className="px-4 md:px-0 cursor-pointer flex justify-end items-end"
-          onMouseEnter={handleImageHover}
-          onMouseLeave={handleImageLeave}
-        >
+        <div ref={imageRef} className="px-4 md:px-0 flex justify-end items-end">
           <img
             src={imageSrc}
             alt={imageAlt}
-            className="2xl:w-[60vw] object-contain "
+            className="2xl:w-[60vw] object-contain"
             loading="eager"
           />
         </div>
-      </div>
-
-      {/* Removed blue backdrop for dashboard */}
-
-      {/* Animated Images - Dashboard (Behind) - Covers only hero section from bottom-right */}
-      <div
-        className={`absolute inset-0 p-8 md:p-12 lg:p-16 pointer-events-none transition-all duration-1000 ease-out z-20 ${
-          showDashboardAnimation
-            ? "translate-x-0 translate-y-0 opacity-100"
-            : "translate-x-[50%] translate-y-[50%] opacity-0"
-        }`}
-        style={{
-          transformOrigin: "bottom right",
-        }}
-      >
-        <img
-          src={foranimation2}
-          alt="Dashboard Animation"
-          className={`w-full h-full object-cover rounded-2xl transition-all duration-500 ${
-            showPhoneAnimation ? "scale-70 opacity-75" : "scale-100 opacity-100"
-          }`}
-        />
-      </div>
-
-      {/* Removed blue backdrop for phone */}
-
-      {/* Animated Images - Phone (On Top) - Positioned left on desktop, center on mobile */}
-      <div
-        className={`absolute inset-0 p-8 md:p-12 lg:p-16 pointer-events-none transition-all duration-1000 ease-out z-30 flex items-center justify-center lg:justify-start ${
-          showPhoneAnimation
-            ? "translate-x-0 translate-y-0 opacity-100"
-            : "translate-x-[50%] translate-y-[50%] opacity-0"
-        }`}
-        style={{
-          transformOrigin: "bottom right",
-        }}
-      >
-        <img
-          src={foranimation1}
-          alt="Phone Animation"
-          className={`h-full w-auto object-contain transition-all duration-500 drop-shadow-xl ${
-            showPhoneAnimation
-              ? "max-w-[98%] lg:max-w-[78%]"
-              : "max-w-[70%] lg:max-w-[60%]"
-          }`}
-        />
       </div>
     </section>
   );
