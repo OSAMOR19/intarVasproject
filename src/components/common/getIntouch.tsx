@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Headphones, Mail, Clock, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import intervaslogoblack from "@/assets/intervaslogoblack.svg";
 import { sendTestEmail } from "@/lib/email";
 
 const ContactUsSection = () => {
@@ -29,7 +28,7 @@ const ContactUsSection = () => {
     
     console.log("Form submitted:", formData);
     
-    // Send test email
+    // Send email via Resend
     const result = await sendTestEmail();
     
     if (result.success) {
@@ -44,24 +43,6 @@ const ContactUsSection = () => {
       });
     } else {
       setStatusMessage("❌ Failed to send message. Please try again.");
-    }
-    
-    setIsLoading(false);
-    
-    // Clear message after 5 seconds
-    setTimeout(() => setStatusMessage(""), 5000);
-  };
-
-  const handleTestEmail = async () => {
-    setIsLoading(true);
-    setStatusMessage("");
-    
-    const result = await sendTestEmail();
-    
-    if (result.success) {
-      setStatusMessage("✅ Test email sent successfully!");
-    } else {
-      setStatusMessage(`❌ Failed: ${result.data?.message || 'Unknown error'}`);
     }
     
     setIsLoading(false);
@@ -93,7 +74,7 @@ const ContactUsSection = () => {
           <div className="bg-white rounded-3xl p-8 shadow-lg">
             <h2 className="text-2xl font-bold mb-6">How can we help you?</h2>
 
-            <div className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Full Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -105,7 +86,9 @@ const ContactUsSection = () => {
                   value={formData.fullName}
                   onChange={handleChange}
                   placeholder="Your First and Last name"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                  disabled={isLoading}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -120,7 +103,9 @@ const ContactUsSection = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="example@gmail.com"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                  disabled={isLoading}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -135,7 +120,8 @@ const ContactUsSection = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+234123456789"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  disabled={isLoading}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -150,7 +136,9 @@ const ContactUsSection = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="What can we help you with?"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                  disabled={isLoading}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -165,7 +153,9 @@ const ContactUsSection = () => {
                   onChange={handleChange}
                   placeholder="A detailed explanation on your request"
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                  required
+                  disabled={isLoading}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                 ></textarea>
               </div>
 
@@ -176,24 +166,17 @@ const ContactUsSection = () => {
                 </div>
               )}
 
-              {/* Submit Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 justify-end">
+              {/* Submit Button */}
+              <div className="flex justify-end">
                 <Button
-                  onClick={handleTestEmail}
+                  type="submit"
                   disabled={isLoading}
-                  className="px-6 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-lg font-semibold"
-                >
-                  {isLoading ? "Sending..." : "Test Email"}
-                </Button>
-                <Button
-                  onClick={handleSubmit}
-                  disabled={isLoading}
-                  className="px-8 py-4 text-white bg-[#007DFE] hover:bg-[#0056b3] transition-colors duration-300 rounded-lg font-semibold"
+                  className="px-8 py-4 text-white bg-[#007DFE] hover:bg-[#0056b3] transition-colors duration-300 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? "Submitting..." : "Submit"}
                 </Button>
               </div>
-            </div>
+            </form>
           </div>
 
           {/* Right Side - Contact Info & Map */}
