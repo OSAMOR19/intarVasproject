@@ -424,16 +424,21 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 ;
 ;
 ;
-const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", subtitle = "Special Numbers, Call Centres, Bulk Messaging & Digital Solutions all tailored for modern Nigerian brands.", primaryButtonText = "Request Demo", secondaryButtonText = "Explore Services", onPrimaryClick, onSecondaryClick })=>{
+const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", subtitle = "Special Numbers, Call Centres, Bulk Messaging & Digital Solutions all tailored for modern Nigerian brands.", primaryButtonText = "Request Demo", secondaryButtonText = "Explore Services", onPrimaryClick, onSecondaryClick, imageSrc = "/Heroimage.svg", imageAlt = "Telecom analytics and smartphone dashboard" })=>{
+    const [isVisible, setIsVisible] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [showTitle, setShowTitle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [showSubtitle, setShowSubtitle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [showButtons, setShowButtons] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [showPhoneAnimation, setShowPhoneAnimation] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [showDashboardAnimation, setShowDashboardAnimation] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const sectionRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const whiteoutActive = showPhoneAnimation || showDashboardAnimation;
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const observer = new IntersectionObserver((entries)=>{
             entries.forEach((entry)=>{
                 if (entry.isIntersecting) {
-                    // Stagger text animations
+                    setIsVisible(true);
+                    // Stagger animations
                     setTimeout(()=>setShowTitle(true), 200);
                     setTimeout(()=>setShowSubtitle(true), 400);
                     setTimeout(()=>setShowButtons(true), 600);
@@ -451,189 +456,171 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
             }
         };
     }, []);
+    // Handle hover trigger for animations
+    const handleImageHover = ()=>{
+    // setShowDashboardAnimation(true);
+    // setTimeout(() => setShowPhoneAnimation(true), 300);
+    };
+    const handleImageLeave = ()=>{
+    // setShowPhoneAnimation(false);
+    // setShowDashboardAnimation(false);
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         ref: sectionRef,
-        className: "relative min-h-screen pt-20 lg:pt-24 overflow-hidden bg-[#001933]",
+        className: "max-h-screen pt-18 lg:pt-16 overflow-hidden relative ",
+        style: {
+            backgroundImage: "url(/images/herosectionbg.svg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+        },
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 min-h-[calc(100vh-80px)] items-center",
+                className: `absolute inset-0 bg-white transition-opacity duration-500 pointer-events-none z-10 ${whiteoutActive ? "opacity-100" : "opacity-0"}`
+            }, void 0, false, {
+                fileName: "[project]/components/sections/HeroSection.tsx",
+                lineNumber: 86,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: ` grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 min-h-screen pt-12 md:py-0 xl:pt-16 transition-opacity duration-500 ${showPhoneAnimation || showDashboardAnimation ? "opacity-0" : "opacity-100"}`,
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col justify-center space-y-6 z-10 relative pt-8 lg:pt-0",
+                        className: "flex flex-col pt-10 md:pt-24 lg:pt-36 2xl:pt-56 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px]",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                className: `text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] font-inter text-white font-[800] tracking-tight leading-[1.1] transition-all duration-1000 ${showTitle ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-8"}`,
+                                className: `2xl:max-w-2xl lg:max-w-xl md:max-w-lg text-[32px] sm:text-[40px] md:text-[44px] xl:text-[52px] 2xl:text-[64px] font-inter text-white font-[800] tracking-tight leading-[1.2] transition-all duration-1000 ${showTitle ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-8"}`,
                                 children: title
                             }, void 0, false, {
                                 fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 65,
+                                lineNumber: 102,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: `text-[18px] md:text-[20px] text-[#C2C6CE] max-w-xl transition-all duration-1000 ${showSubtitle ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-8"}`,
+                                className: ` text-[20px] text-[#C2C6CE] max-w-xl transition-all duration-1000 ${showSubtitle ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-8"}`,
                                 children: subtitle
                             }, void 0, false, {
                                 fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 75,
+                                lineNumber: 111,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: `flex flex-col sm:flex-row gap-4 transition-all duration-1000 ${showButtons ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-8"}`,
+                                className: `mt-8 flex flex-col sm:flex-row gap-3 w-full sm:w-auto sm:max-w-none transition-all duration-1000 ${showButtons ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-8"}`,
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                                         variant: "outline",
-                                        size: "lg",
+                                        size: "default",
                                         onClick: onSecondaryClick,
-                                        className: "bg-white text-[#001933] border-[#001933] hover:bg-gray-50 w-full sm:w-auto",
+                                        className: "bg-white text-[#001933] border-[#001933] hover:bg-gray-50 w-full sm:w-auto sm:px-6",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                             href: "/about#services-showcase-section",
                                             children: secondaryButtonText
                                         }, void 0, false, {
                                             fileName: "[project]/components/sections/HeroSection.tsx",
-                                            lineNumber: 98,
+                                            lineNumber: 133,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/sections/HeroSection.tsx",
-                                        lineNumber: 92,
+                                        lineNumber: 127,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                                         variant: "hero",
-                                        size: "lg",
+                                        size: "default",
                                         onClick: onPrimaryClick,
-                                        className: "w-full sm:w-auto",
+                                        className: "w-full sm:w-auto sm:px-6",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                             href: "/contact",
                                             children: primaryButtonText
                                         }, void 0, false, {
                                             fileName: "[project]/components/sections/HeroSection.tsx",
-                                            lineNumber: 108,
+                                            lineNumber: 143,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/sections/HeroSection.tsx",
-                                        lineNumber: 102,
+                                        lineNumber: 137,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 85,
+                                lineNumber: 120,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/sections/HeroSection.tsx",
-                        lineNumber: 64,
+                        lineNumber: 101,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "relative w-full h-[500px] md:h-[600px] lg:h-[700px] xl:h-[800px]",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "hero-bluelayer absolute inset-0 flex items-center justify-center",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                    src: "/Blue Layer.svg",
-                                    alt: "Blue decorative layer",
-                                    className: "w-full h-full object-contain opacity-80"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/sections/HeroSection.tsx",
-                                    lineNumber: 118,
-                                    columnNumber: 13
-                                }, ("TURBOPACK compile-time value", void 0))
-                            }, void 0, false, {
-                                fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 117,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "hero-deskphone absolute top-[10%] left-[-5%] w-[45%] md:w-[40%] lg:w-[35%]",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                    src: "/Deskphone.svg",
-                                    alt: "Desk phone",
-                                    className: "w-full h-auto object-contain drop-shadow-2xl"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/sections/HeroSection.tsx",
-                                    lineNumber: 127,
-                                    columnNumber: 13
-                                }, ("TURBOPACK compile-time value", void 0))
-                            }, void 0, false, {
-                                fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 126,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "hero-chart absolute top-[5%] right-[5%] w-[40%] md:w-[35%] lg:w-[30%]",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                    src: "/Chart.svg",
-                                    alt: "Analytics chart",
-                                    className: "w-full h-auto object-contain drop-shadow-xl"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/sections/HeroSection.tsx",
-                                    lineNumber: 136,
-                                    columnNumber: 13
-                                }, ("TURBOPACK compile-time value", void 0))
-                            }, void 0, false, {
-                                fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 135,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "hero-dashboard absolute top-[15%] right-[0%] w-[80%] md:w-[75%] lg:w-[70%]",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                    src: "/Dashboard.svg",
-                                    alt: "Dashboard interface",
-                                    className: "w-full h-auto object-contain drop-shadow-2xl"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/sections/HeroSection.tsx",
-                                    lineNumber: 145,
-                                    columnNumber: 13
-                                }, ("TURBOPACK compile-time value", void 0))
-                            }, void 0, false, {
-                                fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 144,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "hero-mobile absolute top-[20%] left-[10%] w-[40%] md:w-[35%] lg:w-[30%]",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                    src: "/mobilePhone.svg",
-                                    alt: "Mobile phone",
-                                    className: "w-full h-auto object-contain drop-shadow-2xl"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/sections/HeroSection.tsx",
-                                    lineNumber: 154,
-                                    columnNumber: 13
-                                }, ("TURBOPACK compile-time value", void 0))
-                            }, void 0, false, {
-                                fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 153,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0))
-                        ]
-                    }, void 0, true, {
+                        className: "px-4 md:px-0 cursor-pointer flex justify-end items-end",
+                        onMouseEnter: handleImageHover,
+                        onMouseLeave: handleImageLeave,
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                            src: imageSrc,
+                            alt: imageAlt,
+                            className: "2xl:w-[60vw] object-contain ",
+                            loading: "eager"
+                        }, void 0, false, {
+                            fileName: "[project]/components/sections/HeroSection.tsx",
+                            lineNumber: 154,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0))
+                    }, void 0, false, {
                         fileName: "[project]/components/sections/HeroSection.tsx",
-                        lineNumber: 114,
+                        lineNumber: 149,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/sections/HeroSection.tsx",
-                lineNumber: 61,
+                lineNumber: 93,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#001933] to-transparent pointer-events-none"
+                className: `absolute inset-0 p-8 md:p-12 lg:p-16 pointer-events-none transition-all duration-1000 ease-out z-20 ${showDashboardAnimation ? "translate-x-0 translate-y-0 opacity-100" : "translate-x-[50%] translate-y-[50%] opacity-0"}`,
+                style: {
+                    transformOrigin: "bottom right"
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                    src: "/dashboardforanimation.svg",
+                    alt: "Dashboard Animation",
+                    className: `w-full h-full object-cover rounded-2xl transition-all duration-500 ${showPhoneAnimation ? "scale-70 opacity-75" : "scale-100 opacity-100"}`
+                }, void 0, false, {
+                    fileName: "[project]/components/sections/HeroSection.tsx",
+                    lineNumber: 176,
+                    columnNumber: 9
+                }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/components/sections/HeroSection.tsx",
-                lineNumber: 164,
+                lineNumber: 166,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: `absolute inset-0 p-8 md:p-12 lg:p-16 pointer-events-none transition-all duration-1000 ease-out z-30 flex items-center justify-center lg:justify-start ${showPhoneAnimation ? "translate-x-0 translate-y-0 opacity-100" : "translate-x-[50%] translate-y-[50%] opacity-0"}`,
+                style: {
+                    transformOrigin: "bottom right"
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                    src: "/phoneforanimation.svg",
+                    alt: "Phone Animation",
+                    className: `h-full w-auto object-contain transition-all duration-500 drop-shadow-xl ${showPhoneAnimation ? "max-w-[98%] lg:max-w-[78%]" : "max-w-[70%] lg:max-w-[60%]"}`
+                }, void 0, false, {
+                    fileName: "[project]/components/sections/HeroSection.tsx",
+                    lineNumber: 198,
+                    columnNumber: 9
+                }, ("TURBOPACK compile-time value", void 0))
+            }, void 0, false, {
+                fileName: "[project]/components/sections/HeroSection.tsx",
+                lineNumber: 188,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/sections/HeroSection.tsx",
-        lineNumber: 56,
+        lineNumber: 76,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -2098,7 +2085,9 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
 "use client";
+;
 ;
 ;
 ;
@@ -2172,7 +2161,7 @@ const ServicesShowcase = ()=>{
                 className: "w-8 h-8"
             }, void 0, false, {
                 fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                lineNumber: 47,
+                lineNumber: 48,
                 columnNumber: 13
             }, ("TURBOPACK compile-time value", void 0)),
             title: "IntarvAS PBX",
@@ -2187,7 +2176,7 @@ const ServicesShowcase = ()=>{
                 className: "w-8 h-8"
             }, void 0, false, {
                 fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                lineNumber: 55,
+                lineNumber: 56,
                 columnNumber: 13
             }, ("TURBOPACK compile-time value", void 0)),
             title: "All in one solution",
@@ -2202,7 +2191,7 @@ const ServicesShowcase = ()=>{
                 className: "w-8 h-8"
             }, void 0, false, {
                 fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                lineNumber: 63,
+                lineNumber: 64,
                 columnNumber: 13
             }, ("TURBOPACK compile-time value", void 0)),
             title: "Vanity and Toll-free numbers",
@@ -2217,7 +2206,7 @@ const ServicesShowcase = ()=>{
                 className: "w-8 h-8"
             }, void 0, false, {
                 fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                lineNumber: 71,
+                lineNumber: 72,
                 columnNumber: 13
             }, ("TURBOPACK compile-time value", void 0)),
             title: "Bulk Messaging",
@@ -2242,12 +2231,12 @@ const ServicesShowcase = ()=>{
                                 children: "Our services"
                             }, void 0, false, {
                                 fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                lineNumber: 92,
+                                lineNumber: 93,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                            lineNumber: 91,
+                            lineNumber: 92,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -2255,7 +2244,7 @@ const ServicesShowcase = ()=>{
                             children: "Where We Thrive"
                         }, void 0, false, {
                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                            lineNumber: 96,
+                            lineNumber: 97,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2263,13 +2252,13 @@ const ServicesShowcase = ()=>{
                             children: "Discover reliable telecom tools built for Nigerian businesses and government agencies."
                         }, void 0, false, {
                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                            lineNumber: 99,
+                            lineNumber: 100,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                    lineNumber: 84,
+                    lineNumber: 85,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2285,7 +2274,7 @@ const ServicesShowcase = ()=>{
                                             children: service.icon
                                         }, void 0, false, {
                                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                            lineNumber: 118,
+                                            lineNumber: 119,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2293,7 +2282,7 @@ const ServicesShowcase = ()=>{
                                             children: service.title
                                         }, void 0, false, {
                                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                            lineNumber: 121,
+                                            lineNumber: 122,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2301,22 +2290,29 @@ const ServicesShowcase = ()=>{
                                             children: service.description
                                         }, void 0, false, {
                                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                            lineNumber: 122,
+                                            lineNumber: 123,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
-                                            variant: "hero",
-                                            className: "px-6 py-2 text-sm",
-                                            children: "Learn More"
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                            href: "/contact",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                                                variant: "hero",
+                                                className: "px-6 py-2 text-sm hover:scale-105 transition-transform duration-300",
+                                                children: "Learn More"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/sections/WeThriveComponent.tsx",
+                                                lineNumber: 127,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0))
                                         }, void 0, false, {
                                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                            lineNumber: 125,
+                                            lineNumber: 126,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                    lineNumber: 117,
+                                    lineNumber: 118,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2329,39 +2325,39 @@ const ServicesShowcase = ()=>{
                                             className: "w-full h-auto rounded-2xl hover:scale-105 transition-transform duration-300"
                                         }, void 0, false, {
                                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                            lineNumber: 139,
+                                            lineNumber: 142,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                        lineNumber: 132,
+                                        lineNumber: 135,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                    lineNumber: 131,
+                                    lineNumber: 134,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, index, true, {
                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                            lineNumber: 108,
+                            lineNumber: 109,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)))
                 }, void 0, false, {
                     fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                    lineNumber: 106,
+                    lineNumber: 107,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-            lineNumber: 82,
+            lineNumber: 83,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/components/sections/WeThriveComponent.tsx",
-        lineNumber: 81,
+        lineNumber: 82,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };

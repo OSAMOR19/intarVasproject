@@ -1,4 +1,44 @@
 (globalThis.TURBOPACK || (globalThis.TURBOPACK = [])).push([typeof document === "object" ? document.currentScript : undefined,
+"[project]/lib/puzzle.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+/**
+ * PuzzleGenerator - Creates simple math puzzles for bot protection
+ */ __turbopack_context__.s([
+    "generatePuzzle",
+    ()=>generatePuzzle,
+    "validatePuzzleAnswer",
+    ()=>validatePuzzleAnswer
+]);
+function generatePuzzle() {
+    const x = Math.floor(Math.random() * 10) + 1; // Random number 1-10
+    const y = Math.floor(Math.random() * 10) + 1; // Random number 1-10
+    const question = `What is ${x} + ${y}?`;
+    const answer = x + y;
+    return {
+        question,
+        answer
+    };
+}
+function validatePuzzleAnswer(question, userAnswer) {
+    try {
+        // Extract numbers from question like "What is 4 + 7?"
+        const match = question.match(/What is (\d+) \+ (\d+)\?/);
+        if (!match) {
+            return false;
+        }
+        const x = parseInt(match[1], 10);
+        const y = parseInt(match[2], 10);
+        const expectedAnswer = x + y;
+        return userAnswer === expectedAnswer;
+    } catch (error) {
+        return false;
+    }
+}
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
 "[project]/components/common/getIntouch.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -14,9 +54,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2d$pin$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MapPin$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/map-pin.js [app-client] (ecmascript) <export default as MapPin>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-right.js [app-client] (ecmascript) <export default as ArrowRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$puzzle$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/puzzle.ts [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -31,22 +73,36 @@ const ContactUsSection = ()=>{
     });
     const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [statusMessage, setStatusMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [puzzle, setPuzzle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [showPuzzleModal, setShowPuzzleModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [verificationToken, setVerificationToken] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [pendingSubmit, setPendingSubmit] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [puzzleAnswer, setPuzzleAnswer] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    // Generate puzzle on component mount
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ContactUsSection.useEffect": ()=>{
+            setPuzzle((0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$puzzle$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["generatePuzzle"])());
+        }
+    }["ContactUsSection.useEffect"], []);
     const handleChange = (e)=>{
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
     };
-    const handleSubmit = async (e)=>{
+    const handleSubmit = (e)=>{
         e.preventDefault();
+        // Show puzzle modal before submitting
+        setShowPuzzleModal(true);
+    };
+    const handlePuzzleSuccess = async (answer)=>{
+        // Close modal
+        setShowPuzzleModal(false);
+        // Store the answer
+        setPuzzleAnswer(answer);
+        // Now submit the form
         setIsLoading(true);
         setStatusMessage("");
-        // Validate puzzle answer before submitting
-        if (!puzzle || !puzzleAnswer) {
-            setStatusMessage("❌ Please answer the security question.");
+        if (!puzzle) {
+            setStatusMessage("❌ Security verification failed. Please try again.");
             setIsLoading(false);
             setTimeout(()=>setStatusMessage(""), 5000);
             return;
@@ -61,7 +117,7 @@ const ContactUsSection = ()=>{
                 body: JSON.stringify({
                     ...formData,
                     puzzleQuestion: puzzle.question,
-                    puzzleAnswer: parseInt(puzzleAnswer, 10)
+                    puzzleAnswer: answer
                 })
             });
             const result = await response.json();
@@ -76,18 +132,25 @@ const ContactUsSection = ()=>{
                     message: ""
                 });
                 // Reset puzzle and generate a new one
-                setPuzzleAnswer("");
-                setPuzzle(generatePuzzle());
+                setPuzzleAnswer(null);
+                setPuzzle((0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$puzzle$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["generatePuzzle"])());
             } else {
                 setStatusMessage(`❌ ${result.message || "Failed to send message. Please try again."}`);
+                // Generate new puzzle on error
+                setPuzzle((0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$puzzle$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["generatePuzzle"])());
             }
         } catch (error) {
             console.error("Error sending email:", error);
             setStatusMessage("❌ Failed to send message. Please try again.");
+            // Generate new puzzle on error
+            setPuzzle((0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$puzzle$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["generatePuzzle"])());
         }
         setIsLoading(false);
         // Clear message after 5 seconds
         setTimeout(()=>setStatusMessage(""), 5000);
+    };
+    const handlePuzzleClose = ()=>{
+        setShowPuzzleModal(false);
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         className: "bg-gray-50 py-20 px-8",
@@ -103,14 +166,14 @@ const ContactUsSection = ()=>{
                                 "Get In",
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                    lineNumber: 94,
+                                    lineNumber: 118,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 "Touch With Us"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/common/getIntouch.tsx",
-                            lineNumber: 92,
+                            lineNumber: 116,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -118,13 +181,13 @@ const ContactUsSection = ()=>{
                             children: "Explore our commitment to exceptional customer support. Our team is ready to assist you around the clock, ensuring a smooth and reliable experience with IntarVAS services."
                         }, void 0, false, {
                             fileName: "[project]/components/common/getIntouch.tsx",
-                            lineNumber: 97,
+                            lineNumber: 121,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/common/getIntouch.tsx",
-                    lineNumber: 91,
+                    lineNumber: 115,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -138,7 +201,7 @@ const ContactUsSection = ()=>{
                                     children: "How can we help you?"
                                 }, void 0, false, {
                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                    lineNumber: 108,
+                                    lineNumber: 132,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -152,7 +215,7 @@ const ContactUsSection = ()=>{
                                                     children: "Full Name"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 113,
+                                                    lineNumber: 137,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -166,13 +229,13 @@ const ContactUsSection = ()=>{
                                                     className: "w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 116,
+                                                    lineNumber: 140,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                            lineNumber: 112,
+                                            lineNumber: 136,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -182,7 +245,7 @@ const ContactUsSection = ()=>{
                                                     children: "Email Address"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 130,
+                                                    lineNumber: 154,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -196,13 +259,13 @@ const ContactUsSection = ()=>{
                                                     className: "w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 133,
+                                                    lineNumber: 157,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                            lineNumber: 129,
+                                            lineNumber: 153,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -212,7 +275,7 @@ const ContactUsSection = ()=>{
                                                     children: "Phone Number"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 147,
+                                                    lineNumber: 171,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -225,13 +288,13 @@ const ContactUsSection = ()=>{
                                                     className: "w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 150,
+                                                    lineNumber: 174,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                            lineNumber: 146,
+                                            lineNumber: 170,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -241,7 +304,7 @@ const ContactUsSection = ()=>{
                                                     children: "Subject"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 163,
+                                                    lineNumber: 187,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -255,13 +318,13 @@ const ContactUsSection = ()=>{
                                                     className: "w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 166,
+                                                    lineNumber: 190,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                            lineNumber: 162,
+                                            lineNumber: 186,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -271,7 +334,7 @@ const ContactUsSection = ()=>{
                                                     children: "Your Message"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 180,
+                                                    lineNumber: 204,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -285,55 +348,14 @@ const ContactUsSection = ()=>{
                                                     className: "w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 183,
+                                                    lineNumber: 207,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                            lineNumber: 179,
+                                            lineNumber: 203,
                                             columnNumber: 15
-                                        }, ("TURBOPACK compile-time value", void 0)),
-                                        puzzle && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "bg-blue-50 border border-blue-200 rounded-lg p-4",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                    className: "block text-sm font-medium text-gray-700 mb-2",
-                                                    children: [
-                                                        "Security Question: ",
-                                                        puzzle.question
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 198,
-                                                    columnNumber: 19
-                                                }, ("TURBOPACK compile-time value", void 0)),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                    type: "number",
-                                                    value: puzzleAnswer,
-                                                    onChange: (e)=>setPuzzleAnswer(e.target.value),
-                                                    placeholder: "Enter your answer",
-                                                    required: true,
-                                                    disabled: isLoading,
-                                                    className: "w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 201,
-                                                    columnNumber: 19
-                                                }, ("TURBOPACK compile-time value", void 0)),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-xs text-gray-500 mt-2",
-                                                    children: "This helps us prevent spam and ensure you're a real person."
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 210,
-                                                    columnNumber: 19
-                                                }, ("TURBOPACK compile-time value", void 0))
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/components/common/getIntouch.tsx",
-                                            lineNumber: 197,
-                                            columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         statusMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "text-center p-3 rounded-lg bg-gray-100",
@@ -342,12 +364,12 @@ const ContactUsSection = ()=>{
                                                 children: statusMessage
                                             }, void 0, false, {
                                                 fileName: "[project]/components/common/getIntouch.tsx",
-                                                lineNumber: 219,
+                                                lineNumber: 222,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         }, void 0, false, {
                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                            lineNumber: 218,
+                                            lineNumber: 221,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -359,24 +381,24 @@ const ContactUsSection = ()=>{
                                                 children: isLoading ? "Submitting..." : "Submit"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/common/getIntouch.tsx",
-                                                lineNumber: 225,
+                                                lineNumber: 228,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0))
                                         }, void 0, false, {
                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                            lineNumber: 224,
+                                            lineNumber: 227,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                    lineNumber: 110,
+                                    lineNumber: 134,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/common/getIntouch.tsx",
-                            lineNumber: 107,
+                            lineNumber: 131,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -390,7 +412,7 @@ const ContactUsSection = ()=>{
                                             children: "Prefer a direct approach?"
                                         }, void 0, false, {
                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                            lineNumber: 240,
+                                            lineNumber: 243,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -405,12 +427,12 @@ const ContactUsSection = ()=>{
                                                                 className: "w-6 h-6 text-blue-500"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/common/getIntouch.tsx",
-                                                                lineNumber: 248,
+                                                                lineNumber: 251,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                                            lineNumber: 247,
+                                                            lineNumber: 250,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -420,7 +442,7 @@ const ContactUsSection = ()=>{
                                                                     children: "Contact Us"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                                    lineNumber: 251,
+                                                                    lineNumber: 254,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -428,19 +450,19 @@ const ContactUsSection = ()=>{
                                                                     children: "07001340000"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                                    lineNumber: 252,
+                                                                    lineNumber: 255,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                                            lineNumber: 250,
+                                                            lineNumber: 253,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 246,
+                                                    lineNumber: 249,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -452,12 +474,12 @@ const ContactUsSection = ()=>{
                                                                 className: "w-6 h-6 text-blue-500"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/common/getIntouch.tsx",
-                                                                lineNumber: 259,
+                                                                lineNumber: 262,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                                            lineNumber: 258,
+                                                            lineNumber: 261,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -467,7 +489,7 @@ const ContactUsSection = ()=>{
                                                                     children: "Email Us"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                                    lineNumber: 262,
+                                                                    lineNumber: 265,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -475,19 +497,19 @@ const ContactUsSection = ()=>{
                                                                     children: "support@intarvas.com"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                                    lineNumber: 263,
+                                                                    lineNumber: 266,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                                            lineNumber: 261,
+                                                            lineNumber: 264,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 257,
+                                                    lineNumber: 260,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -499,12 +521,12 @@ const ContactUsSection = ()=>{
                                                                 className: "w-6 h-6 text-blue-500"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/common/getIntouch.tsx",
-                                                                lineNumber: 270,
+                                                                lineNumber: 273,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                                            lineNumber: 269,
+                                                            lineNumber: 272,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -514,7 +536,7 @@ const ContactUsSection = ()=>{
                                                                     children: "Business Hours"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                                    lineNumber: 273,
+                                                                    lineNumber: 276,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -522,31 +544,31 @@ const ContactUsSection = ()=>{
                                                                     children: "Mon-Fri 9.am-5pm"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                                    lineNumber: 274,
+                                                                    lineNumber: 277,
                                                                     columnNumber: 21
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                                            lineNumber: 272,
+                                                            lineNumber: 275,
                                                             columnNumber: 19
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                    lineNumber: 268,
+                                                    lineNumber: 271,
                                                     columnNumber: 17
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/common/getIntouch.tsx",
-                                            lineNumber: 244,
+                                            lineNumber: 247,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                    lineNumber: 239,
+                                    lineNumber: 242,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -567,7 +589,7 @@ const ContactUsSection = ()=>{
                                                 title: "IntarVAS Office Location - Victoria Island, Lagos"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/common/getIntouch.tsx",
-                                                lineNumber: 284,
+                                                lineNumber: 287,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -578,7 +600,7 @@ const ContactUsSection = ()=>{
                                                         children: "Visit Our Office"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/common/getIntouch.tsx",
-                                                        lineNumber: 297,
+                                                        lineNumber: 300,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -590,12 +612,12 @@ const ContactUsSection = ()=>{
                                                                     className: "w-4 h-4 text-white"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                                                    lineNumber: 302,
+                                                                    lineNumber: 305,
                                                                     columnNumber: 23
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/common/getIntouch.tsx",
-                                                                lineNumber: 301,
+                                                                lineNumber: 304,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -605,33 +627,33 @@ const ContactUsSection = ()=>{
                                                                         children: "Churchgate Tower 2,"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/common/getIntouch.tsx",
-                                                                        lineNumber: 305,
+                                                                        lineNumber: 308,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                         children: "30 Churchgate Street (formerly Afribank"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/common/getIntouch.tsx",
-                                                                        lineNumber: 306,
+                                                                        lineNumber: 309,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                         children: "Street) Victoria Island Lagos, Nigeria."
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/common/getIntouch.tsx",
-                                                                        lineNumber: 307,
+                                                                        lineNumber: 310,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/common/getIntouch.tsx",
-                                                                lineNumber: 304,
+                                                                lineNumber: 307,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/common/getIntouch.tsx",
-                                                        lineNumber: 300,
+                                                        lineNumber: 303,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -645,57 +667,57 @@ const ContactUsSection = ()=>{
                                                                 className: "w-4 h-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/common/getIntouch.tsx",
-                                                                lineNumber: 317,
+                                                                lineNumber: 320,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/common/getIntouch.tsx",
-                                                        lineNumber: 310,
+                                                        lineNumber: 313,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/common/getIntouch.tsx",
-                                                lineNumber: 296,
+                                                lineNumber: 299,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/common/getIntouch.tsx",
-                                        lineNumber: 283,
+                                        lineNumber: 286,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/components/common/getIntouch.tsx",
-                                    lineNumber: 281,
+                                    lineNumber: 284,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/common/getIntouch.tsx",
-                            lineNumber: 237,
+                            lineNumber: 240,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/common/getIntouch.tsx",
-                    lineNumber: 105,
+                    lineNumber: 129,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/common/getIntouch.tsx",
-            lineNumber: 89,
+            lineNumber: 113,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/components/common/getIntouch.tsx",
-        lineNumber: 88,
+        lineNumber: 112,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
-_s(ContactUsSection, "mfgNGdXPv4xa7VtpaK8EhCuW9zE=");
+_s(ContactUsSection, "TuNDA0UaTz0Byiv5W4NIFVzUBAc=");
 _c = ContactUsSection;
 const __TURBOPACK__default__export__ = ContactUsSection;
 var _c;
@@ -950,4 +972,4 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 }),
 ]);
 
-//# sourceMappingURL=_04fbf1f6._.js.map
+//# sourceMappingURL=_cd72ba3c._.js.map

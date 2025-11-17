@@ -1801,9 +1801,11 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 const ServicesShowcase = ()=>{
@@ -1901,7 +1903,7 @@ const ServicesShowcase = ()=>{
                 className: "w-8 h-8"
             }, void 0, false, {
                 fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                lineNumber: 47,
+                lineNumber: 48,
                 columnNumber: 13
             }, ("TURBOPACK compile-time value", void 0)),
             title: "IntarvAS PBX",
@@ -1916,7 +1918,7 @@ const ServicesShowcase = ()=>{
                 className: "w-8 h-8"
             }, void 0, false, {
                 fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                lineNumber: 55,
+                lineNumber: 56,
                 columnNumber: 13
             }, ("TURBOPACK compile-time value", void 0)),
             title: "All in one solution",
@@ -1931,7 +1933,7 @@ const ServicesShowcase = ()=>{
                 className: "w-8 h-8"
             }, void 0, false, {
                 fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                lineNumber: 63,
+                lineNumber: 64,
                 columnNumber: 13
             }, ("TURBOPACK compile-time value", void 0)),
             title: "Vanity and Toll-free numbers",
@@ -1946,7 +1948,7 @@ const ServicesShowcase = ()=>{
                 className: "w-8 h-8"
             }, void 0, false, {
                 fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                lineNumber: 71,
+                lineNumber: 72,
                 columnNumber: 13
             }, ("TURBOPACK compile-time value", void 0)),
             title: "Bulk Messaging",
@@ -1971,12 +1973,12 @@ const ServicesShowcase = ()=>{
                                 children: "Our services"
                             }, void 0, false, {
                                 fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                lineNumber: 92,
+                                lineNumber: 93,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                            lineNumber: 91,
+                            lineNumber: 92,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1984,7 +1986,7 @@ const ServicesShowcase = ()=>{
                             children: "Where We Thrive"
                         }, void 0, false, {
                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                            lineNumber: 96,
+                            lineNumber: 97,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1992,13 +1994,13 @@ const ServicesShowcase = ()=>{
                             children: "Discover reliable telecom tools built for Nigerian businesses and government agencies."
                         }, void 0, false, {
                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                            lineNumber: 99,
+                            lineNumber: 100,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                    lineNumber: 84,
+                    lineNumber: 85,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2014,7 +2016,7 @@ const ServicesShowcase = ()=>{
                                             children: service.icon
                                         }, void 0, false, {
                                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                            lineNumber: 118,
+                                            lineNumber: 119,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2022,7 +2024,7 @@ const ServicesShowcase = ()=>{
                                             children: service.title
                                         }, void 0, false, {
                                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                            lineNumber: 121,
+                                            lineNumber: 122,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2030,22 +2032,29 @@ const ServicesShowcase = ()=>{
                                             children: service.description
                                         }, void 0, false, {
                                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                            lineNumber: 122,
+                                            lineNumber: 123,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                            variant: "hero",
-                                            className: "px-6 py-2 text-sm",
-                                            children: "Learn More"
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                            href: "/contact",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                variant: "hero",
+                                                className: "px-6 py-2 text-sm hover:scale-105 transition-transform duration-300",
+                                                children: "Learn More"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/sections/WeThriveComponent.tsx",
+                                                lineNumber: 127,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0))
                                         }, void 0, false, {
                                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                            lineNumber: 125,
+                                            lineNumber: 126,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                    lineNumber: 117,
+                                    lineNumber: 118,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2058,39 +2067,39 @@ const ServicesShowcase = ()=>{
                                             className: "w-full h-auto rounded-2xl hover:scale-105 transition-transform duration-300"
                                         }, void 0, false, {
                                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                            lineNumber: 139,
+                                            lineNumber: 142,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                        lineNumber: 132,
+                                        lineNumber: 135,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                                    lineNumber: 131,
+                                    lineNumber: 134,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, index, true, {
                             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                            lineNumber: 108,
+                            lineNumber: 109,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)))
                 }, void 0, false, {
                     fileName: "[project]/components/sections/WeThriveComponent.tsx",
-                    lineNumber: 106,
+                    lineNumber: 107,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/sections/WeThriveComponent.tsx",
-            lineNumber: 82,
+            lineNumber: 83,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/components/sections/WeThriveComponent.tsx",
-        lineNumber: 81,
+        lineNumber: 82,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };

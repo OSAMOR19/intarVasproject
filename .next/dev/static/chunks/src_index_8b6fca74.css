@@ -1152,6 +1152,10 @@ html {
   height: 100svh;
 }
 
+.h-14 {
+  height: 3.5rem;
+}
+
 .max-h-0 {
   max-height: 0;
 }
@@ -1406,6 +1410,10 @@ html {
 
 .w-\[90\%\] {
   width: 90%;
+}
+
+.w-14 {
+  width: 3.5rem;
 }
 
 .min-w-0 {
@@ -1837,6 +1845,10 @@ html {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.cursor-grab {
+  cursor: grab;
 }
 
 .touch-none {
@@ -2306,6 +2318,11 @@ html {
   border-color: #fff3;
 }
 
+.border-blue-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(191 219 254 / var(--tw-border-opacity, 1));
+}
+
 .border-l-transparent {
   border-left-color: #0000;
 }
@@ -2547,6 +2564,34 @@ html {
 
 .bg-white\/95 {
   background-color: #fffffff2;
+}
+
+.bg-blue-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity, 1));
+}
+
+.bg-green-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 252 231 / var(--tw-bg-opacity, 1));
+}
+
+.bg-green-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity, 1));
+}
+
+.bg-green-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity, 1));
+}
+
+.bg-black\/50 {
+  background-color: #00000080;
+}
+
+.bg-opacity-50 {
+  --tw-bg-opacity: .5;
 }
 
 .bg-gradient-to-b {
@@ -3320,6 +3365,16 @@ html {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.text-green-700 {
+  --tw-text-opacity: 1;
+  color: rgb(21 128 61 / var(--tw-text-opacity, 1));
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
+}
+
 .underline-offset-4 {
   text-underline-offset: 4px;
 }
@@ -3638,6 +3693,10 @@ html {
 
 .zoom-in-95 {
   --tw-enter-scale: .95;
+}
+
+.zoom-in {
+  --tw-enter-scale: 0;
 }
 
 .duration-1000 {
@@ -4191,6 +4250,11 @@ html {
   background-color: hsl(var(--sidebar-accent));
 }
 
+.hover\:bg-blue-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:from-blue-700:hover {
   --tw-gradient-from: #1d4ed8 var(--tw-gradient-from-position);
   --tw-gradient-to: #1d4ed800 var(--tw-gradient-to-position);
@@ -4264,6 +4328,11 @@ html {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-gray-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity, 1));
 }
 
 .hover\:underline:hover {
@@ -4422,6 +4491,10 @@ html {
 
 .focus-visible\:ring-offset-background:focus-visible {
   --tw-ring-offset-color: hsl(var(--background));
+}
+
+.active\:cursor-grabbing:active {
+  cursor: grabbing;
 }
 
 .active\:bg-sidebar-accent:active {

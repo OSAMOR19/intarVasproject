@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Headphones, Mail, Clock, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { generatePuzzle, type Puzzle } from "@/lib/puzzle";
+import PuzzleModal from "@/components/ui/PuzzleModal";
 
 const ContactUsSection = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +16,14 @@ const ContactUsSection = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
+  const [puzzle, setPuzzle] = useState<Puzzle | null>(null);
+  const [showPuzzleModal, setShowPuzzleModal] = useState(false);
+  const [puzzleAnswer, setPuzzleAnswer] = useState<number | null>(null);
+
+  // Generate puzzle on component mount
+  useEffect(() => {
+    setPuzzle(generatePuzzle());
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -22,10 +32,29 @@ const ContactUsSection = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    // Show puzzle modal before submitting
+    setShowPuzzleModal(true);
+  };
+
+  const handlePuzzleSuccess = async (answer: number) => {
+    // Close modal
+    setShowPuzzleModal(false);
+    
+    // Store the answer
+    setPuzzleAnswer(answer);
+    
+    // Now submit the form
     setIsLoading(true);
     setStatusMessage("");
+    
+    if (!puzzle) {
+      setStatusMessage("❌ Security verification failed. Please try again.");
+      setIsLoading(false);
+      setTimeout(() => setStatusMessage(""), 5000);
+      return;
+    }
     
     console.log("Form submitted:", formData);
     
@@ -35,7 +64,11 @@ const ContactUsSection = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          puzzleQuestion: puzzle.question,
+          puzzleAnswer: answer,
+        }),
       });
 
       const result = await response.json();
@@ -50,18 +83,29 @@ const ContactUsSection = () => {
           subject: "",
           message: "",
         });
+        // Reset puzzle and generate a new one
+        setPuzzleAnswer(null);
+        setPuzzle(generatePuzzle());
       } else {
         setStatusMessage(`❌ ${result.message || "Failed to send message. Please try again."}`);
+        // Generate new puzzle on error
+        setPuzzle(generatePuzzle());
       }
     } catch (error) {
       console.error("Error sending email:", error);
       setStatusMessage("❌ Failed to send message. Please try again.");
+      // Generate new puzzle on error
+      setPuzzle(generatePuzzle());
     }
     
     setIsLoading(false);
     
     // Clear message after 5 seconds
     setTimeout(() => setStatusMessage(""), 5000);
+  };
+
+  const handlePuzzleClose = () => {
+    setShowPuzzleModal(false);
   };
 
   return (
@@ -281,6 +325,14 @@ const ContactUsSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Puzzle Modal */}
+      <PuzzleModal
+        isOpen={showPuzzleModal}
+        puzzle={puzzle}
+        onClose={handlePuzzleClose}
+        onSuccess={handlePuzzleSuccess}
+      />
     </section>
   );
 };

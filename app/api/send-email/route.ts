@@ -1,12 +1,29 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { validatePuzzleAnswer } from "@/lib/puzzle";
 
 const resend = new Resend("re_Tadpj79T_27eSiFhauRax21Qpv3wVmTgL");
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { fullName, email, phone, subject, message } = body;
+    const { fullName, email, phone, subject, message, puzzleQuestion, puzzleAnswer } = body;
+
+    // Validate puzzle answer (bot protection)
+    if (!puzzleQuestion || puzzleAnswer === undefined) {
+      return NextResponse.json(
+        { success: false, message: "Security question is required" },
+        { status: 400 }
+      );
+    }
+
+    const isPuzzleValid = validatePuzzleAnswer(puzzleQuestion, puzzleAnswer);
+    if (!isPuzzleValid) {
+      return NextResponse.json(
+        { success: false, message: "Failed puzzle validation. Please try again." },
+        { status: 400 }
+      );
+    }
 
     // NOTE: Using onboarding@resend.dev for testing until intarvas.com domain is verified
     // To verify your domain, visit: https://resend.com/domains
