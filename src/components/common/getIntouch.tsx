@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Headphones, Mail, Clock, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";

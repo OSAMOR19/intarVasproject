@@ -1,0 +1,11 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/about/page": "app/about/page.js",
+  "/api/send-email/route": "app/api/send-email/route.js",
+  "/contact/page": "app/contact/page.js",
+  "/page": "app/page.js",
+  "/services/all-in-solutions/page": "app/services/all-in-solutions/page.js",
+  "/services/bulk-messaging/page": "app/services/bulk-messaging/page.js",
+  "/services/numbers/page": "app/services/numbers/page.js",
+  "/services/pbx/page": "app/services/pbx/page.js"
+}

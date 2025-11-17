@@ -1,3 +1,5 @@
+"use client";
+
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import explorebtn from "@/assets/buttons/exploreservicebutton.svg";

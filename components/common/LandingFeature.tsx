@@ -1,0 +1,551 @@
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
+import {
+  Phone,
+  Mic,
+  BarChart3,
+  Mail,
+  PhoneForwarded,
+  TrendingUp,
+} from "lucide-react";
+
+
+import { Button } from "@/components/ui/button";
+import { Carousel } from "../ui/carousel";
+import { CarouselPlugin } from "./carousel";
+
+const FeaturesSection = () => {
+  const [activeFeature, setActiveFeature] = useState(2);
+  const [activeTab, setActiveTab] = useState("pbx");
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const pbxFeatures = [
+    {
+      icon: (
+        <img
+          src="/correctpuzlleicon.svg"
+          alt="Virtual Extensions"
+          style={{ width: "26px", height: "26px" }}
+        />
+      ),
+      title: "Virtual Extensions",
+      subtitle: "for scalable teams.",
+    },
+    {
+      icon: (
+        <img
+          src="/callrecordicon.svg"
+          alt="Call Recording"
+          style={{ width: "25px", height: "23px" }}
+        />
+      ),
+      title: "Call Recording",
+      subtitle: "for compliance and quality checks.",
+    },
+    {
+      icon: (
+        <img
+          src="/analysicreporticon.svg"
+          alt="Analytics & Reporting"
+          style={{ width: "24px", height: "22px" }}
+        />
+      ),
+      title: "Analytics & Reporting",
+      subtitle: "dashboards",
+    },
+    {
+      icon: (
+        <img
+          src="/voicetoemailicon.svg"
+          alt="Voicemail-to-Email"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Voicemail-to-Email",
+      subtitle: "for better accessibility.",
+    },
+    {
+      icon: (
+        <img
+          src="/callfowardingicon.svg"
+          alt="Call Forwarding & Routing"
+          style={{ width: "26px", height: "26px" }}
+        />
+      ),
+      title: "Call Forwarding & Routing",
+      subtitle: "flexibility.",
+    },
+    {
+      icon: (
+        <img
+          src="/seamlessscalabilityicon.svg"
+          alt="Seamless Scalability"
+          style={{ width: "18px", height: "18px" }}
+        />
+      ),
+      title: "Seamless Scalability",
+      subtitle: "for growing businesses.",
+    },
+  ];
+
+  const bulkMessagingFeatures = [
+    {
+      icon: (
+        <img
+          src="/bulksmsicon.svg"
+          alt="Bulk SMS"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Bulk SMS delivery",
+      subtitle: "at scale.",
+    },
+    {
+      icon: (
+        <img
+          src="/ussdservicesicon.svg"
+          alt="USSD Services"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "USSD Services",
+      subtitle: "for customer interaction.",
+    },
+    {
+      icon: (
+        <img
+          src="/a2pmessagingicon.svg"
+          alt="A2P Messaging"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "A2P Messaging APIs",
+      subtitle: "for integration.",
+    },
+    {
+      icon: (
+        <img
+          src="/twowaymessagingicon.svg"
+          alt="Two-way Messaging"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Two-way Messaging",
+      subtitle: "with customers.",
+    },
+    {
+      icon: (
+        <img
+          src="/realtimedeliveryicon.svg"
+          alt="Real-Time Delivery"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Real-Time Delivery Reports",
+      subtitle: "with metrics.",
+    },
+    {
+      icon: (
+        <img
+          src="/customSIDicon.svg"
+          alt="Custom Sender IDs"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Custom Sender IDs",
+      subtitle: "for brand identity.",
+    },
+  ];
+
+  const allInOneFeatures = [
+    {
+      icon: (
+        <img
+          src="/headphoneicon.svg"
+          alt="Unified Support"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Unified Omnichannel Support",
+      subtitle: "(voice, chat, email, social).",
+    },
+    {
+      icon: (
+        <img
+          src="/smartcrmicon.svg"
+          alt="Smart CRM"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Smart CRM",
+      subtitle: "with customer history and insights.",
+    },
+    {
+      icon: (
+        <img
+          src="/ticketingautomationicon.svg"
+          alt="Ticketing & Automation"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Ticketing & Automation",
+      subtitle: "for faster resolutions.",
+    },
+    {
+      icon: (
+        <img
+          src="/securityicon.svg"
+          alt="Security & Compliance"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Security & Compliance",
+      subtitle: "built for enterprise standards.",
+    },
+    {
+      icon: (
+        <img
+          src="/customworkflows.svg"
+          alt="Custom Workflows"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Custom workflows",
+      subtitle: "to match your business processes.",
+    },
+    {
+      icon: (
+        <img
+          src="/aianalyticsicon.svg"
+          alt="AI Analytics"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "AI-powered Analytics",
+      subtitle: "for smarter decision making.",
+    },
+  ];
+
+  const numbersFeatures = [
+    {
+      icon: (
+        <img
+          src="/memorablevanity.svg"
+          alt="Vanity Numbers"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Memorable Vanity Numbers (0700)",
+      subtitle: "for branding.",
+    },
+    {
+      icon: (
+        <img
+          src="/tollfreeicon.svg"
+          alt="Toll-Free Numbers"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Toll-Free Numbers (0800)",
+      subtitle: "for nationwide reach.",
+    },
+    {
+      icon: (
+        <img
+          src="/enhancedtrusticon.svg"
+          alt="Enhanced Trust"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Enhanced Customer Trust",
+      subtitle: "with professional presence.",
+    },
+    {
+      icon: (
+        <img
+          src="/callroutingicon.svg"
+          alt="Call Routing"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Call Routing Options",
+      subtitle: "for flexibility.",
+    },
+    {
+      icon: (
+        <img
+          src="/scalableicon.svg"
+          alt="Scalable"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Scalable",
+      subtitle: "for SMEs & Large Corporates.",
+    },
+    {
+      icon: (
+        <img
+          src="/customeraccessibilityicon.svg"
+          alt="Customer Accessibility"
+          style={{ width: "24px", height: "24px" }}
+        />
+      ),
+      title: "Improved Customer Accessibility",
+      subtitle: "anywhere in Nigeria.",
+    },
+  ];
+
+  const getCurrentFeatures = () => {
+    switch (activeTab) {
+      case "pbx":
+        return pbxFeatures;
+      case "messaging":
+        return bulkMessagingFeatures;
+      case "allinone":
+        return allInOneFeatures;
+      case "numbers":
+        return numbersFeatures;
+      default:
+        return pbxFeatures;
+    }
+  };
+
+  const getCurrentImage = () => {
+    switch (activeTab) {
+      case "pbx":
+        return "images/phone.png";
+      case "messaging":
+        return "/bulkmessagingphoneimage.svg";
+      case "allinone":
+        return "/allinoneimage.svg";
+      case "numbers":
+        return "/0700phone.svg";
+      default:
+        return "images/phone.png";
+    }
+  };
+
+  const getImageSize = () => {
+    switch (activeTab) {
+      case "pbx":
+        return "w-[400px] h-full";
+      case "messaging":
+        return "w-[400px] h-full";
+      case "allinone":
+        return "w-[500px] h-full";
+      case "numbers":
+        return "w-[400px] h-full";
+      default:
+        return "w-[400px] h-full";
+    }
+  };
+
+  // Scroll animation effect
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  const mockChartData = [
+    {
+      day: "Mon",
+      height: 60,
+      colors: ["bg-blue-400", "bg-green-400", "bg-pink-400"],
+    },
+    {
+      day: "Tue",
+      height: 70,
+      colors: ["bg-blue-400", "bg-green-400", "bg-pink-400"],
+    },
+    {
+      day: "Wed",
+      height: 85,
+      colors: ["bg-blue-400", "bg-green-400", "bg-pink-400"],
+    },
+    {
+      day: "Thu",
+      height: 75,
+      colors: ["bg-blue-400", "bg-green-400", "bg-pink-400"],
+    },
+    {
+      day: "Fri",
+      height: 95,
+      colors: ["bg-blue-400", "bg-green-400", "bg-pink-400"],
+    },
+    { day: "Sat", height: 80, colors: ["bg-pink-400", "bg-green-400"] },
+    { day: "Sun", height: 65, colors: ["bg-green-400", "bg-pink-400"] },
+  ];
+
+  return (
+    <div
+      ref={sectionRef}
+      className="md:min-h-screen bg-black text-white px-3 py-8 md:py-20 relative overflow-hidden"
+    >
+      {/* Header Navigation */}
+      <div
+        className={`flex max-w-[300px] md:max-w-[44rem] mx-auto md:p-1 rounded-full md:flex-wrap bg-[#0C0C0C]  items-center justify-center md:gap-8 mb-10 md:mb-20 transition-all duration-1000 ${
+          isVisible
+            ? "opacity-100 transform translate-y-0"
+            : "opacity-0 transform translate-y-8"
+        }`}
+      >
+        <button
+          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[12px] md:text-sm transition-all duration-300 ${
+            activeTab === "pbx"
+              ? "bg-[#007DFE] text-white"
+              : "text-gray-400 hover:text-white"
+          }`}
+          onClick={() => setActiveTab("pbx")}
+        >
+          <span className="hidden sm:inline">IntarvAS PBX</span>
+          <span className="sm:hidden">PBX</span>
+        </button>
+        <button
+          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[12px] md:text-sm transition-all duration-300 truncate ${
+            activeTab === "allinone"
+              ? "bg-[#007DFE] text-white"
+              : "text-gray-400 hover:text-white"
+          }`}
+          onClick={() => setActiveTab("allinone")}
+        >
+          <span className="hidden sm:inline">All in one solution</span>
+          <span className="sm:hidden">AIO...</span>
+        </button>
+        <button
+          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[12px] md:text-sm transition-all duration-300 ${
+            activeTab === "messaging"
+              ? "bg-[#007DFE] text-white"
+              : "text-gray-400 hover:text-white"
+          }`}
+          onClick={() => setActiveTab("messaging")}
+        >
+          Bulk Messaging
+        </button>
+        <button
+          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[12px] md:text-sm transition-all duration-300 ${
+            activeTab === "numbers"
+              ? "bg-[#007DFE] text-white"
+              : "text-gray-400 hover:text-white"
+          }`}
+          onClick={() => setActiveTab("numbers")}
+        >
+          <span className="hidden sm:inline">0700 & 0800</span>
+          <span className="sm:hidden">Numbers</span>
+        </button>
+      </div>
+
+      {/* Main Content */}
+      <div
+        className={`max-w-7xl mx-auto hidden md:grid grid-cols-1 lg:grid-cols-2 gap-16 items-center transition-all duration-1000 ${
+          isVisible
+            ? "opacity-100 transform translate-y-0"
+            : "opacity-0 transform translate-y-12"
+        }`}
+      >
+        {/* Left Side - Features List */}
+        <div
+          className={`bg-[#0C0C0C] rounded-3xl p-8 space-y-8 h-[600px] flex flex-col justify-center transition-all duration-1000 ${
+            isVisible
+              ? "opacity-100 transform translate-x-0"
+              : "opacity-0 transform -translate-x-12"
+          }`}
+        >
+          {getCurrentFeatures().map((feature, index) => (
+            <div
+              key={`${activeTab}-${index}`}
+              className="flex relative items-center gap-4 group animate-fade-in-up"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              {/* Icon */}
+              <div
+                className={`bg-[#1F2228] z-10 w-12 h-12 rounded-lg flex-shrink-0 flex items-center justify-center transition-all duration-500 hover:scale-110 hover:bg-[#2A2D35]`}
+              >
+                {feature.icon}
+              </div>
+
+              {/* Text */}
+              <div className="flex-1">
+                <h3 className="text-0.7xl transition-all duration-300 hover:text-white">
+                  <span className="text-blue-500 font-medium transition-all duration-300 hover:text-blue-400">
+                    {feature.title}
+                  </span>
+                  <span className="text-gray-300 ml-2 transition-all duration-300 hover:text-gray-200">
+                    {feature.subtitle}
+                  </span>
+                </h3>
+              </div>
+
+              {/* Connector Line */}
+              {index < getCurrentFeatures().length - 1 && (
+                <div
+                  className="absolute top-[-20px] overflow-hidden left-[39px] mt-16 w-0.5 h-16 md:h-10 border-l-2 border-dashed border-blue-500 animate-pulse-slow"
+                  style={{ marginLeft: "-16px" }}
+                ></div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Right Side - Dynamic Image */}
+        <div
+          className={`bg-[#0C0C0C] rounded-3xl p-8 flex justify-center items-center h-[600px] transition-all duration-1000 ${
+            isVisible
+              ? "opacity-100 transform translate-x-0"
+              : "opacity-0 transform translate-x-12"
+          }`}
+        >
+          <img
+            key={activeTab}
+            src={getCurrentImage()}
+            alt={`${activeTab} Content`}
+            className={`${getImageSize()} object-contain transition-all duration-500 ease-in-out animate-fade-in-right hover:scale-105`}
+          />
+        </div>
+      </div>
+
+      <div>
+        {/* Mobile View */}
+        <div className="md:hidden mt-10">
+          <div
+            className={`flex flex-col items-center space-y-8 transition-all duration-1000 ${
+              isVisible
+                ? "opacity-100 transform translate-y-0"
+                : "opacity-0 transform translate-y-12"
+            }`}
+          >
+            <img
+              key={activeTab}
+              src={getCurrentImage()}
+              alt={`${activeTab} Content`}
+              className={`w-[300px] h-[300px] object-contain transition-all duration-500 ease-in-out animate-fade-in-right hover:scale-105`}
+            />
+
+            <CarouselPlugin list={getCurrentFeatures()} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FeaturesSection;
