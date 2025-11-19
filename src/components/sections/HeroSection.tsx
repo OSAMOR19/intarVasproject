@@ -140,90 +140,91 @@ const HeroSection = ({
           "-=0.4"
         );
 
-      if (hero2Ref.current && sectionRef.current) {
-        let scrollStep = 0; 
-        const maxSteps = 2; 
-        let isAnimating = false;
-        let lastScrollTime = 0;
-        const scrollDelay = 600; 
+      // SCROLL SCALING ANIMATION - COMMENTED OUT
+      // if (hero2Ref.current && sectionRef.current) {
+      //   let scrollStep = 0;
+      //   const maxSteps = 2;
+      //   let isAnimating = false;
+      //   let lastScrollTime = 0;
+      //   const scrollDelay = 600;
 
-        const handleWheel = (e: WheelEvent) => {
-          if (!sectionRef.current || !hero2Ref.current) return;
+      //   const handleWheel = (e: WheelEvent) => {
+      //     if (!sectionRef.current || !hero2Ref.current) return;
 
-          const rect = sectionRef.current.getBoundingClientRect();
-          const isInSection =
-            rect.top <= 0 && rect.bottom >= window.innerHeight;
-          const now = Date.now();
+      //     const rect = sectionRef.current.getBoundingClientRect();
+      //     const isInSection =
+      //       rect.top <= 0 && rect.bottom >= window.innerHeight;
+      //     const now = Date.now();
 
-          if (isInSection && e.deltaY > 0) {
-            if (scrollStep < maxSteps) {
-              e.preventDefault();
+      //     if (isInSection && e.deltaY > 0) {
+      //       if (scrollStep < maxSteps) {
+      //         e.preventDefault();
 
-              if (!isAnimating && now - lastScrollTime > scrollDelay) {
-                isAnimating = true;
-                lastScrollTime = now;
-                scrollStep++;
+      //         if (!isAnimating && now - lastScrollTime > scrollDelay) {
+      //           isAnimating = true;
+      //           lastScrollTime = now;
+      //           scrollStep++;
 
-                const scaleValues = [1, 1.8, 2.5];
-                const xValues = ["0%", "5%", "10%"];
-                const yValues = ["0%", "-3%", "-5%"];
-                const opacityValues = [1, 1, 1]; 
+      //           const scaleValues = [1, 1.8, 2.5];
+      //           const xValues = ["0%", "5%", "10%"];
+      //           const yValues = ["0%", "-3%", "-5%"];
+      //           const opacityValues = [1, 1, 1];
 
-                gsap.to(hero2Ref.current, {
-                  scale: scaleValues[scrollStep],
-                  x: xValues[scrollStep],
-                  y: yValues[scrollStep],
-                  opacity: opacityValues[scrollStep],
-                  duration: 0.6,
-                  ease: "power2.out",
-                  onComplete: () => {
-                    isAnimating = false;
-                    if (scrollStep >= maxSteps) {
-                      setAllowScroll(true);
-                    }
-                  },
-                });
-              }
-            }
-          }
+      //           gsap.to(hero2Ref.current, {
+      //             scale: scaleValues[scrollStep],
+      //             x: xValues[scrollStep],
+      //             y: yValues[scrollStep],
+      //             opacity: opacityValues[scrollStep],
+      //             duration: 0.6,
+      //             ease: "power2.out",
+      //             onComplete: () => {
+      //               isAnimating = false;
+      //               if (scrollStep >= maxSteps) {
+      //                 setAllowScroll(true);
+      //               }
+      //             },
+      //           });
+      //         }
+      //       }
+      //     }
 
-          if (isInSection && e.deltaY < 0 && scrollStep > 0) {
-            if (scrollStep <= maxSteps) {
-              e.preventDefault();
+      //     if (isInSection && e.deltaY < 0 && scrollStep > 0) {
+      //       if (scrollStep <= maxSteps) {
+      //         e.preventDefault();
 
-              if (!isAnimating && now - lastScrollTime > scrollDelay) {
-                isAnimating = true;
-                lastScrollTime = now;
-                scrollStep--;
-                setAllowScroll(false);
+      //         if (!isAnimating && now - lastScrollTime > scrollDelay) {
+      //           isAnimating = true;
+      //           lastScrollTime = now;
+      //           scrollStep--;
+      //           setAllowScroll(false);
 
-                const scaleValues = [1, 1.8, 2.5];
-                const xValues = ["0%", "5%", "10%"];
-                const yValues = ["0%", "-3%", "-5%"];
-                const opacityValues = [1, 1, 1];
+      //           const scaleValues = [1, 1.8, 2.5];
+      //           const xValues = ["0%", "5%", "10%"];
+      //           const yValues = ["0%", "-3%", "-5%"];
+      //           const opacityValues = [1, 1, 1];
 
-                gsap.to(hero2Ref.current, {
-                  scale: scaleValues[scrollStep],
-                  x: xValues[scrollStep],
-                  y: yValues[scrollStep],
-                  opacity: opacityValues[scrollStep],
-                  duration: 0.6,
-                  ease: "power2.out",
-                  onComplete: () => {
-                    isAnimating = false;
-                  },
-                });
-              }
-            }
-          }
-        };
+      //           gsap.to(hero2Ref.current, {
+      //             scale: scaleValues[scrollStep],
+      //             x: xValues[scrollStep],
+      //             y: yValues[scrollStep],
+      //             opacity: opacityValues[scrollStep],
+      //             duration: 0.6,
+      //             ease: "power2.out",
+      //             onComplete: () => {
+      //               isAnimating = false;
+      //             },
+      //           });
+      //         }
+      //       }
+      //     }
+      //   };
 
-        window.addEventListener("wheel", handleWheel, { passive: false });
+      //   window.addEventListener("wheel", handleWheel, { passive: false });
 
-        return () => {
-          window.removeEventListener("wheel", handleWheel);
-        };
-      }
+      //   return () => {
+      //     window.removeEventListener("wheel", handleWheel);
+      //   };
+      // }
 
       const checkIfInView = () => {
         if (!sectionRef.current || hasPlayed.current) return;
@@ -269,11 +270,14 @@ const HeroSection = ({
         <div className="flex flex-col pt-10 md:pt-24 lg:pt-36 2xl:pt-56 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px]">
           <h1
             ref={titleRef}
-            className="2xl:max-w-2xl lg:max-w-xl md:max-w-lg text-[32px] sm:text-[40px] md:text-[44px] xl:text-[52px] 2xl:text-[64px] font-inter text-white font-[800] tracking-tight leading-[1.2]"
+            className="2xl:max-w-2xl lg:max-w-[37rem] md:max-w-lg text-[32px] sm:text-[40px] md:text-[44px] lg:text-[64px]  font-inter text-white font-[800] tracking-tight leading-[1.2]"
           >
             {title}
           </h1>
-          <p ref={subtitleRef} className="text-[20px] text-[#C2C6CE] max-w-xl">
+          <p
+            ref={subtitleRef}
+            className="text-[20px] text-[#C2C6CE] max-w-[43rem]"
+          >
             {subtitle}
           </p>
           <div
@@ -328,10 +332,9 @@ const HeroSection = ({
             />
           </div>
 
-          {/* Hero-2 with expansion animation */}
           <div
             ref={hero2Ref}
-            className="z-40 w-[500px] h-[40%] bottom-0 lg:absolute -right-20 origin-center"
+            className="z-40 w-[600px] h-[50%] bottom-0 lg:absolute -right-48 origin-center"
           >
             <img
               src="/images/hero-2.png"
