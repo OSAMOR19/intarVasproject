@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
@@ -18,7 +18,6 @@ interface HeroSectionProps {
   imageAlt?: string;
 }
 
-// Global flag to track if this is the first ever load
 let isFirstPageLoad = true;
 
 const HeroSection = ({
@@ -35,9 +34,11 @@ const HeroSection = ({
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const hero2Ref = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const hasPlayed = useRef(false);
   const canStartAnimation = useRef(!isFirstPageLoad);
+  const [allowScroll, setAllowScroll] = useState(false);
 
   useEffect(() => {
     if (isFirstPageLoad) {
@@ -139,7 +140,91 @@ const HeroSection = ({
           "-=0.4"
         );
 
-      // Force play if already in view on load
+      if (hero2Ref.current && sectionRef.current) {
+        let scrollStep = 0; 
+        const maxSteps = 2; 
+        let isAnimating = false;
+        let lastScrollTime = 0;
+        const scrollDelay = 600; 
+
+        const handleWheel = (e: WheelEvent) => {
+          if (!sectionRef.current || !hero2Ref.current) return;
+
+          const rect = sectionRef.current.getBoundingClientRect();
+          const isInSection =
+            rect.top <= 0 && rect.bottom >= window.innerHeight;
+          const now = Date.now();
+
+          if (isInSection && e.deltaY > 0) {
+            if (scrollStep < maxSteps) {
+              e.preventDefault();
+
+              if (!isAnimating && now - lastScrollTime > scrollDelay) {
+                isAnimating = true;
+                lastScrollTime = now;
+                scrollStep++;
+
+                const scaleValues = [1, 1.8, 2.5];
+                const xValues = ["0%", "5%", "10%"];
+                const yValues = ["0%", "-3%", "-5%"];
+                const opacityValues = [1, 1, 1]; 
+
+                gsap.to(hero2Ref.current, {
+                  scale: scaleValues[scrollStep],
+                  x: xValues[scrollStep],
+                  y: yValues[scrollStep],
+                  opacity: opacityValues[scrollStep],
+                  duration: 0.6,
+                  ease: "power2.out",
+                  onComplete: () => {
+                    isAnimating = false;
+                    if (scrollStep >= maxSteps) {
+                      setAllowScroll(true);
+                    }
+                  },
+                });
+              }
+            }
+          }
+
+          if (isInSection && e.deltaY < 0 && scrollStep > 0) {
+            if (scrollStep <= maxSteps) {
+              e.preventDefault();
+
+              if (!isAnimating && now - lastScrollTime > scrollDelay) {
+                isAnimating = true;
+                lastScrollTime = now;
+                scrollStep--;
+                setAllowScroll(false);
+
+                const scaleValues = [1, 1.8, 2.5];
+                const xValues = ["0%", "5%", "10%"];
+                const yValues = ["0%", "-3%", "-5%"];
+                const opacityValues = [1, 1, 1];
+
+                gsap.to(hero2Ref.current, {
+                  scale: scaleValues[scrollStep],
+                  x: xValues[scrollStep],
+                  y: yValues[scrollStep],
+                  opacity: opacityValues[scrollStep],
+                  duration: 0.6,
+                  ease: "power2.out",
+                  onComplete: () => {
+                    isAnimating = false;
+                  },
+                });
+              }
+            }
+          }
+        };
+
+        window.addEventListener("wheel", handleWheel, { passive: false });
+
+        return () => {
+          window.removeEventListener("wheel", handleWheel);
+        };
+      }
+
       const checkIfInView = () => {
         if (!sectionRef.current || hasPlayed.current) return;
 
@@ -172,14 +257,14 @@ const HeroSection = ({
   return (
     <section
       ref={sectionRef}
-      className="max-h-screen pt-18 lg:pt-16 overflow-hidden relative"
+      className="lg:max-h-screen pt-18 lg:pt-16 overflow-hidden relative"
       style={{
         backgroundImage: "url(/images/herosectionbg.svg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 min-h-screen pt-12 md:py-0 xl:pt-16">
+      <div className="flex justify-between flex-col lg:flex-row gap-6 lg:gap-0 min-h-screen pt-12 md:py-0 xl:pt-16">
         {/* Content */}
         <div className="flex flex-col pt-10 md:pt-24 lg:pt-36 2xl:pt-56 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px]">
           <h1
@@ -216,14 +301,76 @@ const HeroSection = ({
           </div>
         </div>
 
-        {/* Image */}
-        <div ref={imageRef} className="px-4 md:px-0 flex justify-end items-end">
+        {/* mobile image */}
+        <div
+          ref={imageRef}
+          className="px-4 md:px-0 flex justify-end items-end lg:hidden"
+        >
           <img
             src={imageSrc}
             alt={imageAlt}
             className="2xl:w-[60vw] object-contain"
             loading="eager"
           />
+        </div>
+
+        {/* desktop Image */}
+        <div
+          ref={imageRef}
+          className="px-4 md:px-0 hidden lg:flex lg:justify-end lg:items-end relative"
+        >
+          <div className="">
+            <img
+              src="/images/hero-1.png"
+              alt="logo"
+              className="2xl:w-[60vw] object-contain z-40 -mb-20"
+              loading="eager"
+            />
+          </div>
+
+          {/* Hero-2 with expansion animation */}
+          <div
+            ref={hero2Ref}
+            className="z-40 w-[500px] h-[40%] bottom-0 lg:absolute -right-20 origin-center"
+          >
+            <img
+              src="/images/hero-2.png"
+              alt="logo"
+              className="object-contain w-full h-full"
+              loading="eager"
+            />
+          </div>
+
+          <div className="">
+            <img
+              src="/images/hero-1.png"
+              alt="logo"
+              className="2xl:w-[60vw] object-contain -mb-20"
+              loading="eager"
+            />
+          </div>
+          <div className="z-20 lg:absolute -left-2 bottom-72">
+            <img
+              src="/images/hero-3.png"
+              alt="logo"
+              className="2xl:w-[60vw] object-contain"
+              loading="eager"
+            />
+          </div>
+          <img
+            src="/images/hero-4.png"
+            alt="logo"
+            className="2xl:w-[60vw] object-contain z-20 lg:absolute bottom-32"
+            loading="eager"
+          />
+          <div className="w-[600px] h-[60%] object-contain lg:absolute bottom-0 right-0">
+            <img
+              src="/images/blue-1.png"
+              alt="logo"
+              className=""
+              loading="eager"
+            />
+          </div>
         </div>
       </div>
     </section>
